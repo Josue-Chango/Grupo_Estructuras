@@ -42,9 +42,10 @@ int ingresar(char *msj){
 }
 
 
-//Ingresar letras-------------------------------------------------------------------------
+//Ingresar una letra-------------------------------------------------------------------------
+int ingresarLetra(char *);
 
-/*int ingresar(char *msj) {
+int ingresarLetra(char *msj) {
     char cad[10];
     char c;
     int i = 0;
@@ -62,19 +63,21 @@ int ingresar(char *msj){
         }
     }
     cad[i] = '\0';
-    for (int j = 0; cad[j] != '\0'; j++) {
-        valor = valor * 10;
+    for (i = 0; cad[i] != '\0'; i++) {
+        valor = valor * 10 + (cad[i] - 'a');
     }
-    
     return valor;
-}*/
+}
+
+
+
 
 
 //Ingresar float------------------------------------------------------------------------------
 
 float ingresarFloat(char *);
 float ingresarFloat(char *msj){
-    char cad[100];
+    char cad[10];
     char c;
     int i = 0;
     float valor = 0;
@@ -109,9 +112,45 @@ float ingresarFloat(char *msj){
     return valor;
 }
 
+//ingresar un string---------------------------------------------------------------------------------------
+string ingresarString(char *);
+string ingresarString(char *msj) {
+    char cad[10];
+    char c;
+    int i = 0;
+    string valor;
+    printf("%s", msj);
+    while ((c = getch()) != 13) {
+        if (isalpha(c)) {
+            printf("%c", c);
+            cad[i++] = c;
+        } else if (c == 8) {
+            if (i > 0) {
+                printf("\b \b");
+                i--;
+            }
+        }
+    }
+    cad[i] = '\0';
+    for (int j = 0; cad[j] != '\0'; j++) {
+        valor = valor + cad[j];
+    }
+    
+    return valor;
+}
 
 int main(){
-    float imprimir = ingresarFloat("ingrese un valor entero: ");
+    int imprimirNumeros = ingresar("ingrese un valor entero: ");
+    cout << endl;
+    cout << imprimirNumeros << endl;
+    int imprimirLetras = ingresarLetra("ingrese letras: ");
+    cout << endl;
+    cout << imprimirLetras << endl;
+    float imprimir = ingresarFloat("ingrese un valor flotante: ");
     cout << endl;
     cout << imprimir << endl;
+    string imprimirString = ingresarString("ingrese un string: ");
+    cout << endl;
+    cout << imprimirString << endl;
+
 }
