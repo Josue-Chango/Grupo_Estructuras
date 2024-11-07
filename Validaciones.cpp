@@ -16,20 +16,51 @@
 using namespace std;
 
 int ingresar(char *);
-int ingresar(char *msj){
+/*int ingresar(char *msj){
     char cad[10];
     char c;
     int i = 0;
-    int valor;
+    int valor = 0;
     printf("%s", msj);
     while((c = getch()) != 13){
         if (c >= '0' && c <= '9'){
             printf("%c", c);
             cad[i++] = c;
+        } else if (c == 8) {
+            if (i > 0) {
+                printf("\b \b");
+                i--;
+            }
         }
     }
-        cad[i++] = '\0';
-        valor = atoi(cad);
+    cad[i++] = '\0';
+    valor = atoi(cad);
+    return valor;
+}*/
+
+int ingresar(char *msj) {
+    char cad[10];
+    char c;
+    int i = 0;
+    int valor = 0;
+    printf("%s", msj);
+    while ((c = getch()) != 13) {
+        if (isalpha(c)) {
+            printf("%c", c);
+            cad[i++] = c;
+        } else if (c == 8) {
+            if (i > 0) {
+                printf("\b \b");
+                i--;
+            }
+        }
+    }
+    cad[i] = '\0';
+    for (int j = 0; cad[j] != '\0'; j++) {
+        valor = valor * 10;
+    }
+    
+    return valor;
 }
 
 int main(){
