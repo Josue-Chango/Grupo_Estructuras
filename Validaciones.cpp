@@ -16,6 +16,9 @@
 using namespace std;
 
 int ingresar(char *);
+
+//Ingresar enteros
+
 /*int ingresar(char *msj){
     char cad[10];
     char c;
@@ -38,7 +41,10 @@ int ingresar(char *);
     return valor;
 }*/
 
-int ingresar(char *msj) {
+
+//Ingresar letras
+
+/*int ingresar(char *msj) {
     char cad[10];
     char c;
     int i = 0;
@@ -61,7 +67,39 @@ int ingresar(char *msj) {
     }
     
     return valor;
+}*/
+
+
+//Ingresar float
+
+int ingresar(char *msj){
+    char cad[10];
+    char c;
+    int i = 0;
+    int valor = 0;
+    printf("%s", msj);
+    while((c = getch()) != 13){
+        if (c >= '0' && c <= '9'){
+            printf("%c", c);
+            cad[i++] = c;
+        } else if (c == 8) {
+            if (i > 0) {
+                printf("\b \b");
+                i--;
+            }
+        } else if (c == 44 || c == 46) {
+            if(cad[i--] != 44 || cad[i--] != 46){
+                i++;
+                printf("%c", c);
+                cad[i++] = c;
+            }  
+        }
+    }
+    cad[i++] = '\0';
+    valor = atoi(cad);
+    return valor;
 }
+
 
 int main(){
     //cout << "hola mundo, como estas" << endl;
