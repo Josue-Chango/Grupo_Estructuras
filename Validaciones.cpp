@@ -17,9 +17,9 @@ using namespace std;
 
 int ingresar(char *);
 
-//Ingresar enteros
+//Ingresar enteros------------------------------------------------------------------------
 
-/*int ingresar(char *msj){
+int ingresar(char *msj){
     char cad[10];
     char c;
     int i = 0;
@@ -39,10 +39,10 @@ int ingresar(char *);
     cad[i++] = '\0';
     valor = atoi(cad);
     return valor;
-}*/
+}
 
 
-//Ingresar letras
+//Ingresar letras-------------------------------------------------------------------------
 
 /*int ingresar(char *msj) {
     char cad[10];
@@ -70,13 +70,14 @@ int ingresar(char *);
 }*/
 
 
-//Ingresar float
+//Ingresar float------------------------------------------------------------------------------
 
-int ingresar(char *msj){
-    char cad[10];
+float ingresarFloat(char *);
+float ingresarFloat(char *msj){
+    char cad[100];
     char c;
     int i = 0;
-    int valor = 0;
+    float valor = 0;
     printf("%s", msj);
     while((c = getch()) != 13){
         if (c >= '0' && c <= '9'){
@@ -87,21 +88,30 @@ int ingresar(char *msj){
                 printf("\b \b");
                 i--;
             }
-        } else if (c == 44 || c == 46) {
-            if(cad[i--] != 44 || cad[i--] != 46){
-                i++;
+        } else if (c == 46) {
+            bool aux = false;
+            for (int j = 0; cad[j] != '\0'; j++) {
+                if (cad[j] == 46){
+                    aux = true;
+                    break;
+                }
+            }
+            if(aux == false){
                 printf("%c", c);
                 cad[i++] = c;
-            }  
+            }
         }
     }
     cad[i++] = '\0';
-    valor = atoi(cad);
+    for (int j = 0; cad[j] != '\0'; j++) {
+        valor = atof(cad);
+    }
     return valor;
 }
 
 
 int main(){
-    //cout << "hola mundo, como estas" << endl;
-    ingresar("ingrese un valor entero: ");
+    float imprimir = ingresarFloat("ingrese un valor entero: ");
+    cout << endl;
+    cout << imprimir << endl;
 }
