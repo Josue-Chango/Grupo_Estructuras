@@ -43,8 +43,7 @@ int ingresar(char *msj){
 
 
 //Ingresar una letra-------------------------------------------------------------------------
-//int ingresarLetra(char *);
-
+char ingresarLetra(char *);
 char ingresarLetra(char *msj) {
     char c;
     printf("%s", msj);
@@ -159,7 +158,7 @@ int main(){
     int imprimirNumeros = ingresar("ingrese un valor entero: ");
     cout << endl;
     cout << imprimirNumeros << endl;
-    int imprimirLetras = ingresarLetra("ingrese letras: ");
+    char imprimirLetras = ingresarLetra("ingrese letras: ");
     cout << endl;
     cout << imprimirLetras << endl;
     float imprimir = ingresarFloat("ingrese un valor flotante: ");
