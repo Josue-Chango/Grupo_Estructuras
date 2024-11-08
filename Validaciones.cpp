@@ -43,33 +43,21 @@ int ingresar(char *msj){
 
 
 //Ingresar una letra-------------------------------------------------------------------------
-int ingresarLetra(char *);
+//int ingresarLetra(char *);
 
-int ingresarLetra(char *msj) {
-    char cad[10];
+char ingresarLetra(char *msj) {
     char c;
-    int i = 0;
-    int valor = 0;
     printf("%s", msj);
-    while ((c = getch()) != 13) {
+    while (true) {
+        c = getch();
         if (isalpha(c)) {
             printf("%c", c);
-            cad[i++] = c;
+            return c;
         } else if (c == 8) {
-            if (i > 0) {
-                printf("\b \b");
-                i--;
-            }
+            printf("\b \b");
         }
     }
-    cad[i] = '\0';
-    for (i = 0; cad[i] != '\0'; i++) {
-        valor = valor * 10 + (cad[i] - 'a');
-    }
-    return valor;
 }
-
-
 
 
 
@@ -135,7 +123,35 @@ string ingresarString(char *msj) {
     for (int j = 0; cad[j] != '\0'; j++) {
         valor = valor + cad[j];
     }
-    
+
+    return valor;
+}
+
+//Ingresar double------------------------------------------------------------------------------
+double ingresarDouble(char *msj){
+    char cad[20];
+    char c;
+    int i = 0;
+    double valor = 0;
+    printf("%s", msj);
+    bool puntoDecimal = false;
+    while((c = getch()) != 13){
+        if (c >= '0' && c <= '9'){
+            printf("%c", c);
+            cad[i++] = c;
+        } else if (c == 8) {
+            if (i > 0) {
+                printf("\b \b");
+                i--;
+            }
+        } else if (c == '.' && !puntoDecimal) {
+            puntoDecimal = true;
+            printf("%c", c);
+            cad[i++] = c;
+        }
+    }
+    cad[i] = '\0';
+    valor = atof(cad);
     return valor;
 }
 
@@ -152,5 +168,7 @@ int main(){
     string imprimirString = ingresarString("ingrese un string: ");
     cout << endl;
     cout << imprimirString << endl;
+    double imprimirDoubleValue = ingresarDouble("Ingrese un valor double: ");
+    cout << endl << imprimirDoubleValue << endl;
 
 }
