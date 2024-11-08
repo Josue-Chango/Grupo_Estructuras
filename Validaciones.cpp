@@ -155,19 +155,19 @@ double ingresarDouble(char *msj){
 }
 
 int main(){
-    int imprimirNumeros = ingresar("ingrese un valor entero: ");
+int imprimirNumeros = ingresar("ingrese un valor entero: ");
     cout << endl;
     cout << imprimirNumeros << endl;
     char imprimirLetras = ingresarLetra("ingrese letras: ");
     cout << endl;
     cout << imprimirLetras << endl;
-    float imprimir = ingresarFloat("ingrese un valor flotante: ");
+    float imprimirFloats = ingresarFloat("ingrese un valor flotante: ");
     cout << endl;
-    cout << imprimir << endl;
+    cout << imprimirFloats << endl;
     string imprimirString = ingresarString("ingrese un string: ");
     cout << endl;
     cout << imprimirString << endl;
-    double imprimirDoubleValue = ingresarDouble("Ingrese un valor double: ");
-    cout << endl << imprimirDoubleValue << endl;
+    double imprimirDouble = ingresarDouble("Ingrese un valor double: ");
+    cout << endl << imprimirDouble << endl;
 
 }
