@@ -15,10 +15,9 @@
 
 using namespace std;
 
-int ingresar(char *);
 
 //Ingresar enteros------------------------------------------------------------------------
-
+int ingresar(char *);
 int ingresar(char *msj){
     char cad[10];
     char c;
@@ -154,10 +153,38 @@ double ingresarDouble(char *msj){
     return valor;
 }
 
+int SumarEnteros(int obj1, int obj2){
+    int temporal;
+    temporal = obj1 + obj2;
+    return temporal;
+}
+
+float SumarFlotantes(float obj1, float obj2){
+    ingresarString("Ingrese su nombre: ");
+    float temporal;
+    temporal = obj1 + obj2;
+    return temporal;
+}
+
 int main(){
-int imprimirNumeros = ingresar("ingrese un valor entero: ");
+    int numero1 = ingresar("ingrese un valor entero: ", "entero");
     cout << endl;
-    cout << imprimirNumeros << endl;
+    int numero2 = ingresar("Ingrese un valor entero: ");
+    cout << endl;
+    int Resultado = SumarEnteros(numero1, numero2);
+    cout << Resultado << endl;
+
+    float num1 = ingresarFloat("ingrese un valor flotante: ");
+    cout << endl;
+    float num2 = ingresarFloat("Ingrese un valor flotante: ");
+    cout << endl;
+    float Respuesta = SumarFlotantes(num1, num2);
+    cout << endl;
+    cout << Respuesta << endl;
+
+
+
+    /*cout << imprimirNumeros << endl;
     char imprimirLetras = ingresarLetra("ingrese letras: ");
     cout << endl;
     cout << imprimirLetras << endl;
@@ -168,6 +195,6 @@ int imprimirNumeros = ingresar("ingrese un valor entero: ");
     cout << endl;
     cout << imprimirString << endl;
     double imprimirDouble = ingresarDouble("Ingrese un valor double: ");
-    cout << endl << imprimirDouble << endl;
+    cout << endl << imprimirDouble << endl;*/
 
 }
