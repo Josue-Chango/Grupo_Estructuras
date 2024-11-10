@@ -60,7 +60,6 @@ char ingresarLetra(char *msj) {
 
 
 //Ingresar float------------------------------------------------------------------------------
-
 float ingresarFloat(char *);
 float ingresarFloat(char *msj){
     char cad[10];
@@ -166,8 +165,11 @@ float SumarFlotantes(float obj1, float obj2){
     return temporal;
 }
 
+
+
+
 int main(){
-    int numero1 = ingresar("ingrese un valor entero: ", "entero");
+    int numero1 = ingresar("ingrese un valor entero: ");
     cout << endl;
     int numero2 = ingresar("Ingrese un valor entero: ");
     cout << endl;
