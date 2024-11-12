@@ -18,6 +18,13 @@ public:
     T restar(); 
 // **Funci�n para multiplicar los valores de a y b**
     T multiplicar(); 
+//setters y getters
+    T getnumero1(T);
+    void setnumero1(T newNumero1);
+
+    T getnumero2(T);
+    void setnumero2(T newNumero2);
+
 private: 
 // **Atributos**
 // Almacenan los valores de tipo T que se utilizar�n en las operaciones.

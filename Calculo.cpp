@@ -26,6 +26,25 @@ template <typename T>
 T Calculo<T>::multiplicar() { 
     T resultado;
     return resultado = numero1 * numero2;  
- } 
- 
+ }
+ template <typename T>
+ T Calculo<T>::getnumero1(T)
+ {
+     return T();
+ }
 
+ template <typename T>
+ void Calculo<T>::setnumero1(T newNumero1)
+ {
+ }
+
+ template <typename T>
+ T Calculo<T>::getnumero2(T)
+ {
+     return T();
+ }
+
+ template <typename T>
+ void Calculo<T>::setnumero2(T newNumero2)
+ {
+ }
