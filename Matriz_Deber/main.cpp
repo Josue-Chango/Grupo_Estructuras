@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Matriz.h"
-#include "Operaciones.h"
+#include "Matriz.cpp"
+#include "Operaciones.cpp"
 int ingresar(char *);
 int ingresar(char *msj){
 	int dim;
@@ -8,7 +8,7 @@ int ingresar(char *msj){
 	scanf("%d",&dim);
 	return dim;
 }
-void iniciar(int, int);
+void iniciar(int);
 void iniciar(int  dim){
 	int pot;
 	int **m3=nullptr;

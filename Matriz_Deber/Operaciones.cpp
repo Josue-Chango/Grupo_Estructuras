@@ -6,6 +6,7 @@
 #include "Operaciones.h"
 Operaciones::Operaciones(){
 }
+
 Operaciones::Operaciones(Matriz m1){
 	this->_matriz=m1;
 }
