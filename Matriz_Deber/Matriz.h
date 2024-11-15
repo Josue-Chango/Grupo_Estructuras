@@ -17,4 +17,5 @@ class Matriz{
 		void setMatriz2(int **);
 		int **getMatrizR();
 		void setMatrizR(int **);
+		int sumaRecursivaMatrices(int** mat1, int** mat2, int f, int c);
 };

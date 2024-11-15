@@ -2,25 +2,12 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "Matriz.cpp"
 
 using namespace std;
 
-int sumaRecursivaMatrices(int** mat1, int** mat2, int f, int c);
 
-int sumaRecursivaMatrices(int** mat1, int** mat2, int f, int c) {
-    if ((f == 0) && (c == 0))
-        return *(*(mat1+f)+c) + *(*(mat2+f)+c);
-    else {
-        if (f > -1) {
-            c--;
-            if (c >= -1)
-                return *(*(mat1+f)+(c + 1)) + *(*(mat2+f)+(c + 1)) + sumaRecursivaMatrices(mat1, mat2, f, c);
-            else
-                return sumaRecursivaMatrices(mat1, mat2, f - 1, 2);
-        }
-    }
-    //return;
-}
+
 
 int main(int argc, char** argv) {
     int** mat1 = new int*[3];

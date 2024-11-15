@@ -34,3 +34,18 @@ int **Matriz::getMatrizR(){
 void Matriz::setMatrizR(int **matrizR){
 	this->matrizR=matrizR;
 }
+
+int sumaRecursivaMatrices(int** mat1, int** mat2, int f, int c) {
+    if ((f == 0) && (c == 0))
+        return *(*(mat1+f)+c) + *(*(mat2+f)+c);
+    else {
+        if (f > -1) {
+            c--;
+            if (c >= -1)
+                return *(*(mat1+f)+(c + 1)) + *(*(mat2+f)+(c + 1)) + sumaRecursivaMatrices(mat1, mat2, f, c);
+            else
+                return sumaRecursivaMatrices(mat1, mat2, f - 1, 2);
+        }
+    }
+    //return;
+}
