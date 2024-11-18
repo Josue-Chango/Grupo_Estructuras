@@ -12,7 +12,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Validaciones.cpp"
-#include <windows.h>
 using namespace std;
 
 
