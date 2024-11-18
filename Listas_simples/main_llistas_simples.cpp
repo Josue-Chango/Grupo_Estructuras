@@ -7,7 +7,7 @@
  * Materia:                        Estructura de datos                 *
  * NRC :                           1978                                *
  ***********************************************************************/
-#include "ListasSimples.cpp"
+#include "Lista_Simple.cpp"
 #include "Nodo.cpp"
 #include <iostream>
 #include <stdlib.h>
@@ -19,13 +19,18 @@ using namespace std;
 bool esEntero(string);
 
 int main() {
-    ListaSimples<int>* lista_entero = new ListaSimples<int>();
-    ListaSimples<float>* lista_flotante = new ListaSimples<float>();
-    ListaSimples<double>* lista_doble = new ListaSimples<double>();
-    ListaSimples<std::string>* lista_string = new ListaSimples<std::string>();
-    ListaSimples<char>* lista_letras = new ListaSimples<char>();
+    Lista_Simple<int>* lista_entero = new Lista_Simple<int>();
+    Lista_Simple<float>* lista_flotante = new Lista_Simple<float>();
+    Lista_Simple<double>* lista_doble = new Lista_Simple<double>();
+    Lista_Simple<std::string>* lista_string = new Lista_Simple<std::string>();
+    Lista_Simple<char>* lista_letras = new Lista_Simple<char>();
 
-    int opcion, dato;
+    int opcion, dato_entero;
+    float dato_flotante;
+    double dato_doble;
+    std::string dato_string;
+    char dato_char;
+
     Validaciones<int> ingresar_entero;
     Validaciones<float> ingresar_flotante;
     Validaciones<double> ingresar_doble;
@@ -47,7 +52,7 @@ int main() {
         cout << "3. lista de dobles" << endl;
         cout << "4. lista de strings" << endl;
         cout << "5. lista de letras" << endl;
-        cout << "6. salir";
+        cout << "6. salir" << endl;
         opcion = ingresar_entero.ingresar("Opcion: ","entero");
         cout << endl;
         switch (opcion) {
@@ -64,52 +69,227 @@ int main() {
                 cout << endl;
                 switch (opcion) {
                 case 1:
-                    dato = ingresar_entero.ingresar("ingrese el dato a insertar: ", "entero");
+                    dato_entero = ingresar_entero.ingresar("ingrese el dato a insertar: ", "entero");
                     cout << endl;
-                    lista_entero->Insertar_cabeza(dato);
+                    lista_entero->Insertar_cabeza(dato_entero);
+                    cout << endl << "Dato ingresado correctamente" << endl;
+                    system("pause");
                     break;
                 case 2:
-                    dato = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
+                    dato_entero = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
                     cout << endl;
-                    lista_entero->Buscar(dato);
+                    lista_entero->Buscar(dato_entero);
+                    system("pause");
                     break;
                 case 3:
-                    dato = ingresar_entero.ingresar("ingrese el dato a eliminar: ", "entero");
+                    dato_entero = ingresar_entero.ingresar("ingrese el dato a eliminar: ", "entero");
                     cout << endl;
-                    lista_entero->Eliminar(dato);
+                    lista_entero->Eliminar(dato_entero);
+                    system("pause");
                     break;
                 case 4:
                     lista_entero->Mostrar();
                     cout << endl;
+                    system("pause");
+                    break;
+                case 5:
                     break;
                 default:
                     cout << "Opcion no valida, intente de nuevo" << endl;
+                    system("pause");
                     break;
                 }
-                system("pause");
             } while (opcion != 5);
             break;
         case 2:
-            dato = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
-            cout << endl;
-            lista->Buscar(dato);
+            do {
+                system("cls");
+                cout << "***********Listas Simples***********" << endl;
+                cout << "1. Insertar" << endl;
+                cout << "2. Buscar" << endl;
+                cout << "3. Eliminar" << endl;
+                cout << "4. Mostrar" << endl;
+                cout << "5. Salir" << endl;
+                opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                cout << endl;
+                switch (opcion) {
+                case 1:
+                    dato_flotante = ingresar_flotante.ingresar("ingrese el dato a insertar: ", "flotante");
+                    cout << endl;
+                    lista_flotante->Insertar_cabeza(dato_flotante);
+                    cout << endl << "Dato ingresado correctamente" << endl;
+                    system("pause");
+                    break;
+                case 2:
+                    dato_flotante = ingresar_flotante.ingresar("ingrese el dato a buscar: ", "flotante");
+                    cout << endl;
+                    lista_flotante->Buscar(dato_flotante);
+                    system("pause");
+                    break;
+                case 3:
+                    dato_flotante = ingresar_flotante.ingresar("ingrese el dato a eliminar: ", "flotante");
+                    cout << endl;
+                    lista_flotante->Eliminar(dato_flotante);
+                    system("pause");
+                    break;
+                case 4:
+                    lista_flotante->Mostrar();
+                    cout << endl;
+                    system("pause");
+                    break;
+                case 5:
+                    break;
+                default:
+                    cout << "Opcion no valida, intente de nuevo" << endl;
+                    system("pause");
+                    break;
+                }
+            } while (opcion != 5);
             break;
         case 3:
-            dato = ingresar_entero.ingresar("ingrese el dato a eliminar: ", "entero");
-            cout << endl;
-            lista->Eliminar(dato);
+            do {
+                system("cls");
+                cout << "***********Listas Simples***********" << endl;
+                cout << "1. Insertar" << endl;
+                cout << "2. Buscar" << endl;
+                cout << "3. Eliminar" << endl;
+                cout << "4. Mostrar" << endl;
+                cout << "5. Salir" << endl;
+                opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                cout << endl;
+                switch (opcion) {
+                case 1:
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a insertar: ", "doble");
+                    cout << endl;
+                    lista_doble->Insertar_cabeza(dato_doble);
+                    cout << endl << "Dato ingresado correctamente" << endl;
+                    system("pause");
+                    break;
+                case 2:
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a buscar: ", "doble");
+                    cout << endl;
+                    lista_doble->Buscar(dato_doble);
+                    system("pause");
+                    break;
+                case 3:
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a eliminar: ", "doble");
+                    cout << endl;
+                    lista_doble->Eliminar(dato_doble);
+                    system("pause");
+                    break;
+                case 4:
+                    lista_doble->Mostrar();
+                    cout << endl;
+                    system("pause");
+                    break;
+                case 5:
+                    break;
+                default:
+                    cout << "Opcion no valida, intente de nuevo" << endl;
+                    system("pause");
+                    break;
+                }
+            } while (opcion != 5);
             break;
         case 4:
-            lista->Mostrar();
+            do {
+                system("cls");
+                cout << "***********Listas Simples***********" << endl;
+                cout << "1. Insertar" << endl;
+                cout << "2. Buscar" << endl;
+                cout << "3. Eliminar" << endl;
+                cout << "4. Mostrar" << endl;
+                cout << "5. Salir" << endl;
+                opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                cout << endl;
+                switch (opcion) {
+                case 1:
+                    dato_string = ingresar_string.ingresar("ingrese el dato a insertar: ", "string");
+                    cout << endl;
+                    lista_string->Insertar_cabeza(dato_string);
+                    cout << endl << "Dato ingresado correctamente" << endl;
+                    system("pause");
+                    break;
+                case 2:
+                    dato_string = ingresar_string.ingresar("ingrese el dato a buscar: ", "string");
+                    cout << endl;
+                    lista_string->Buscar(dato_string);
+                    system("pause");
+                    break;
+                case 3:
+                    dato_string = ingresar_string.ingresar("ingrese el dato a eliminar: ", "string");
+                    cout << endl;
+                    lista_string->Eliminar(dato_string);
+                    system("pause");
+                    break;
+                case 4:
+                    lista_string->Mostrar();
+                    cout << endl;
+                    system("pause");
+                    break;
+                case 5:
+                    break;
+                default:
+                    cout << "Opcion no valida, intente de nuevo" << endl;
+                    system("pause");
+                    break;
+                }
+            } while (opcion != 5);
             break;
         case 5:
-
+            do {
+                system("cls");
+                cout << "***********Listas Simples***********" << endl;
+                cout << "1. Insertar" << endl;
+                cout << "2. Buscar" << endl;
+                cout << "3. Eliminar" << endl;
+                cout << "4. Mostrar" << endl;
+                cout << "5. Salir" << endl;
+                opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                cout << endl;
+                switch (opcion) {
+                case 1:
+                    dato_char = ingresar_letra.ingresar("ingrese el dato a insertar: ", "char");
+                    cout << endl;
+                    lista_letras->Insertar_cabeza(dato_char);
+                    cout << endl << "Dato ingresado correctamente" << endl;
+                    system("pause");
+                    break;
+                case 2:
+                    dato_char = ingresar_letra.ingresar("ingrese el dato a buscar: ", "char");
+                    cout << endl;
+                    lista_letras->Buscar(dato_char);
+                    system("pause");
+                    break;
+                case 3:
+                    dato_char = ingresar_letra.ingresar("ingrese el dato a eliminar: ", "char");
+                    cout << endl;
+                    lista_letras->Eliminar(dato_char);
+                    system("pause");
+                    break;
+                case 4:
+                    lista_letras->Mostrar();
+                    cout << endl;
+                    system("pause");
+                    break;
+                case 5:
+                    break;
+                default:
+                    cout << "Opcion no valida, intente de nuevo" << endl;
+                    system("pause");
+                    break;
+                }
+            } while (opcion != 5);
+            break;
+        case 6:
+            cout << "Gracias por visitarnos" << endl;
+            system("pause");
             break;
         default:
             cout << "Opcion no valida, intente de nuevo" << endl;
+            system("pause");
             break;
         }
-        system("pause");
     } while (opcion != 6);
 
     
