@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1731887599 source:c:\users\usuario\desktop\borrador estructura\parcial 1\sumamatricesdll\suma_matrices_dll\operacionmatriz.cpp
+	"operacionMatriz.h"
+
+1731887795 c:\users\usuario\desktop\borrador estructura\parcial 1\sumamatricesdll\suma_matrices_dll\operacionmatriz.h
+	<windows.h>
+

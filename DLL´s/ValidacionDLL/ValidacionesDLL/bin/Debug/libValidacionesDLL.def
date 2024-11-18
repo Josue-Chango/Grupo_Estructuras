@@ -1,0 +1,6 @@
+EXPORTS
+    ingresar @1
+    ingresarDouble @2
+    ingresarFloat @3
+    ingresarLetra @4
+    ingresarString @5
