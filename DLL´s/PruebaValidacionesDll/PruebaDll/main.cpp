@@ -7,7 +7,7 @@ typedef float (*IngresarFloat)(char*);
 typedef std::string (*IngresarString)(char*);
 typedef double (*IngresarDouble)(char*);
 
-int main() {
+int main() {+
     // Cargar la DLL
     HINSTANCE hDLL = LoadLibrary("ValidacionesDLL.dll");
     if (!hDLL) {
