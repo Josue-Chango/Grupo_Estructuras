@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Validaciones.cpp"
+#include <windows.h>
 using namespace std;
 
 
@@ -20,14 +21,18 @@ bool esEntero(string);
 int main() {
     ListaSimples* lista = new ListaSimples();
     int opcion, dato;
-    string linea, i, b, e, m, s;
-    bool rep = true;
-    bool repite = true;
     Validaciones<int> ingresar_entero;
     Validaciones<float> ingresar_flotante;
     Validaciones<double> ingresar_doble;
     Validaciones<std::string> ingresar_string;
     Validaciones<char> ingresar_letra;
+
+    /*HINSTANCE hDLL = LoadLibrary("ValidDll.dll");
+    if (!hDLL) {
+        std::cerr << "No se pudo cargar la DLL.\n";
+        return 1;
+    }*/
+
 
 
     do {
@@ -58,6 +63,9 @@ int main() {
             break;
         case 4:
             lista->Mostrar();
+            break;
+        default:
+            cout << "numero no valido intente de nuevo" << endl;
             break;
         }
         system("pause");
