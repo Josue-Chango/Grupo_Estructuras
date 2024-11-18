@@ -11,11 +11,13 @@
 
 using namespace std;
 
-inline ListaSimples::ListaSimples() {
+template<typename T> 
+inline ListaSimples<T>::ListaSimples() {
     cabeza = NULL;
 }
 
-inline void ListaSimples::Insertar(int _dato) {
+template<typename T> 
+inline void ListaSimples<T>::Insertar_cabeza(T _dato) {
     Nodo* nuevo = new Nodo(_dato);
     if (cabeza == NULL) {
         cabeza = nuevo;
@@ -29,7 +31,23 @@ inline void ListaSimples::Insertar(int _dato) {
     }
 }
 
-inline void ListaSimples::Buscar(int _dato) {
+template<typename T> 
+inline void ListaSimples<T>::Insertar_cola(T _dato) {
+    Nodo* nuevo = new Nodo(_dato);
+    if (cabeza == NULL) {
+        cabeza = nuevo;
+    }
+    else {
+        Nodo* aux = cabeza;
+        while (aux->getSiguiente() != NULL) {
+            aux = aux->getSiguiente();
+        }
+        aux->setSiguiente(nuevo);
+    }
+}
+
+template<typename T> 
+inline void ListaSimples<T>::Buscar(T _dato) {
     Nodo* aux = cabeza;
     while (aux != NULL) {
         if (aux->getDato() == _dato) {
@@ -41,7 +59,8 @@ inline void ListaSimples::Buscar(int _dato) {
     cout << "El dato " << _dato << " no se encuentra en la lista" << endl;
 }
 
-inline void ListaSimples::Eliminar(int _dato) {
+template<typename T> 
+inline void ListaSimples<T>::Eliminar(T _dato) {
     Nodo* aux = cabeza;
     Nodo* anterior = NULL;
     while (aux != NULL) {
@@ -62,7 +81,8 @@ inline void ListaSimples::Eliminar(int _dato) {
     cout << "El dato " << _dato << " no se encuentra en la lista" << endl;
 }
 
-inline void ListaSimples::Mostrar() {
+template<typename T> 
+inline void ListaSimples<T>::Mostrar() {
     Nodo* aux = cabeza;
     while (aux != NULL) {
         cout << aux->getDato() << " -> ";

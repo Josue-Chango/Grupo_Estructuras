@@ -12,15 +12,17 @@
 
 using namespace std;
 
+template<typename T>
 class ListaSimples {
 
 private:
     Nodo* cabeza;
 public:
     ListaSimples();
-    void Insertar(int);
-    void Buscar(int);
-    void Eliminar(int);
+    void Insertar_cabeza(T);
+    void Insertar_cola(T);
+    void Buscar(T);
+    void Eliminar(T);
     void Mostrar();
 };
 

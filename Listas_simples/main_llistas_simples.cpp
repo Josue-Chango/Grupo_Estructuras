@@ -19,7 +19,12 @@ using namespace std;
 bool esEntero(string);
 
 int main() {
-    ListaSimples* lista = new ListaSimples();
+    ListaSimples<int>* lista_entero = new ListaSimples<int>();
+    ListaSimples<float>* lista_flotante = new ListaSimples<float>();
+    ListaSimples<double>* lista_doble = new ListaSimples<double>();
+    ListaSimples<std::string>* lista_string = new ListaSimples<std::string>();
+    ListaSimples<char>* lista_letras = new ListaSimples<char>();
+
     int opcion, dato;
     Validaciones<int> ingresar_entero;
     Validaciones<float> ingresar_flotante;
