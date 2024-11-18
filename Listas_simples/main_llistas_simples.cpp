@@ -12,7 +12,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "Validaciones.cpp"
-#include <windows.h>
+//#include <windows.h>
 using namespace std;
 
 
@@ -52,9 +52,42 @@ int main() {
         cout << endl;
         switch (opcion) {
         case 1:
-            dato = ingresar_entero.ingresar("ingrese el dato a insertar: ", "entero");
-            cout << endl;
-            lista->Insertar(dato);
+            do {
+                system("cls");
+                cout << "***********Listas Simples***********" << endl;
+                cout << "1. Insertar" << endl;
+                cout << "2. Buscar" << endl;
+                cout << "3. Eliminar" << endl;
+                cout << "4. Mostrar" << endl;
+                cout << "5. Salir" << endl;
+                opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                cout << endl;
+                switch (opcion) {
+                case 1:
+                    dato = ingresar_entero.ingresar("ingrese el dato a insertar: ", "entero");
+                    cout << endl;
+                    lista_entero->Insertar_cabeza(dato);
+                    break;
+                case 2:
+                    dato = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
+                    cout << endl;
+                    lista_entero->Buscar(dato);
+                    break;
+                case 3:
+                    dato = ingresar_entero.ingresar("ingrese el dato a eliminar: ", "entero");
+                    cout << endl;
+                    lista_entero->Eliminar(dato);
+                    break;
+                case 4:
+                    lista_entero->Mostrar();
+                    cout << endl;
+                    break;
+                default:
+                    cout << "Opcion no valida, intente de nuevo" << endl;
+                    break;
+                }
+                system("pause");
+            } while (opcion != 5);
             break;
         case 2:
             dato = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
@@ -69,47 +102,16 @@ int main() {
         case 4:
             lista->Mostrar();
             break;
-        default:
-            cout << "numero no valido intente de nuevo" << endl;
-            break;
-        }
-        system("pause");
-    } while (opcion != 5);
+        case 5:
 
-    do {
-        system("cls");
-        cout << "***********Listas Simples***********" << endl;
-        cout << "1. Insertar" << endl;
-        cout << "2. Buscar" << endl;
-        cout << "3. Eliminar" << endl;
-        cout << "4. Mostrar" << endl;
-        cout << "5. Salir" << endl;
-        opcion = ingresar_entero.ingresar("Opcion: ","entero");
-        cout << endl;
-        switch (opcion) {
-        case 1:
-            dato = ingresar_entero.ingresar("ingrese el dato a insertar: ", "entero");
-            cout << endl;
-            lista->Insertar(dato);
-            break;
-        case 2:
-            dato = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
-            cout << endl;
-            lista->Buscar(dato);
-            break;
-        case 3:
-            dato = ingresar_entero.ingresar("ingrese el dato a eliminar: ", "entero");
-            cout << endl;
-            lista->Eliminar(dato);
-            break;
-        case 4:
-            lista->Mostrar();
             break;
         default:
-            cout << "numero no valido intente de nuevo" << endl;
+            cout << "Opcion no valida, intente de nuevo" << endl;
             break;
         }
         system("pause");
-    } while (opcion != 5);
+    } while (opcion != 6);
+
+    
     return 0;
 }

@@ -14,7 +14,6 @@ using namespace std;
 
 template<typename T>
 class ListaSimples {
-
 private:
     Nodo* cabeza;
 public:
