@@ -39,6 +39,42 @@ int main() {
     }*/
 
 
+   do {
+        system("cls");
+        cout << "***********Listas Simples***********" << endl;
+        cout << "1. Lista de enteros" << endl;
+        cout << "2. lista de flotantes" << endl;
+        cout << "3. lista de dobles" << endl;
+        cout << "4. lista de strings" << endl;
+        cout << "5. lista de letras" << endl;
+        cout << "6. salir";
+        opcion = ingresar_entero.ingresar("Opcion: ","entero");
+        cout << endl;
+        switch (opcion) {
+        case 1:
+            dato = ingresar_entero.ingresar("ingrese el dato a insertar: ", "entero");
+            cout << endl;
+            lista->Insertar(dato);
+            break;
+        case 2:
+            dato = ingresar_entero.ingresar("ingrese el dato a buscar: ", "entero");
+            cout << endl;
+            lista->Buscar(dato);
+            break;
+        case 3:
+            dato = ingresar_entero.ingresar("ingrese el dato a eliminar: ", "entero");
+            cout << endl;
+            lista->Eliminar(dato);
+            break;
+        case 4:
+            lista->Mostrar();
+            break;
+        default:
+            cout << "numero no valido intente de nuevo" << endl;
+            break;
+        }
+        system("pause");
+    } while (opcion != 5);
 
     do {
         system("cls");
