@@ -7,21 +7,26 @@
  * Materia:                        Estructura de datos                 *
  * NRC :                           1978                                *
  ***********************************************************************/
-#include "ListasSimples.h"
+#include "Lista_Simple.h"
 
 using namespace std;
 
-inline ListaSimples::ListaSimples() {
+
+template <typename T>
+Lista_Simple<T>::Lista_Simple()
+{
     cabeza = NULL;
 }
 
-inline void ListaSimples::Insertar(int _dato) {
-    Nodo* nuevo = new Nodo(_dato);
+template <typename T>
+void Lista_Simple<T>::Insertar_cabeza(T _dato)
+{
+    Nodo<T>* nuevo = new Nodo(_dato);
     if (cabeza == NULL) {
         cabeza = nuevo;
     }
     else {
-        Nodo* aux = cabeza;
+        Nodo<T>* aux = cabeza;
         while (aux->getSiguiente() != NULL) {
             aux = aux->getSiguiente();
         }
@@ -29,8 +34,24 @@ inline void ListaSimples::Insertar(int _dato) {
     }
 }
 
-inline void ListaSimples::Buscar(int _dato) {
-    Nodo* aux = cabeza;
+template<typename T> 
+ void Lista_Simple<T>::Insertar_cola(T _dato) {
+    Nodo<T>* nuevo = new Nodo(_dato);
+    if (cabeza == NULL) {
+        cabeza = nuevo;
+    }
+    else {
+        Nodo<T>* aux = cabeza;
+        while (aux->getSiguiente() != NULL) {
+            aux = aux->getSiguiente();
+        }
+        aux->setSiguiente(nuevo);
+    }
+}
+
+template<typename T> 
+ void Lista_Simple<T>::Buscar(T _dato) {
+    Nodo<T>* aux = cabeza;
     while (aux != NULL) {
         if (aux->getDato() == _dato) {
             cout << "El dato " << _dato << " si se encuentra en la lista" << endl;
@@ -41,9 +62,10 @@ inline void ListaSimples::Buscar(int _dato) {
     cout << "El dato " << _dato << " no se encuentra en la lista" << endl;
 }
 
-inline void ListaSimples::Eliminar(int _dato) {
-    Nodo* aux = cabeza;
-    Nodo* anterior = NULL;
+template<typename T> 
+ void Lista_Simple<T>::Eliminar(T _dato) {
+    Nodo<T>* aux = cabeza;
+    Nodo<T>* anterior = NULL;
     while (aux != NULL) {
         if (aux->getDato() == _dato) {
             if (anterior == NULL) {
@@ -62,8 +84,9 @@ inline void ListaSimples::Eliminar(int _dato) {
     cout << "El dato " << _dato << " no se encuentra en la lista" << endl;
 }
 
-inline void ListaSimples::Mostrar() {
-    Nodo* aux = cabeza;
+template<typename T> 
+ void Lista_Simple<T>::Mostrar() {
+    Nodo<T>* aux = cabeza;
     while (aux != NULL) {
         cout << aux->getDato() << " -> ";
         aux = aux->getSiguiente();

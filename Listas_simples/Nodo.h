@@ -14,14 +14,15 @@
 
 using namespace std;
 
+template<typename T>
 class Nodo {
 private:
-    int dato;
+    T dato;
     Nodo* siguiente;
 public:
-    Nodo(int);
-    void setDato(int);
-    int getDato();
+    Nodo(T);
+    void setDato(T);
+    T getDato();
     void setSiguiente(Nodo*);
     Nodo* getSiguiente();
     friend class ListaSimples;

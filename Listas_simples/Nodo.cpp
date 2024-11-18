@@ -11,24 +11,29 @@
 
 using namespace std;
 
- Nodo::Nodo(int _dato) {
+template<typename T>
+ Nodo<T>::Nodo(T _dato) {
     dato = _dato;
     siguiente = NULL;
 }
 
-inline void Nodo::setDato(int _dato) {
+template<typename T>
+inline void Nodo<T>::setDato(T _dato) {
     dato = _dato;
 }
 
- int Nodo::getDato() {
+template<typename T>
+ T Nodo<T>::getDato() {
     return dato;
 }
 
- void Nodo::setSiguiente(Nodo* _siguiente) {
+template<typename T>
+ void Nodo<T>::setSiguiente(Nodo* _siguiente) {
     siguiente = _siguiente;
 }
 
- Nodo* Nodo::getSiguiente() {
+template<typename T>
+ Nodo<T>* Nodo<T>::getSiguiente() {
     return siguiente;
 }
 

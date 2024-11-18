@@ -8,19 +8,21 @@
  * NRC :                           1978                                *
  ***********************************************************************/
 #pragma once
+//#include "Nodo.cpp"
 #include "Nodo.h"
 
 using namespace std;
 
-class ListaSimples {
-
+template<typename T>
+class Lista_Simple {
 private:
-    Nodo* cabeza;
+    Nodo<T>* cabeza;
 public:
-    ListaSimples();
-    void Insertar(int);
-    void Buscar(int);
-    void Eliminar(int);
+    Lista_Simple();
+    void Insertar_cabeza(T);
+    void Insertar_cola(T);
+    void Buscar(T);
+    void Eliminar(T);
     void Mostrar();
 };
 
