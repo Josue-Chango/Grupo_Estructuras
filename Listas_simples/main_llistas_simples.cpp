@@ -159,20 +159,20 @@ int main() {
                 cout << endl;
                 switch (opcion) {
                 case 1:
-                    dato_doble = ingresar_doble.ingresar("ingrese el dato a insertar: ", "doble");
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a insertar: ", "double");
                     cout << endl;
                     lista_doble->Insertar_cabeza(dato_doble);
                     cout << endl << "Dato ingresado correctamente" << endl;
                     system("pause");
                     break;
                 case 2:
-                    dato_doble = ingresar_doble.ingresar("ingrese el dato a buscar: ", "doble");
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a buscar: ", "double");
                     cout << endl;
                     lista_doble->Buscar(dato_doble);
                     system("pause");
                     break;
                 case 3:
-                    dato_doble = ingresar_doble.ingresar("ingrese el dato a eliminar: ", "doble");
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a eliminar: ", "double");
                     cout << endl;
                     lista_doble->Eliminar(dato_doble);
                     system("pause");

@@ -34,7 +34,7 @@ void Lista_Simple<T>::Insertar_cabeza(T _dato)
     }
 }
 
-template<typename T> 
+/*template<typename T> 
  void Lista_Simple<T>::Insertar_cola(T _dato) {
     Nodo<T>* nuevo = new Nodo(_dato);
     if (cabeza == NULL) {
@@ -47,7 +47,7 @@ template<typename T>
         }
         aux->setSiguiente(nuevo);
     }
-}
+}*/
 
 template<typename T> 
  void Lista_Simple<T>::Buscar(T _dato) {
