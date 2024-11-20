@@ -82,7 +82,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
         }
         else if (tipo == "string")
         {
-            if (isalpha(c))
+            if (isalpha(c) /*&& isdigit(c)*/)
             {
                 printf("%c", c);
                 cad[i++] = c;
@@ -134,7 +134,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
         double doble;
         for (int j = 0; cad[j] != '\0'; j++)
         {
-            doble = atof(cad);
+            doble = (double)atof(cad);
         }
         return valor = doble;
     }

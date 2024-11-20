@@ -17,6 +17,14 @@ template<typename T>
     siguiente = NULL;
 }
 
+template <typename T>
+Nodo<T>::Nodo(T _nombre, T _apellido, T _correo)
+{
+    nombre = _nombre;
+    apellido = _apellido;
+    correo = _correo;
+}
+
 template<typename T>
 inline void Nodo<T>::setDato(T _dato) {
     dato = _dato;
@@ -37,3 +45,38 @@ template<typename T>
     return siguiente;
 }
 
+template <typename T>
+void Nodo<T>::setNombre(T _nombre)
+{
+    nombre = _nombre;
+};
+
+template <typename T>
+T Nodo<T>::getNombre()
+{
+    return nombre;
+}
+
+template <typename T>
+void Nodo<T>::setApellido(T _apellido)
+{
+    apellido = _apellido;
+}
+
+template <typename T>
+T Nodo<T>::getApellido()
+{
+    return apellido;
+}
+
+template <typename T>
+void Nodo<T>::setCorrero(T _correo)
+{
+    correo = _correo;
+}
+
+template <typename T>
+string Nodo<T>::getCorreo()
+{
+    return correo;
+}

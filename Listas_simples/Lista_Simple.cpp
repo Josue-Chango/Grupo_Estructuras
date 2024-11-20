@@ -8,6 +8,7 @@
  * NRC :                           1978                                                *
  **************************************************************************************/
 #include "Lista_Simple.h"
+#include <cstring>
 
 using namespace std;
 
@@ -16,6 +17,28 @@ template <typename T>
 Lista_Simple<T>::Lista_Simple()
 {
     cabeza = NULL;
+}
+
+template <typename T>
+Lista_Simple<T>::Lista_Simple(T _nombre, T _apellido, T _correo)
+{
+    cabeza = NULL;
+}
+
+template <typename T>
+void Lista_Simple<T>::insertar_persona(T _nombre, T _apellido, T _correo)
+{
+    Nodo<T>* nuevo = new Nodo(_nombre, _apellido, _correo);
+    if (cabeza == NULL) {
+        cabeza = nuevo;
+    }
+    else {
+        Nodo<T>* aux = cabeza;
+        while (aux->getSiguiente() != NULL) {
+            aux = aux->getSiguiente();
+        }
+        aux->setSiguiente(nuevo);
+    }
 }
 
 template <typename T>
@@ -92,4 +115,47 @@ template<typename T>
         aux = aux->getSiguiente();
     }
     cout << "NULL" << endl;
+}
+
+template <typename T>
+void Lista_Simple<T>::mostrar_persona()
+{
+    Nodo<T>* aux = cabeza;
+    while (aux != NULL) {
+        cout << aux->getNombre() << " " << aux->getApellido() << " "<< aux->getCorreo() << " -> ";
+        aux = aux->getSiguiente();
+    }
+    cout << "NULL" << endl;
+}
+
+template <typename T>
+T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
+{
+    Nodo<T>* aux = cabeza;
+    bool repetido = true;
+    string n1=_nombre, n2=_nombre2;
+    size_t tamaño = n1.length() + 1;
+    char* cadena = new char[tamaño];
+    strcpy(cadena, n1.c_str());
+    size_t tamaño2 = n2.length() + 1;
+    char* cadena2 = new char[tamaño2];
+    strcpy(cadena2, n2.c_str());
+
+    string completo ="", ap = _apellido;
+    n1 = cadena[0];
+    n2 = cadena2[0];
+    completo = n1 + n2 + ap+"@espe.edu.ec";
+    
+    while (aux != NULL) {
+        if (completo.compare(aux->getCorreo()) == 0){
+            for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
+                string numero = to_string(i);
+                completo = n1 + n2 + ap + numero + "@espe.edu.ec";
+            }
+        }
+        aux = aux->getSiguiente();
+    }
+     delete[] cadena;
+    delete[] cadena2;
+    return completo;
 }

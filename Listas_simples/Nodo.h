@@ -18,13 +18,23 @@ template<typename T>
 class Nodo {
 private:
     T dato;
+    T nombre;
+    T apellido;
     Nodo* siguiente;
+    string correo;
 public:
     Nodo(T);
+    Nodo(T, T, T);
     void setDato(T);
     T getDato();
     void setSiguiente(Nodo*);
     Nodo* getSiguiente();
+    void setNombre(T);
+    T getNombre();
+    void setApellido(T);
+    T getApellido();
+    void setCorrero(T);
+    string getCorreo();
     friend class ListaSimples;
 };
 
