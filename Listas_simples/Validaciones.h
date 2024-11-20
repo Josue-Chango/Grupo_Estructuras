@@ -1,12 +1,12 @@
-/***********************************************************************
- *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                  *
- * Proposito:                      Programa con validacion de entrada  *
- * Autor:                          Josue Chango                        *
- * Fecha de creacion:              09/11/2024                          *
- * Fecha de modificacion:          10/11/2024                          *
- * Materia:                        Estructura de datos                 *
- * NRC :                           1978                                *
- ***********************************************************************/
+/***************************************************************************************
+ *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
+ * Proposito:                      Programa sobre lista simple                         *
+ * Autor:                          Josue Chango, Adonny Calero, Eduardo altamirano     *
+ * Fecha de creacion:              18/11/2024                                          *
+ * Fecha de modificacion:          18/11/2024                                          *
+ * Materia:                        Estructura de datos                                 *
+ * NRC :                           1978                                                *
+ **************************************************************************************/
 
 #include <conio.h>
 

@@ -1,12 +1,12 @@
-/***********************************************************************
- *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                  *
- * Proposito:                      Programa sobre lista simple         *
- * Autor:                          Josue Chango                        *
- * Fecha de creacion:              18/11/2024                          *
- * Fecha de modificacion:          18/11/2024                          *
- * Materia:                        Estructura de datos                 *
- * NRC :                           1978                                *
- ***********************************************************************/
+/***************************************************************************************
+ *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
+ * Proposito:                      Programa sobre lista simple                         *
+ * Autor:                          Josue Chango, Adonny Calero, Eduardo altamirano     *
+ * Fecha de creacion:              18/11/2024                                          *
+ * Fecha de modificacion:          18/11/2024                                          *
+ * Materia:                        Estructura de datos                                 *
+ * NRC :                           1978                                                *
+ **************************************************************************************/
 #include "Lista_Simple.cpp"
 #include "Nodo.cpp"
 #include <iostream>
@@ -23,6 +23,7 @@ int main() {
     Lista_Simple<float>* lista_flotante = new Lista_Simple<float>();
     Lista_Simple<double>* lista_doble = new Lista_Simple<double>();
     Lista_Simple<std::string>* lista_string = new Lista_Simple<std::string>();
+    //Lista_Simple<string>* lista_personas = new Lista_Simple<string>();
     Lista_Simple<char>* lista_letras = new Lista_Simple<char>();
 
     int opcion, dato_entero;
@@ -30,6 +31,7 @@ int main() {
     double dato_doble;
     std::string dato_string;
     char dato_char;
+    string nombre1, nombre2, apellido, correo;
 
     Validaciones<int> ingresar_entero;
     Validaciones<float> ingresar_flotante;
@@ -159,20 +161,20 @@ int main() {
                 cout << endl;
                 switch (opcion) {
                 case 1:
-                    dato_doble = ingresar_doble.ingresar("ingrese el dato a insertar: ", "doble");
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a insertar: ", "double");
                     cout << endl;
                     lista_doble->Insertar_cabeza(dato_doble);
                     cout << endl << "Dato ingresado correctamente" << endl;
                     system("pause");
                     break;
                 case 2:
-                    dato_doble = ingresar_doble.ingresar("ingrese el dato a buscar: ", "doble");
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a buscar: ", "double");
                     cout << endl;
                     lista_doble->Buscar(dato_doble);
                     system("pause");
                     break;
                 case 3:
-                    dato_doble = ingresar_doble.ingresar("ingrese el dato a eliminar: ", "doble");
+                    dato_doble = ingresar_doble.ingresar("ingrese el dato a eliminar: ", "double");
                     cout << endl;
                     lista_doble->Eliminar(dato_doble);
                     system("pause");
@@ -204,10 +206,17 @@ int main() {
                 cout << endl;
                 switch (opcion) {
                 case 1:
-                    dato_string = ingresar_string.ingresar("ingrese el dato a insertar: ", "string");
+                    /*dato_string = ingresar_string.ingresar("ingrese el dato a insertar: ", "string");
+                    cout << endl;*/
+                    nombre1 = ingresar_string.ingresar("Ingrese su primer nombre: ", "string");
                     cout << endl;
-                    lista_string->Insertar_cabeza(dato_string);
-                    cout << endl << "Dato ingresado correctamente" << endl;
+                    nombre2 = ingresar_string.ingresar("Ingrese su segundo nombre: ", "string");
+                    cout <<endl;
+                    apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
+                    cout << endl;
+                    correo = lista_string->generar_correo(nombre1, nombre2, apellido);
+                    lista_string->insertar_persona(nombre1, apellido, correo);
+                    cout << endl << "Persona ingresado correctamente" << endl;
                     system("pause");
                     break;
                 case 2:
@@ -223,7 +232,7 @@ int main() {
                     system("pause");
                     break;
                 case 4:
-                    lista_string->Mostrar();
+                    lista_string->mostrar_persona();
                     cout << endl;
                     system("pause");
                     break;

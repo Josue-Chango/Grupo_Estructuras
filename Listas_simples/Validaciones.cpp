@@ -1,12 +1,12 @@
-/***********************************************************************
- *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                  *
- * Proposito:                      Programa con validacion de entrada  *
- * Autor:                          Josue Chango                        *
- * Fecha de creacion:              09/11/2024                          *
- * Fecha de modificacion:          10/11/2024                          *
- * Materia:                        Estructura de datos                 *
- * NRC :                           1978                                *
- ***********************************************************************/
+/***************************************************************************************
+ *            UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE                                  *
+ * Proposito:                      Programa sobre lista simple                         *
+ * Autor:                          Josue Chango, Adonny Calero, Eduardo altamirano     *
+ * Fecha de creacion:              18/11/2024                                          *
+ * Fecha de modificacion:          18/11/2024                                          *
+ * Materia:                        Estructura de datos                                 *
+ * NRC :                           1978                                                *
+ **************************************************************************************/
 
 #include "Validaciones.h"
 #include <iostream>
@@ -82,7 +82,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
         }
         else if (tipo == "string")
         {
-            if (isalpha(c))
+            if (isalpha(c) /*&& isdigit(c)*/)
             {
                 printf("%c", c);
                 cad[i++] = c;
@@ -134,7 +134,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
         double doble;
         for (int j = 0; cad[j] != '\0'; j++)
         {
-            doble = atof(cad);
+            doble = (double)atof(cad);
         }
         return valor = doble;
     }
