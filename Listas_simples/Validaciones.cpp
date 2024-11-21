@@ -82,7 +82,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
         }
         else if (tipo == "string")
         {
-            if (isalpha(c) /*&& isdigit(c)*/)
+            if (isalpha(c) || c==32)
             {
                 printf("%c", c);
                 cad[i++] = c;

@@ -132,7 +132,6 @@ template <typename T>
 T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
 {
     Nodo<T>* aux = cabeza;
-    bool repetido = true;
     string n1=_nombre, n2=_nombre2;
     size_t tamaño = n1.length() + 1;
     char* cadena = new char[tamaño];
@@ -140,6 +139,8 @@ T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
     size_t tamaño2 = n2.length() + 1;
     char* cadena2 = new char[tamaño2];
     strcpy(cadena2, n2.c_str());
+
+    if 
 
     string completo ="", ap = _apellido;
     n1 = cadena[0];
