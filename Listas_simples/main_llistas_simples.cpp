@@ -206,8 +206,6 @@ int main() {
                 cout << endl;
                 switch (opcion) {
                 case 1:
-                    /*dato_string = ingresar_string.ingresar("ingrese el dato a insertar: ", "string");
-                    cout << endl;*/
                     nombre1 = ingresar_string.ingresar("Ingrese su primer nombre: ", "string");
                     cout << endl;
                     nombre2 = ingresar_string.ingresar("Ingrese su segundo nombre: ", "string");

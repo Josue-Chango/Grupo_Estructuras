@@ -9,6 +9,7 @@
  **************************************************************************************/
 #include "Lista_Simple.h"
 #include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -139,23 +140,40 @@ T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
     size_t tamaño2 = n2.length() + 1;
     char* cadena2 = new char[tamaño2];
     strcpy(cadena2, n2.c_str());
+        std::string completo ="";
+        std::string ap = _apellido;
+    if(cadena2 == NULL || n2 == "") {
 
-    if 
-
-    string completo ="", ap = _apellido;
-    n1 = cadena[0];
-    n2 = cadena2[0];
-    completo = n1 + n2 + ap+"@espe.edu.ec";
-    
-    while (aux != NULL) {
-        if (completo.compare(aux->getCorreo()) == 0){
-            for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
-                string numero = to_string(i);
-                completo = n1 + n2 + ap + numero + "@espe.edu.ec";
+        n1 = to_string(*(cadena+0)+*(cadena+1));
+        //n2 = cadena2[0];
+        completo = n1 + ap +"@espe.edu.ec";
+        
+        while (aux != NULL) {
+            if (completo.compare(aux->getCorreo()) == 0){
+                for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
+                    string numero = to_string(i);
+                    completo = n1 + ap + numero + "@espe.edu.ec";
+                }
             }
+            aux = aux->getSiguiente();
         }
-        aux = aux->getSiguiente();
+    }else{
+        n1 = cadena[0];
+        n2 = cadena2[0];
+        completo = n1 + n2 + ap +"@espe.edu.ec";
+        
+        while (aux != NULL) {
+            if (completo.compare(aux->getCorreo()) == 0){
+                for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
+                    string numero = to_string(i);
+                    completo = n1 + n2 + ap + numero + "@espe.edu.ec";
+                }
+            }
+            aux = aux->getSiguiente();
+        }
     }
+
+    
      delete[] cadena;
     delete[] cadena2;
     return completo;
