@@ -134,46 +134,77 @@ T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
 {
     Nodo<T>* aux = cabeza;
     string n1=_nombre, n2=_nombre2;
+    int ultimaPosicion = 0;
+    
+    
     size_t tamaño = n1.length() + 1;
     char* cadena = new char[tamaño];
     strcpy(cadena, n1.c_str());
+    /*cout << "tamaño" << tamaño << endl;
+    for (int i = 0; i < tamaño; ++i) {
+        if (*(auxiliar+i) == ' ') {
+            ultimaPosicion = i;
+            cout << "ultimo espacio " << i <<endl;
+        }
+    }
+
+    string cad;
+
+    for (int i = 0; ultimaPosicion+i < tamaño; i++){
+        cad = cad + *(auxiliar+(ultimaPosicion+(i)));
+    }
+    
+    tamaño = cad.length() + 1;
+    char* cadena = new char[tamaño];
+    strcpy(cadena, n1.c_str());
+    delete[] auxiliar;*/
+
+    //strcpy(cadena, n1.c_str());
     size_t tamaño2 = n2.length() + 1;
     char* cadena2 = new char[tamaño2];
     strcpy(cadena2, n2.c_str());
         std::string completo ="";
         std::string ap = _apellido;
     if(cadena2 == NULL || n2 == "") {
-
-        n1 = to_string(*(cadena+0)+*(cadena+1));
-        //n2 = cadena2[0];
+        n1 = *(cadena+0);
+        n1 = n1 + cadena[1];
+        //n1 = resultado[0];
+        //n1 = n1 + resultado[1];
         completo = n1 + ap +"@espe.edu.ec";
-        
         while (aux != NULL) {
             if (completo.compare(aux->getCorreo()) == 0){
                 for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
-                    string numero = to_string(i);
-                    completo = n1 + ap + numero + "@espe.edu.ec";
+                    completo = n1 + ap + to_string(i) + "@espe.edu.ec";
+                }
+            }
+            aux = aux->getSiguiente();
+        }
+    }else if(cadena == NULL || n1 == "") {
+        n2 = *(cadena2+0);
+        n2 = n2 + cadena2[1];
+        completo = n2 + ap +"@espe.edu.ec";
+        while (aux != NULL) {
+            if (completo.compare(aux->getCorreo()) == 0){
+                for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
+                    completo = n2 + ap + to_string(i) + "@espe.edu.ec";
                 }
             }
             aux = aux->getSiguiente();
         }
     }else{
-        n1 = cadena[0];
-        n2 = cadena2[0];
+        n1 = *(cadena+0);
+        n2 = *(cadena2+0);
         completo = n1 + n2 + ap +"@espe.edu.ec";
-        
         while (aux != NULL) {
             if (completo.compare(aux->getCorreo()) == 0){
                 for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
-                    string numero = to_string(i);
-                    completo = n1 + n2 + ap + numero + "@espe.edu.ec";
+                    completo = n1 + n2 + ap + to_string(i) + "@espe.edu.ec";
                 }
             }
             aux = aux->getSiguiente();
         }
     }
-
-    
+        //delete[] resultado;
      delete[] cadena;
     delete[] cadena2;
     return completo;
