@@ -11,6 +11,7 @@
 #include "Nodo.cpp"
 #include <iostream>
 #include <stdlib.h>
+#include <fstream>
 #include "Validaciones.cpp"
 //#include <windows.h>
 using namespace std;
@@ -201,7 +202,9 @@ int main() {
                 cout << "2. Buscar" << endl;
                 cout << "3. Eliminar" << endl;
                 cout << "4. Mostrar" << endl;
-                cout << "5. Salir" << endl;
+                cout << "5. Guardar" << endl;
+                cout << "6. Cargar" << endl;
+                cout << "7. Salir" << endl;
                 opcion = ingresar_entero.ingresar("Opcion: ","entero");
                 cout << endl;
                 switch (opcion) {
@@ -224,9 +227,9 @@ int main() {
                     system("pause");
                     break;
                 case 3:
-                    dato_string = ingresar_string.ingresar("ingrese el dato a eliminar: ", "string");
+                    dato_string = ingresar_string.ingresar("Ingrese la letra: ", "float");
                     cout << endl;
-                    lista_string->Eliminar(dato_string);
+                    lista_string->eliminarLetra(dato_string);
                     system("pause");
                     break;
                 case 4:
@@ -235,13 +238,21 @@ int main() {
                     system("pause");
                     break;
                 case 5:
+                    lista_string->guardarEnArchivo("Principal.txt");
+                    system("pause");
+                    break;
+                case 6:
+                    lista_string->cargarDesdeArchivo("Principal.txt");
+                    system("pause");
+                    break;
+                case 7:
                     break;
                 default:
                     cout << "Opcion no valida, intente de nuevo" << endl;
                     system("pause");
                     break;
                 }
-            } while (opcion != 5);
+            } while (opcion != 7);
             break;
         case 5:
             do {
@@ -299,6 +310,11 @@ int main() {
         }
     } while (opcion != 6);
 
+    delete[] lista_entero;
+    delete[] lista_doble;
+    delete[] lista_flotante;
+    delete[] lista_letras;
+    delete[] lista_string;
     
     return 0;
 }
