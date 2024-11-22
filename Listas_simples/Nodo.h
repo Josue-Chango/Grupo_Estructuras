@@ -35,6 +35,6 @@ public:
     T getApellido();
     void setCorrero(T);
     string getCorreo();
-    friend class Lista_Simple;
+    friend class ListaSimples;
 };
 
