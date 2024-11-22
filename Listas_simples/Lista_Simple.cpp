@@ -286,7 +286,7 @@ void Lista_Simple<T>::eliminarLetra(char letra) {
     }
 }
 */
-template <typename T>
+/*template <typename T>
 void Lista_Simple<T>::eliminarLetra(string letra) {
     Nodo<T>* actual = cabeza;
     Nodo<T>* anterior = nullptr;
@@ -309,5 +309,43 @@ void Lista_Simple<T>::eliminarLetra(string letra) {
         // Avanzar al siguiente elemento
         anterior = actual;
         actual = actual->siguiente;
+    }
+}*/
+template <typename T>
+void Lista_Simple<T>::eliminarLetra(char letra) {
+    Nodo<T>* actual = cabeza;
+
+    while (actual != nullptr) {
+        std::string nombre = actual->getNombre();
+        std::string apellido = actual->getApellido();
+        std::string correo = actual->getCorreo();
+
+        std::string nuevoNombre;
+        for (char c : nombre) {
+            if (c != letra) {
+                nuevoNombre += c;
+            }
+        }
+        nombre = nuevoNombre;
+
+        std::string nuevoApellido;
+        for (char c : apellido) {
+            if (c != letra) {
+                nuevoApellido += c;
+            }
+        }
+        apellido = nuevoApellido;
+
+        std::string nuevoCorreo;
+        for (char c : correo) {
+            if (c != letra) {
+                nuevoCorreo += c;
+            }
+        }
+        correo = nuevoCorreo;
+        actual->setNombre(nuevoNombre);
+        actual->setApellido(nuevoApellido);
+        actual->setCorrero(nuevoCorreo);
+        actual = actual->getSiguiente();
     }
 }

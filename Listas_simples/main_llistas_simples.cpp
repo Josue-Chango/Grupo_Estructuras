@@ -227,9 +227,9 @@ int main() {
                     system("pause");
                     break;
                 case 3:
-                    dato_string = ingresar_string.ingresar("Ingrese la letra: ", "float");
+                    dato_char = ingresar_letra.ingresar("Ingrese la letra: ", "char");
                     cout << endl;
-                    lista_string->eliminarLetra(dato_string);
+                    lista_string->eliminarLetra(dato_char);
                     system("pause");
                     break;
                 case 4:

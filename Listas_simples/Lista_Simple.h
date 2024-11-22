@@ -37,7 +37,7 @@ public:
     void guardarEnArchivo(const std::string&);
     void cargarDesdeArchivo(const std::string&);
 
-    void eliminarLetra(string);
+    void eliminarLetra(char);
 
 };
 
