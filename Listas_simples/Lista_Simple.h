@@ -10,6 +10,8 @@
 #pragma once
 //#include "Nodo.cpp"
 #include "Nodo.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -30,6 +32,12 @@ public:
 
     //funcion correo
     T generar_correo(T, T, T);
+
+    //para txt
+    void guardarEnArchivo(const std::string&);
+    void cargarDesdeArchivo(const std::string&);
+
+    void eliminarLetra(char);
 
 };
 
