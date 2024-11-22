@@ -17,8 +17,6 @@
 using namespace std;
 
 
-bool esEntero(string);
-
 int main() {
     Lista_Simple<int>* lista_entero = new Lista_Simple<int>();
     Lista_Simple<float>* lista_flotante = new Lista_Simple<float>();
