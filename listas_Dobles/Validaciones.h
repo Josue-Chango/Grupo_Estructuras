@@ -7,34 +7,24 @@
  * Materia:                        Estructura de datos                                 *
  * NRC :                           1978                                                *
  **************************************************************************************/
-#pragma once
-#include <iostream>
-#include <string>
-#include <cctype>
 
-using namespace std;
+#include <conio.h>
+
+
+#if !defined(__Validaciones_Validaciones_h)
+#define __Validaciones_Validaciones_h
 
 template<typename T>
-class Nodo {
-private:
-    T dato;
-    T nombre;
-    T apellido;
-    Nodo* siguiente;
-    string correo;
-public:
-    Nodo(T);
-    Nodo(T, T, T);
-    void setDato(T);
-    T getDato();
-    void setSiguiente(Nodo*);
-    Nodo* getSiguiente();
-    void setNombre(T);
-    T getNombre();
-    void setApellido(T);
-    T getApellido();
-    void setCorrero(T);
-    string getCorreo();
-    friend class Lista_Simple;
+class Validaciones
+{
+   public:
+      Validaciones();
+      T ingresar(char *msj, char *tipo);
+   protected:
+   private:
+      T numero;
+
+
 };
 
+#endif
