@@ -27,6 +27,8 @@ int main() {
     Lista_Simple<char>* lista_letras = new Lista_Simple<char>();
     //OLA Q ASE
 
+    //asadasda
+
     int opcion, dato_entero;
     float dato_flotante;
     double dato_doble;
