@@ -25,6 +25,9 @@ int main() {
     Lista_Simple<double>* lista_doble = new Lista_Simple<double>();
     Lista_Simple<std::string>* lista_string = new Lista_Simple<std::string>();
     Lista_Simple<char>* lista_letras = new Lista_Simple<char>();
+    //OLA Q ASE
+
+    //asadasda
 
     int opcion, dato_entero;
     float dato_flotante;
