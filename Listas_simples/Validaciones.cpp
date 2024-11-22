@@ -24,7 +24,7 @@ Validaciones<T>::Validaciones()
 template <typename T>
 T Validaciones<T>::ingresar(char *msj, char *tipo)
 {
-    char cad[10];
+    char cad[20];
     char c;
     int i = 0;
     T valor;

@@ -136,38 +136,20 @@ T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
     string n1=_nombre, n2=_nombre2;
     int ultimaPosicion = 0;
     
-    
-    size_t tamaño = n1.length() + 1;
-    char* cadena = new char[tamaño];
-    strcpy(cadena, n1.c_str());
-    /*cout << "tamaño" << tamaño << endl;
-    for (int i = 0; i < tamaño; ++i) {
-        if (*(auxiliar+i) == ' ') {
-            ultimaPosicion = i;
-            cout << "ultimo espacio " << i <<endl;
-        }
-    }
+    cout << n1 << endl;
+    char* cadena = new char[n1.length()+1];
+    std::strcpy(cadena, n1.c_str());
+    cout << cadena << endl;
+    cout << n1 << endl;
+    char* cadena2 = new char[n2.length()+1];
+    std::strcpy(cadena2, n2.c_str());
+    cout << cadena2 << endl;
 
-    string cad;
-
-    for (int i = 0; ultimaPosicion+i < tamaño; i++){
-        cad = cad + *(auxiliar+(ultimaPosicion+(i)));
-    }
-    
-    tamaño = cad.length() + 1;
-    char* cadena = new char[tamaño];
-    strcpy(cadena, n1.c_str());
-    delete[] auxiliar;*/
-
-    //strcpy(cadena, n1.c_str());
-    size_t tamaño2 = n2.length() + 1;
-    char* cadena2 = new char[tamaño2];
-    strcpy(cadena2, n2.c_str());
-        std::string completo ="";
+        std::string completo =" ";
         std::string ap = _apellido;
     if(cadena2 == NULL || n2 == "") {
         n1 = *(cadena+0);
-        n1 = n1 + cadena[1];
+        n1 = n1 + *(cadena+1);
         //n1 = resultado[0];
         //n1 = n1 + resultado[1];
         completo = n1 + ap +"@espe.edu.ec";
