@@ -3,21 +3,23 @@
  * ALUMNOS:  Leonardo Obando, William Leon
  * FECHA CREACION: Miercoles, 21 de noviembre de 2022
  * FECHA MODIFICACION: Miercoles, 23 de noviembre de 2022
- * Enunciado del problema: Crear los métodos Insertar, Buscar
+ * Enunciado del problema: Crear los mï¿½todos Insertar, Buscar
  y Eliminar elementos de una lista Simple, Doble y Circular
  * Nivel: TERCERO     NRC: 7999
  *************************/
-#include "ListasCirculares.h"
+#include "Lista_Circular.h"
 
 using namespace std;
 
-inline ListaCircular::ListaCircular() {
+template<typename T>
+Lista_Circular<T>::Lista_Circular() {
     primero = NULL;
     ultimo = NULL;
 }
 
-inline void ListaCircular::Insertar(int dato) {
-    Nodo* nuevo = new Nodo(dato);
+template<typename T>
+void Lista_Circular<T>::Insertar(T dato) {
+    Nodo_Circular<T>* nuevo = new Nodo_Circular<T>(dato);
     if (primero == NULL) {
         primero = nuevo;
         primero->setSiguiente(primero);
@@ -30,8 +32,9 @@ inline void ListaCircular::Insertar(int dato) {
     }
 }
 
-inline void ListaCircular::Buscar(int dato) {
-    Nodo* actual = new Nodo(dato);
+template<typename T>
+void Lista_Circular<T>::Buscar(T dato) {
+    Nodo_Circular<T>* actual = new Nodo_Circular<T>(dato);
     actual = primero;
     bool encontrado = false;
     if (primero != NULL) {
@@ -51,10 +54,11 @@ inline void ListaCircular::Buscar(int dato) {
     }
 }
 
-inline void ListaCircular::Eliminar(int dato) {
-    Nodo* actual = new Nodo(dato);
+template<typename T>
+void Lista_Circular<T>::Eliminar(T dato) {
+    Nodo_Circular<T>* actual = new Nodo_Circular<T>(dato);
     actual = primero;
-    Nodo* anterior = new Nodo(dato);
+    Nodo_Circular<T>* anterior = new Nodo_Circular<T>(dato);
     anterior = NULL;
     bool encontrado = false;
     if (primero != NULL) {
@@ -84,8 +88,9 @@ inline void ListaCircular::Eliminar(int dato) {
     }
 }
 
-inline void ListaCircular::Mostrar() {
-    Nodo* actual = new Nodo(0);
+template<typename T>
+void Lista_Circular<T>::Mostrar() {
+    Nodo_Circular<T>* actual = new Nodo_Circular<T>(0);
     actual = primero;
     if (primero != NULL) {
         do {

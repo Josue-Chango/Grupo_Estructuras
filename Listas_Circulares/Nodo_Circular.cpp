@@ -3,31 +3,38 @@
  * ALUMNOS:  Leonardo Obando, William Leon
  * FECHA CREACION: Miercoles, 21 de noviembre de 2022
  * FECHA MODIFICACION: Miercoles, 23 de noviembre de 2022
- * Enunciado del problema: Crear los métodos Insertar, Buscar
+ * Enunciado del problema: Crear los mï¿½todos Insertar, Buscar
  y Eliminar elementos de una lista Simple, Doble y Circular
  * Nivel: TERCERO     NRC: 7999
  *************************/
-#include "Nodo.h"
+#include "Nodo_Circular.h"
 
 using namespace std;
 
-Nodo::Nodo(int dato) {
+template<typename T>
+Nodo_Circular<T>::Nodo_Circular(T dato) {
     this->dato = dato;
     this->siguiente = NULL;
 }
 
-void Nodo::setDato(int dato) {
+template<typename T>
+void Nodo_Circular<T>::setDato(T dato) {
     this->dato = dato;
 }
 
-int Nodo::getDato() {
+template <typename T>
+T Nodo_Circular<T>::getDato()
+{
     return this->dato;
 }
 
-void Nodo::setSiguiente(Nodo* siguiente) {
+template<typename T>
+void Nodo_Circular<T>::setSiguiente(Nodo_Circular* siguiente) {
     this->siguiente = siguiente;
 }
 
-Nodo* Nodo::getSiguiente() {
+template <typename T>
+Nodo_Circular<T> *Nodo_Circular<T>::getSiguiente()
+{
     return this->siguiente;
 }
