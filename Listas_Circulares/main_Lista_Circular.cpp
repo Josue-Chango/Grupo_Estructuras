@@ -217,11 +217,11 @@ int main() {
                         cout <<endl;
                         apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
                         cout << endl;
-                        if((nombre1 != " " && nombre2 != " ") || apellido!=" "){
+                        if((nombre1 == "" && nombre2 == "") || apellido==""){
                             cout << "Persona no ingresada" << endl << "La persona necesita al menos un nombre y un apellido " << endl;
                             system("pause");
                         }
-                    }while((nombre1 != " " && nombre2 != " ") || apellido!=" ");
+                    }while((nombre1 == "" && nombre2 == "") || apellido =="");
                     correo = lista_string->generar_correo(nombre1, nombre2, apellido);
                     lista_string->insertar_persona(nombre1, nombre2, apellido, correo);
                     cout << endl << "Persona ingresado correctamente" << endl;
