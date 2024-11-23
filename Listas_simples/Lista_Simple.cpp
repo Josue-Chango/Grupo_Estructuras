@@ -170,18 +170,14 @@ T Lista_Simple<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
         std::string ap = _apellido;
 */
     
-    cout << n1 << endl;
     char* cadena = new char[n1.length()+1];
     std::strcpy(cadena, n1.c_str());
-    cout << cadena << endl;
-    cout << n1 << endl;
     char* cadena2 = new char[n2.length()+1];
     std::strcpy(cadena2, n2.c_str());
-    cout << cadena2 << endl;
 
         std::string completo =" ";
         std::string ap = _apellido;
-    if(cadena2 == NULL || n2 == "") {
+    if(cadena2 == NULL /*|| n2 == ""*/) {
         n1 = *(cadena+0);
         n1 = n1 + *(cadena+1);
         //n1 = resultado[0];
