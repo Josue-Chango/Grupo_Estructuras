@@ -10,6 +10,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -17,8 +18,9 @@ template <typename T>
 class Nodo_Doble {
 private:
     T dato;
-    Nodo_Doble<T>* siguiente;
-    Nodo_Doble<T>* anterior;
+    T nombre1, nombre2, apellido, correo;
+    Nodo_Doble* siguiente;
+    Nodo_Doble* anterior;
 public:
     Nodo_Doble(T);
     void setDato(T);
@@ -27,5 +29,17 @@ public:
     T getDato();
     Nodo_Doble<T>* getSiguiente();
     Nodo_Doble<T>* getAnterior();
+
+
+    Nodo_Doble(T,T,T,T);
+    T getNombre1();
+    void setNombre1(T);
+    T getNombre2();
+    void setNombre2(T);
+    T getApellido();
+    void setApellido(T);
+    T getCorreo();
+    void setCorreo(T);
+
 };
 

@@ -9,6 +9,8 @@
  *************************/
 #pragma once
 #include "Nodo_Doble.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -23,6 +25,14 @@ public:
     void Buscar(T);
     void Eliminar(T);
     void Mostrar();
+
+    //Funciones propias
+    void insertar_persona(T, T, T, T);
+    void mostrar_persona();
+    T generar_correo(T, T, T);
+    void guardarEnArchivo(const std::string&);
+    void cargarDesdeArchivo(const std::string&);
+    void eliminarLetra(char);
 };
 
 
