@@ -110,6 +110,7 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "fstream": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "set": "cpp"
   }
 }
