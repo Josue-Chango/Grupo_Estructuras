@@ -8,7 +8,7 @@
  * NRC :                           1978                                                *
  **************************************************************************************/
 #pragma once
-//#include "Nodo.cpp"
+#include "Validaciones.h"
 #include "Nodo.h"
 #include <fstream>
 #include <sstream>
@@ -22,7 +22,7 @@ private:
 public:
     Lista_Simple();
     Lista_Simple(T, T, T);
-    void insertar_persona(T, T, T);
+    void insertar_persona(T, T, T, T, T);
     void Insertar_cabeza(T);
     //void Insertar_cola(T);
     void Buscar(T);
@@ -39,5 +39,8 @@ public:
 
     void eliminarLetra(char);
 
+    void cifrar_cesar(int);
+    void descifrar_cesar(int);
+    T validar_cedula_existente();
 };
 

@@ -18,10 +18,12 @@ template<typename T>
 }
 
 template <typename T>
-Nodo<T>::Nodo(T _nombre, T _apellido, T _correo)
+Nodo<T>::Nodo(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
-    nombre = _nombre;
+    nombre1 = _nombre1;
+    nombre2 = _nombre2;
     apellido = _apellido;
+    cedula = _cedula;
     correo = _correo;
 }
 
@@ -46,15 +48,27 @@ template<typename T>
 }
 
 template <typename T>
-void Nodo<T>::setNombre(T _nombre)
+void Nodo<T>::setNombre1(T _nombre1)
 {
-    nombre = _nombre;
+    nombre1 = _nombre1;
 };
 
 template <typename T>
-T Nodo<T>::getNombre()
+T Nodo<T>::getNombre1()
 {
-    return nombre;
+    return nombre1;
+}
+
+template <typename T>
+void Nodo<T>::setNombre2(T _nombre2)
+{
+    nombre2 = _nombre2;
+};
+
+template <typename T>
+T Nodo<T>::getNombre2()
+{
+    return nombre2;
 }
 
 template <typename T>
@@ -79,4 +93,16 @@ template <typename T>
 string Nodo<T>::getCorreo()
 {
     return correo;
+}
+
+template <typename T>
+void Nodo<T>::setCedula(T _ceduña)
+{
+    cedula = _ceduña;
+}
+
+template <typename T>
+string Nodo<T>::getCedula()
+{
+    return cedula;
 }

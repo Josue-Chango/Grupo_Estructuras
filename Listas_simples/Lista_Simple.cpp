@@ -8,10 +8,13 @@
  * NRC :                           1978                                                *
  **************************************************************************************/
 #include "Lista_Simple.h"
+#include "Validaciones.h"
+#include "Nodo.h"
 #include <cstring>
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 
 using namespace std;
@@ -30,9 +33,9 @@ Lista_Simple<T>::Lista_Simple(T _nombre, T _apellido, T _correo)
 }
 
 template <typename T>
-void Lista_Simple<T>::insertar_persona(T _nombre, T _apellido, T _correo)
+void Lista_Simple<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
-    Nodo<T>* nuevo = new Nodo(_nombre, _apellido, _correo);
+    Nodo<T>* nuevo = new Nodo(_nombre1, _nombre2, _apellido, _cedula, _correo);
     if (cabeza == NULL) {
         cabeza = nuevo;
     }
@@ -60,21 +63,6 @@ void Lista_Simple<T>::Insertar_cabeza(T _dato)
         aux->setSiguiente(nuevo);
     }
 }
-
-/*template<typename T> 
- void Lista_Simple<T>::Insertar_cola(T _dato) {
-    Nodo<T>* nuevo = new Nodo(_dato);
-    if (cabeza == NULL) {
-        cabeza = nuevo;
-    }
-    else {
-        Nodo<T>* aux = cabeza;
-        while (aux->getSiguiente() != NULL) {
-            aux = aux->getSiguiente();
-        }
-        aux->setSiguiente(nuevo);
-    }
-}*/
 
 template<typename T> 
  void Lista_Simple<T>::Buscar(T _dato) {
@@ -126,7 +114,7 @@ void Lista_Simple<T>::mostrar_persona()
 {
     Nodo<T>* aux = cabeza;
     while (aux != NULL) {
-        cout << aux->getNombre() << " " << aux->getApellido() << " "<< aux->getCorreo() << " -> ";
+        cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " "<< aux->getCorreo() << " -> ";
         aux = aux->getSiguiente();
     }
     cout << "NULL" << endl;
@@ -228,7 +216,7 @@ void Lista_Simple<T>::guardarEnArchivo(const std::string& nombreArchivo) {
     if (archivo.is_open()) {
         Nodo<T>* actual = cabeza;
         while (actual != nullptr) {
-            archivo << actual->getNombre() << "," << actual->getApellido() << "," << actual->getCorreo() << std::endl;
+            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << std::endl;
             actual = actual->getSiguiente();
         }
         archivo.close();
@@ -245,11 +233,13 @@ void Lista_Simple<T>::cargarDesdeArchivo(const std::string& nombreArchivo) {
         std::string linea;
         while (std::getline(archivo, linea)) {
             std::stringstream iss(linea);
-            std::string nombre, apellido, correo;
-            std::getline(iss, nombre, ',');
+            std::string nombre1, nombre2, apellido, cedula, correo;
+            std::getline(iss, nombre1, ',');
+            std::getline(iss, nombre2, ',');
             std::getline(iss, apellido, ',');
+            std::getline(iss, cedula, ',');
             std::getline(iss, correo, ',');
-            insertar_persona(nombre, apellido, correo);
+            insertar_persona(nombre1, nombre2, apellido, cedula, correo);
         }
         archivo.close();
         std::cout << "Lista cargada correctamente desde " << nombreArchivo << std::endl;
@@ -258,71 +248,32 @@ void Lista_Simple<T>::cargarDesdeArchivo(const std::string& nombreArchivo) {
     }
 }
 
-/*template <typename T>
-void Lista_Simple<T>::eliminarLetra(char letra) {
-    Nodo<T>* actual = cabeza;
-    Nodo<T>* anterior = nullptr;
-
-    while (actual != nullptr) {
-        if (actual->dato == letra) {
-            if (actual == cabeza) {
-                cabeza = actual->siguiente;
-                delete actual;
-                actual = cabeza;
-            } else {
-                anterior->siguiente = actual->siguiente;
-                Nodo<T>* temp = actual;
-                actual = actual->siguiente;
-                delete temp;
-            }
-        } else {
-            anterior = actual;
-            actual = actual->siguiente;
-        }
-    }
-}
-*/
-/*template <typename T>
-void Lista_Simple<T>::eliminarLetra(string letra) {
-    Nodo<T>* actual = cabeza;
-    Nodo<T>* anterior = nullptr;
-
-    while (actual != nullptr) {
-        std::string nombre = actual->getNombre();
-        std::string apellido = actual->getApellido();
-        std::string correo = actual->getCorreo();
-
-
-
-        nombre.erase(std::remove(nombre.begin(), nombre.end(), letra), nombre.end());
-        apellido.erase(std::remove(apellido.begin(), apellido.end(), letra), apellido.end());
-        correo.erase(std::remove(correo.begin(), correo.end(), letra), correo.end());
-
-        actual->setNombre() = static_cast<T>(nombre);
-        actual->setApellido() = static_cast<T>(apellido);
-        actual->setCorrero() = static_cast<T>(correo);
-
-        // Avanzar al siguiente elemento
-        anterior = actual;
-        actual = actual->siguiente;
-    }
-}*/
 template <typename T>
 void Lista_Simple<T>::eliminarLetra(char letra) {
     Nodo<T>* actual = cabeza;
 
     while (actual != nullptr) {
-        std::string nombre = actual->getNombre();
+        std::string nombre1 = actual->getNombre1();
+        std::string nombre2 = actual->getNombre2();
         std::string apellido = actual->getApellido();
+        std::string cedula = actual->getCedula();
         std::string correo = actual->getCorreo();
 
-        std::string nuevoNombre;
-        for (char c : nombre) {
+        std::string nuevoNombre1;
+        for (char c : nombre1) {
             if (c != letra) {
-                nuevoNombre += c;
+                nuevoNombre1 += c;
             }
         }
-        nombre = nuevoNombre;
+        nombre1 = nuevoNombre1;
+
+        std::string nuevoNombre2;
+        for (char c : nombre2) {
+            if (c != letra) {
+                nuevoNombre2 += c;
+            }
+        }
+        nombre2 = nuevoNombre2;
 
         std::string nuevoApellido;
         for (char c : apellido) {
@@ -332,6 +283,14 @@ void Lista_Simple<T>::eliminarLetra(char letra) {
         }
         apellido = nuevoApellido;
 
+        std::string nuevaCedula;
+        for (char c : cedula) {
+            if (c != letra) {
+                nuevaCedula += c;
+            }
+        }
+        cedula = nuevaCedula;
+
         std::string nuevoCorreo;
         for (char c : correo) {
             if (c != letra) {
@@ -339,9 +298,278 @@ void Lista_Simple<T>::eliminarLetra(char letra) {
             }
         }
         correo = nuevoCorreo;
-        actual->setNombre(nuevoNombre);
+        actual->setNombre1(nuevoNombre1);
+        actual->setNombre2(nuevoNombre2);
         actual->setApellido(nuevoApellido);
+        actual->setCedula(nuevaCedula);
         actual->setCorrero(nuevoCorreo);
         actual = actual->getSiguiente();
     }
+}
+
+
+template<typename T>
+void Lista_Simple<T>::cifrar_cesar(int desplazamiento) {
+    if (cabeza == NULL) {
+        cout << endl << "La lista esta vacia, imposible cifrar " << endl;
+    }
+    else {
+        std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        std::string nombre1_cifrado = "";
+        std::string nombre2_cifrado = "";
+        std::string apellido_cifrado = "";
+        std::string cedula_cifrado = "";
+        std::string correo_cifrado = "";
+
+        Nodo<T>* actual = cabeza;
+
+        while (actual != nullptr) {
+            std::string nombre1 = actual->getNombre1();
+            std::string nombre2 = actual->getNombre2();
+            std::string apellido = actual->getApellido();
+            std::string cedula = actual->getCedula();
+            std::string correo = actual->getCorreo();
+
+            for (char caracter : nombre1) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    nombre1_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre1_cifrado += caracter;
+                }
+            }
+            //nombre = nombre_cifrado;
+
+            for (char caracter : nombre2) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    nombre2_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre2_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : apellido) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    apellido_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    apellido_cifrado += caracter;
+                }
+            }
+            //apellido = apellido_cifrado;
+
+            for (char caracter : cedula) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    cedula_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    cedula_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : correo) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    correo_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    correo_cifrado += caracter;
+                }
+            }
+            //correo = correo_cifrado;
+
+            actual->setNombre1(nombre1_cifrado);
+            actual->setNombre2(nombre2_cifrado);
+            actual->setApellido(apellido_cifrado);
+            actual->setCedula(cedula_cifrado);
+            actual->setCorrero(correo_cifrado);
+            actual = actual->getSiguiente();
+        }
+    }
+}
+
+template<typename T>
+void Lista_Simple<T>::descifrar_cesar(int desplazamiento) {
+    if (cabeza == NULL) {
+        cout << endl << "La lista esta vacia, imposible cifrar " << endl;
+    }
+    else {
+        std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        std::string nombre1_cifrado = "";
+        std::string nombre2_cifrado = "";
+        std::string apellido_cifrado = "";
+        std::string cedula_cifrado = "";
+        std::string correo_cifrado = "";
+
+        Nodo<T>* actual = cabeza;
+
+        while (actual != nullptr) {
+            std::string nombre1 = actual->getNombre1();
+            std::string nombre2 = actual->getNombre2();
+            std::string apellido = actual->getApellido();
+            std::string cedula = actual->getCedula();
+            std::string correo = actual->getCorreo();
+
+            for (char caracter : nombre1) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    nombre1_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre1_cifrado += caracter;
+                }
+            }
+            //nombre = nombre_cifrado;
+
+            for (char caracter : nombre2) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    nombre2_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre2_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : apellido) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    apellido_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    apellido_cifrado += caracter;
+                }
+            }
+            //apellido = apellido_cifrado;
+
+            for (char caracter : cedula) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    cedula_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    cedula_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : correo) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    correo_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    correo_cifrado += caracter;
+                }
+            }
+            //correo = correo_cifrado;
+
+            actual->setNombre1(nombre1_cifrado);
+            actual->setNombre2(nombre2_cifrado);
+            actual->setApellido(apellido_cifrado);
+            actual->setCedula(cedula_cifrado);
+            actual->setCorrero(correo_cifrado);
+            actual = actual->getSiguiente();
+        }
+    }
+}
+
+/*
+template<typename T>
+void Lista_Simple<T>::cifrar_cesar(int desplazamiento) {
+    
+    Nodo<T>* actual = cabeza;
+    if (cabeza == nullptr) {
+        std::cout << "La lista está vacía, imposible cifrar" << std::endl;
+    } else {
+        std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        auto cifrar_cadena = [&](std::string& cadena) {
+            std::string cadena_cifrada = "";
+            for (char caracter : cadena) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    cadena_cifrada += alfabeto[nuevo_indice];
+                } else {
+                    cadena_cifrada += caracter;
+                }
+            }
+            cadena = cadena_cifrada;
+        };
+
+        while (actual != nullptr) {
+            cifrar_cadena(actual->getNombre1(), actual->setNombre1());
+            cifrar_cadena(actual->getNombre1(), actual->setNombre2());
+            cifrar_cadena(actual->getApellido(), actual->setApellido());
+            cifrar_cadena(actual->getCedula(), actual->setCedula());
+            cifrar_cadena(actual->getCorreo(), actual->setCorrero());
+            actual = actual->getSiguiente();
+        }
+    }
+}
+
+template<typename T>
+void Lista_Simple<T>::descifrar_cesar(int desplazamiento) {
+    Nodo<T>* actual = cabeza;
+    if (actual == nullptr) {
+        std::cout << "La lista está vacía, imposible descifrar" << std::endl;
+    } else {
+        std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        auto descifrar_cadena = [&](std::string& cadena) {
+            std::string cadena_descifrada = "";
+            for (char caracter : cadena) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice - desplazamiento + alfabeto.length()) % alfabeto.length();
+                    cadena_descifrada += alfabeto[nuevo_indice];
+                } else {
+                    cadena_descifrada += caracter;
+                }
+            }
+            cadena = cadena_descifrada;
+        };
+
+
+        while (actual != nullptr) {
+            descifrar_cadena(actual->getNombre1());
+            descifrar_cadena(actual->getNombre2());
+            descifrar_cadena(actual->getApellido());
+            descifrar_cadena(actual->getCedula());
+            descifrar_cadena(actual->getCorreo());
+            actual = actual->getSiguiente();
+        }
+    }
+}*/
+
+template <typename T>
+T Lista_Simple<T>::validar_cedula_existente()
+{
+    Nodo<T>* aux = cabeza;
+    bool repetir = true, valido = true;
+    std::string _cedula = "";
+    Validaciones<T> ingreso;
+    do{
+        repetir = false;
+        valido = true;
+        _cedula = ingreso.Ingresar_Cedula();
+        while (aux != NULL) {
+            if (_cedula.compare(aux->getCedula()) == 0){
+                cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
+                system("pause");
+                valido = false;
+                break;
+            }
+            aux = aux->getSiguiente();
+        }
+        if (valido == false){
+            repetir = true;
+        }else if(valido == true){
+            repetir = false;
+        }
+    }while(repetir == true);
+    return _cedula;
 }
