@@ -501,7 +501,7 @@ string Lista_Circular<T>::validar_cedula_existente()
         repetir = false;
         valido = true;
         _cedula = ingreso.Ingresar_Cedula();
-        do {
+        while (aux != NULL) {
             if (_cedula.compare(aux->getCedula()) == 0){
                 cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
                 system("pause");
@@ -509,7 +509,7 @@ string Lista_Circular<T>::validar_cedula_existente()
                 break;
             }
             aux = aux->getSiguiente();
-        }while (aux != primero);
+        }
         if (valido == false){
             repetir = true;
         }else if(valido == true){
