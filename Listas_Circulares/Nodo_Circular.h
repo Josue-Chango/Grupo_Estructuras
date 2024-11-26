@@ -17,7 +17,7 @@ using namespace std;
 template<typename T>
 class Nodo_Circular {
 private:
-    T dato, nombre1, nombre2, apellido, correo;
+    T dato, nombre1, nombre2, apellido, cedula, correo;
     Nodo_Circular* siguiente;
 public:
     Nodo_Circular(T);
@@ -27,7 +27,7 @@ public:
     Nodo_Circular* getSiguiente();
 
     //funciones propias
-    Nodo_Circular(T,T,T,T);
+    Nodo_Circular(T,T,T,T,T);
     T getNombre1();
     void setNombre1(T);
     T getNombre2();
@@ -36,6 +36,8 @@ public:
     void setApellido(T);
     T getCorreo();
     void setCorreo(T);
+    void setCedula(T);
+    string getCedula();
 };
 
 

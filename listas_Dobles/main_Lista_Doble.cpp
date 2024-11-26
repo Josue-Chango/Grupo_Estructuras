@@ -256,10 +256,35 @@ int main() {
                     break;
                 case 7:
                     dato_entero = ingresar_entero.ingresar("Ingrese el desplazamiento para cifrar: ", "entero");
-                    lista_string->cifrar_cesar(dato_entero);
-                    cout << endl;
-                    cout << "Texto cifrado correctamente. " << endl;
-                    system("pause");
+                    do{
+                        system("cls");
+                        cout << "***********Listas Simples***********" << endl;
+                        cout << "1. Cifrado Cesar" << endl;
+                        cout << "2. Decifrado Cesar" << endl;
+                        cout << "3. Salir" << endl;
+                        opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                        cout << endl;
+                        switch (opcion) {
+                        case 1:
+                            lista_string->cifrar_cesar(dato_entero);
+                            cout << endl;
+                            cout << "Texto cifrado correctamente. " << endl;
+                            system("pause");
+                            break;
+                        case 2:
+                            lista_string->descifrar_cesar(dato_entero);
+                            cout << endl;
+                            cout << "Texto descifrado correctamente. " << endl;
+                            system("pause");
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            cout << "Opcion no valida, intente de nuevo" << endl;
+                            system("pause");
+                            break;
+                        }
+                    }while (opcion != 3);
                     break;
                 case 8:
                     break;

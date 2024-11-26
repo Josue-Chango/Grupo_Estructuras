@@ -204,7 +204,8 @@ int main() {
                 cout << "4. Mostrar" << endl;
                 cout << "5. Guardar" << endl;
                 cout << "6. Cargar" << endl;
-                cout << "7. Salir" << endl;
+                cout << "7. cifrar" << endl;
+                cout << "8. Salir" << endl;
                 opcion = ingresar_entero.ingresar("Opcion: ","entero");
                 cout << endl;
                 switch (opcion) {
@@ -217,13 +218,14 @@ int main() {
                         cout <<endl;
                         apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
                         cout << endl;
-                        if((nombre1 == "" && nombre2 == "") || apellido==""){
+                        if((nombre1 == "" && nombre2 == "") || apellido == ""){
                             cout << "Persona no ingresada" << endl << "La persona necesita al menos un nombre y un apellido " << endl;
                             system("pause");
                         }
                     }while((nombre1 == "" && nombre2 == "") || apellido =="");
+                    dato_string = lista_string->validar_cedula_existente();
                     correo = lista_string->generar_correo(nombre1, nombre2, apellido);
-                    lista_string->insertar_persona(nombre1, nombre2, apellido, correo);
+                    lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo);
                     cout << endl << "Persona ingresado correctamente" << endl;
                     system("pause");
                     break;
@@ -253,13 +255,45 @@ int main() {
                     system("pause");
                     break;
                 case 7:
+                    dato_entero = ingresar_entero.ingresar("Ingrese el desplazamiento para cifrar: ", "entero");
+                    do{
+                        system("cls");
+                        cout << "***********Listas Simples***********" << endl;
+                        cout << "1. Cifrado Cesar" << endl;
+                        cout << "2. Decifrado Cesar" << endl;
+                        cout << "3. Salir" << endl;
+                        opcion = ingresar_entero.ingresar("Opcion: ","entero");
+                        cout << endl;
+                        switch (opcion) {
+                        case 1:
+                            lista_string->cifrar_cesar(dato_entero);
+                            cout << endl;
+                            cout << "Texto cifrado correctamente. " << endl;
+                            system("pause");
+                            break;
+                        case 2:
+                            lista_string->descifrar_cesar(dato_entero);
+                            cout << endl;
+                            cout << "Texto descifrado correctamente. " << endl;
+                            system("pause");
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            cout << "Opcion no valida, intente de nuevo" << endl;
+                            system("pause");
+                            break;
+                        }
+                    }while (opcion != 3);
+                    break;
+                case 8:
                     break;
                 default:
                     cout << "Opcion no valida, intente de nuevo" << endl;
                     system("pause");
                     break;
                 }
-            } while (opcion != 7);
+            } while (opcion != 8);
             break;
         case 5:
             do {

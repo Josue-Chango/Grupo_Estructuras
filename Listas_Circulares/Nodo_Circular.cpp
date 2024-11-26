@@ -40,11 +40,12 @@ Nodo_Circular<T> *Nodo_Circular<T>::getSiguiente()
 }
 
 template <typename T>
-Nodo_Circular<T>::Nodo_Circular(T _nombre1, T _nombre2, T _apellido, T _correo)
+Nodo_Circular<T>::Nodo_Circular(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
     nombre1 = _nombre1;
     nombre2 = _nombre2;
     apellido = _apellido;
+    cedula = _cedula;
     correo = _correo;
 }
 
@@ -94,4 +95,16 @@ template <typename T>
 void Nodo_Circular<T>::setCorreo(T _correo)
 {
     correo = _correo;
+}
+
+template <typename T>
+void Nodo_Circular<T>::setCedula(T _cedula)
+{
+    cedula = _cedula;
+}
+
+template <typename T>
+string Nodo_Circular<T>::getCedula()
+{
+    return cedula;
 }

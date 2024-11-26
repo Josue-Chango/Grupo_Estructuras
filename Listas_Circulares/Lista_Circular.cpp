@@ -8,6 +8,7 @@
  * Nivel: TERCERO     NRC: 7999
  *************************/
 #include "Lista_Circular.h"
+#include "Validaciones.h"
 #include <cstring>
 #include <string>
 #include <fstream>
@@ -108,9 +109,9 @@ void Lista_Circular<T>::Mostrar() {
 }
 
 template <typename T>
-void Lista_Circular<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _correo)
+void Lista_Circular<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
-    Nodo_Circular<T>* nuevo = new Nodo_Circular(_nombre1, _nombre2, _apellido, _correo);
+    Nodo_Circular<T>* nuevo = new Nodo_Circular(_nombre1, _nombre2, _apellido, _cedula, _correo);
     if (primero == NULL) {
          primero = nuevo;
         primero->setSiguiente(primero);
@@ -126,11 +127,11 @@ void Lista_Circular<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T 
 template <typename T>
 void Lista_Circular<T>::mostrar_persona()
 {
-    Nodo_Circular<T>* actual = new Nodo_Circular<T>(0);
+    Nodo_Circular<T>* actual;
     actual = primero;
     if (primero != NULL) {
         do {
-            cout << actual->getNombre1() << " " << actual->getNombre2() << " " << actual->getApellido() << " " << actual->getCorreo() << " -> ";
+            cout << actual->getNombre1() << " " << actual->getNombre2() << " " << actual->getApellido() << " " << actual->getCedula() << " " << actual->getCorreo() << " -> ";
             actual = actual->getSiguiente();
         } while (actual != primero);
     }
@@ -240,10 +241,10 @@ void Lista_Circular<T>::guardarEnArchivo(const std::string& nombreArchivo) {
     std::ofstream archivo(nombreArchivo, std::ios::trunc);
     if (archivo.is_open()) {
         Nodo_Circular<T>* actual = primero;
-        while (actual != nullptr) {
-            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCorreo() << std::endl;
+        do {
+            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << std::endl;
             actual = actual->getSiguiente();
-        }
+        }while (actual != primero);
         archivo.close();
         std::cout << "Lista guardada correctamente en " << nombreArchivo << std::endl;
     } else {
@@ -258,12 +259,13 @@ void Lista_Circular<T>::cargarDesdeArchivo(const std::string& nombreArchivo) {
         std::string linea;
         while (std::getline(archivo, linea)) {
             std::stringstream iss(linea);
-            std::string nombre1, nombre2, apellido, correo;
+            std::string nombre1, nombre2, apellido, cedula, correo;
             std::getline(iss, nombre1, ',');
             std::getline(iss, nombre2, ',');
             std::getline(iss, apellido, ',');
+            std::getline(iss, cedula, ',');
             std::getline(iss, correo, ',');
-            insertar_persona(nombre1, nombre2, apellido, correo);
+            insertar_persona(nombre1, nombre2, apellido, cedula, correo);
         }
         archivo.close();
         std::cout << "Lista cargada correctamente desde " << nombreArchivo << std::endl;
@@ -275,8 +277,7 @@ void Lista_Circular<T>::cargarDesdeArchivo(const std::string& nombreArchivo) {
 template <typename T>
 void Lista_Circular<T>::eliminarLetra(char letra) {
     Nodo_Circular<T>* actual = primero;
-
-    while (actual != nullptr) {
+    do {
         std::string nombre1 = actual->getNombre1();
         std::string nombre2 = actual->getNombre2();
         std::string apellido = actual->getApellido();
@@ -318,5 +319,232 @@ void Lista_Circular<T>::eliminarLetra(char letra) {
         actual->setApellido(nuevoApellido);
         actual->setCorreo(nuevoCorreo);
         actual = actual->getSiguiente();
+    }    while (actual != primero);
+}
+
+template<typename T>
+void Lista_Circular<T>::cifrar_cesar(int desplazamiento) {
+    Nodo_Circular<T>* actual = primero;
+    if (primero == NULL) {
+        cout << endl << "La lista esta vacia, imposible cifrar " << endl;
+    }
+    else {
+        std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        std::string nombre1_cifrado = "";
+        std::string nombre2_cifrado = "";
+        std::string apellido_cifrado = "";
+        std::string cedula_cifrado = "";
+        std::string correo_cifrado = "";
+
+        do {
+            std::string nombre1 = actual->getNombre1();
+            std::string nombre2 = actual->getNombre2();
+            std::string apellido = actual->getApellido();
+            std::string cedula = actual->getCedula();
+            std::string correo = actual->getCorreo();
+
+            for (char caracter : nombre1) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    nombre1_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre1_cifrado += caracter;
+                }
+            }
+            //nombre = nombre_cifrado;
+
+            for (char caracter : nombre2) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    nombre2_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre2_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : apellido) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    apellido_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    apellido_cifrado += caracter;
+                }
+            }
+            //apellido = apellido_cifrado;
+
+            for (char caracter : cedula) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    cedula_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    cedula_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : correo) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    correo_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    correo_cifrado += caracter;
+                }
+            }
+            //correo = correo_cifrado;
+
+            actual->setNombre1(nombre1_cifrado);
+            actual->setNombre2(nombre2_cifrado);
+            actual->setApellido(apellido_cifrado);
+            actual->setCedula(cedula_cifrado);
+            actual->setCorreo(correo_cifrado);
+            actual = actual->getSiguiente();
+        }while(actual != primero);
     }
 }
+
+template<typename T>
+void Lista_Circular<T>::descifrar_cesar(int desplazamiento) {
+    Nodo_Circular<T>* actual = primero;
+    if (primero == NULL) {
+        cout << endl << "La lista esta vacia, imposible cifrar " << endl;
+    }
+    else {
+        std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        std::string nombre1_cifrado = "";
+        std::string nombre2_cifrado = "";
+        std::string apellido_cifrado = "";
+        std::string cedula_cifrado = "";
+        std::string correo_cifrado = "";
+
+        do {
+            std::string nombre1 = actual->getNombre1();
+            std::string nombre2 = actual->getNombre2();
+            std::string apellido = actual->getApellido();
+            std::string cedula = actual->getCedula();
+            std::string correo = actual->getCorreo();
+
+            for (char caracter : nombre1) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
+                    nombre1_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre1_cifrado += caracter;
+                }
+            }
+            //nombre = nombre_cifrado;
+
+            for (char caracter : nombre2) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
+                    nombre2_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    nombre2_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : apellido) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
+                    apellido_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    apellido_cifrado += caracter;
+                }
+            }
+            //apellido = apellido_cifrado;
+
+            for (char caracter : cedula) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
+                    cedula_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    cedula_cifrado += caracter;
+                }
+            }
+
+            for (char caracter : correo) {
+                if (isalpha(caracter)) {
+                    int indice = alfabeto.find(tolower(caracter));
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
+                    correo_cifrado += alfabeto[nuevo_indice];
+                } else {
+                    correo_cifrado += caracter;
+                }
+            }
+            //correo = correo_cifrado;
+
+            actual->setNombre1(nombre1_cifrado);
+            actual->setNombre2(nombre2_cifrado);
+            actual->setApellido(apellido_cifrado);
+            actual->setCedula(cedula_cifrado);
+            actual->setCorreo(correo_cifrado);
+            actual = actual->getSiguiente();
+        }while (actual != primero);
+    }
+}
+
+template <typename T>
+string Lista_Circular<T>::validar_cedula_existente()
+{
+     Nodo_Circular<T>* aux = primero;
+    bool repetir = true, valido = true;
+    std::string _cedula = "";
+    Validaciones<T> ingreso;
+    do{
+        repetir = false;
+        valido = true;
+        _cedula = ingreso.Ingresar_Cedula();
+        do {
+            if (_cedula.compare(aux->getCedula()) == 0){
+                cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
+                system("pause");
+                valido = false;
+                break;
+            }
+            aux = aux->getSiguiente();
+        }while (aux != primero);
+        if (valido == false){
+            repetir = true;
+        }else if(valido == true){
+            repetir = false;
+        }
+    }while(repetir == true);
+    return _cedula;
+}
+
+/*template <typename T>
+string Lista_Circular<T>::validar_cedula_existente()
+{
+    Nodo_Circular<T>* aux = primero;
+    bool repetir = true, valido = true;
+    std::string _cedula = "";
+    Validaciones<T> ingreso;
+    do{
+        repetir = false;
+        valido = true;
+        _cedula = ingreso.Ingresar_Cedula();
+        do {
+            if (_cedula.compare(aux->getCedula()) == 0){
+                cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
+                system("pause");
+                valido = false;
+                break;
+            }
+            aux = aux->getSiguiente();
+        }while (aux != primero);
+        if (valido == false){
+            repetir = true;
+        }else if(valido == true){
+            repetir = false;
+        }
+    }while(repetir == true);
+    return _cedula;
+}
+*/

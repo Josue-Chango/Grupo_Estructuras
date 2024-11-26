@@ -415,7 +415,7 @@ void Lista_Doble<T>::descifrar_cesar(int desplazamiento) {
             for (char caracter : nombre1) {
                 if (isalpha(caracter)) {
                     int indice = alfabeto.find(tolower(caracter));
-                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
                     nombre1_cifrado += alfabeto[nuevo_indice];
                 } else {
                     nombre1_cifrado += caracter;
@@ -426,7 +426,7 @@ void Lista_Doble<T>::descifrar_cesar(int desplazamiento) {
             for (char caracter : nombre2) {
                 if (isalpha(caracter)) {
                     int indice = alfabeto.find(tolower(caracter));
-                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
                     nombre2_cifrado += alfabeto[nuevo_indice];
                 } else {
                     nombre2_cifrado += caracter;
@@ -436,7 +436,7 @@ void Lista_Doble<T>::descifrar_cesar(int desplazamiento) {
             for (char caracter : apellido) {
                 if (isalpha(caracter)) {
                     int indice = alfabeto.find(tolower(caracter));
-                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
                     apellido_cifrado += alfabeto[nuevo_indice];
                 } else {
                     apellido_cifrado += caracter;
@@ -447,7 +447,7 @@ void Lista_Doble<T>::descifrar_cesar(int desplazamiento) {
             for (char caracter : cedula) {
                 if (isalpha(caracter)) {
                     int indice = alfabeto.find(tolower(caracter));
-                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
                     cedula_cifrado += alfabeto[nuevo_indice];
                 } else {
                     cedula_cifrado += caracter;
@@ -457,7 +457,7 @@ void Lista_Doble<T>::descifrar_cesar(int desplazamiento) {
             for (char caracter : correo) {
                 if (isalpha(caracter)) {
                     int indice = alfabeto.find(tolower(caracter));
-                    int nuevo_indice = (indice + desplazamiento) % alfabeto.length();
+                    int nuevo_indice = (indice - desplazamiento) % alfabeto.length();
                     correo_cifrado += alfabeto[nuevo_indice];
                 } else {
                     correo_cifrado += caracter;
@@ -469,7 +469,7 @@ void Lista_Doble<T>::descifrar_cesar(int desplazamiento) {
             actual->setNombre2(nombre2_cifrado);
             actual->setApellido(apellido_cifrado);
             actual->setCedula(cedula_cifrado);
-            actual->setCorrero(correo_cifrado);
+            actual->setCorreo(correo_cifrado);
             actual = actual->getSiguiente();
         }
     }
