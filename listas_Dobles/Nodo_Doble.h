@@ -18,7 +18,7 @@ template <typename T>
 class Nodo_Doble {
 private:
     T dato;
-    T nombre1, nombre2, apellido, correo;
+    T nombre1, nombre2, apellido, correo, cedula;
     Nodo_Doble* siguiente;
     Nodo_Doble* anterior;
 public:
@@ -31,7 +31,7 @@ public:
     Nodo_Doble<T>* getAnterior();
 
 
-    Nodo_Doble(T,T,T,T);
+    Nodo_Doble(T,T,T,T,T);
     T getNombre1();
     void setNombre1(T);
     T getNombre2();
@@ -40,6 +40,8 @@ public:
     void setApellido(T);
     T getCorreo();
     void setCorreo(T);
+    void setCedula(T);
+    string getCedula();
 
 };
 

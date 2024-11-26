@@ -47,11 +47,12 @@ Nodo_Doble<T>* Nodo_Doble<T>::getAnterior() {
 }
 
 template <typename T>
-Nodo_Doble<T>::Nodo_Doble(T _nombre1, T _nombre2, T _apellido, T _correo)
+Nodo_Doble<T>::Nodo_Doble(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
     nombre1 = _nombre1;
     nombre2 = _nombre2;
     apellido = _apellido;
+    cedula = _cedula;
     correo = _correo;
 }
 
@@ -101,4 +102,16 @@ template <typename T>
 void Nodo_Doble<T>::setCorreo(T _correo)
 {
     correo = _correo;
+}
+
+template <typename T>
+void Nodo_Doble<T>::setCedula(T _cedula)
+{
+    cedula = _cedula;
+}
+
+template <typename T>
+string Nodo_Doble<T>::getCedula()
+{
+    return cedula;
 }

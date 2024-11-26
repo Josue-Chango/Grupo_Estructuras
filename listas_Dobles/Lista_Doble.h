@@ -27,12 +27,15 @@ public:
     void Mostrar();
 
     //Funciones propias
-    void insertar_persona(T, T, T, T);
+    void insertar_persona(T, T, T, T, T);
     void mostrar_persona();
     T generar_correo(T, T, T);
     void guardarEnArchivo(const std::string&);
     void cargarDesdeArchivo(const std::string&);
     void eliminarLetra(char);
+     void cifrar_cesar(int);
+    void descifrar_cesar(int);
+    T validar_cedula_existente();
 };
 
 

@@ -96,9 +96,9 @@ string Nodo<T>::getCorreo()
 }
 
 template <typename T>
-void Nodo<T>::setCedula(T _ceduña)
+void Nodo<T>::setCedula(T _cedula)
 {
-    cedula = _ceduña;
+    cedula = _cedula;
 }
 
 template <typename T>
