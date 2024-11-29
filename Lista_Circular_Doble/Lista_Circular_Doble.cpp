@@ -1,19 +1,23 @@
-#include "ListaCircularDoble.h"
+#include "Lista_Circular_Doble.h"
 #include <iostream>
 using namespace std;
-ListaCircularDoble::ListaCircularDoble()
+
+template<typename T>
+Lista_Circular_Doble<T>::Lista_Circular_Doble()
 {
 	this->cabeza = nullptr;
 	this->cola = nullptr;
 }
 
-ListaCircularDoble::~ListaCircularDoble()
+template<typename T>
+Lista_Circular_Doble<T>::~Lista_Circular_Doble()
 {
 }
 
-void ListaCircularDoble::insertar(int dato)
+template<typename T>
+void Lista_Circular_Doble<T>::insertar(T dato)
 {
-	NodoDoble* nuevo = new NodoDoble(dato);
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(dato);
 	if (this->cabeza == nullptr)
 	{
 		this->cabeza = nuevo;
@@ -33,13 +37,14 @@ void ListaCircularDoble::insertar(int dato)
 	}
 }
 
-void ListaCircularDoble::eliminar(int dato)
+template<typename T>
+void Lista_Circular_Doble<T>::eliminar(T dato)
 {
 	if (this->cabeza != nullptr)
 	{
 		if (this->cabeza->getDato() == dato)
 		{
-			NodoDoble* aux = this->cabeza;
+			Nodo_Circular_Doble<T>* aux = this->cabeza;
 			this->cabeza = this->cabeza->getSiguiente();
 			this->cabeza->setAnterior(this->cola);
 			this->cola->setSiguiente(this->cabeza);
@@ -47,12 +52,12 @@ void ListaCircularDoble::eliminar(int dato)
 		}
 		else
 		{
-			NodoDoble* aux = this->cabeza;
+			Nodo_Circular_Doble<T>* aux = this->cabeza;
 			while (aux->getSiguiente() != this->cabeza)
 			{
 				if (aux->getSiguiente()->getDato() == dato)
 				{
-					NodoDoble* aux2 = aux->getSiguiente();
+					Nodo_Circular_Doble<T>* aux2 = aux->getSiguiente();
 					aux->setSiguiente(aux2->getSiguiente());
 					aux2->getSiguiente()->setAnterior(aux);
 					delete aux2;
@@ -64,11 +69,12 @@ void ListaCircularDoble::eliminar(int dato)
 	}
 }
 
-void ListaCircularDoble::mostrar()
+template<typename T>
+void Lista_Circular_Doble<T>::mostrar()
 {
 	if (this->cabeza != nullptr)
 	{
-		NodoDoble* aux = this->cabeza;
+		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
 			cout << aux->getDato() << " ";
@@ -78,11 +84,12 @@ void ListaCircularDoble::mostrar()
 	}
 }
 
-bool ListaCircularDoble::buscar(int dato)
+template<typename T>
+bool Lista_Circular_Doble<T>::buscar(T dato)
 {
 	if (this->cabeza != nullptr)
 	{
-		NodoDoble* aux = this->cabeza;
+		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
 			if (aux->getDato() == dato)

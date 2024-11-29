@@ -46,7 +46,7 @@ void Menus<T>::Menu_Principal(int opcion) {
     cout << "******************************" << endl;
     cout << "Seleccione el tipo de ordenamiento:" << endl;
     cout << "******************************" << endl;
-    for (int i = 0; i < Salir; ++i) {
+    for (int i = 0; i < Salir+1; ++i) {
         if (i == opcion) {
             setConsoleColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY | BACKGROUND_BLUE);
             cout << " --> " << opciones[i] << "\n";

@@ -488,7 +488,7 @@ void Lista_Simple<T>::cifrar_cesar(int desplazamiento) {
         std::cout << "La lista está vacía, imposible cifrar" << std::endl;
     } else {
         std::string alfabeto = "abcdefghijklmnopqrstuvwxyz";
-        auto cifrar_cadena = [&](std::string& cadena) {
+        auto cifrar_cadena = [*](std::string* cadena) {
             std::string cadena_cifrada = "";
             for (char caracter : cadena) {
                 if (isalpha(caracter)) {
@@ -503,11 +503,11 @@ void Lista_Simple<T>::cifrar_cesar(int desplazamiento) {
         };
 
         while (actual != nullptr) {
-            cifrar_cadena(actual->getNombre1(), actual->setNombre1());
-            cifrar_cadena(actual->getNombre1(), actual->setNombre2());
-            cifrar_cadena(actual->getApellido(), actual->setApellido());
-            cifrar_cadena(actual->getCedula(), actual->setCedula());
-            cifrar_cadena(actual->getCorreo(), actual->setCorrero());
+            actual->setNombre1(cifrar_cadena(actual->getNombre1()));
+            actual->setNombre2(cifrar_cadena(actual->getNombre2()));
+            actual->setApellido(cifrar_cadena(actual->getApellido()));
+            actual->setCedula(cifrar_cadena(actual->getCedula()));
+            actual->setCorrero(cifrar_cadena(actual->getCorreo()));
             actual = actual->getSiguiente();
         }
     }

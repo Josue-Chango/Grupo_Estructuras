@@ -1,16 +1,16 @@
 
 #include <iostream>
-#include <cstdlib> // para usar system("cls") y system("pause")
+#include <cstdlib> 
 #include <string>
-#include "ListaCircularDoble.cpp"
-#include "NodoDoble.cpp"
+#include "Lista_Circular_Doble.cpp"
+#include "Nodo_Circular_Doble.cpp"
 #include <stdlib.h>
 using namespace std;
 
 bool esEntero(string);
 
 int main() {
-    ListaCircularDoble lista;
+    Lista_Circular_Doble<int> lista;
     int opcion, dato;
     string linea, i, b, e, m, s;
     bool rep = true;
