@@ -34,13 +34,13 @@ int main() {
         int tecla = _getch();
         switch (tecla) {
         case 72: // Flecha arriba
-            opcion = (opcion - 1 + Salir) % Salir;
+            opcion = (opcion - 1 + (Salir + 1)) % (Salir+1);
             break;
         case 80: // Flecha abajo
-            opcion = (opcion + 1) % Salir;
+            opcion = (opcion + 1) % (Salir +1);
             break;
         case 13: // Enter
-            cout << "si vale" << endl;
+            cout << "si vale" << endl;            
         }
     }
 
