@@ -228,9 +228,10 @@ int main() {
                     system("pause");
                     break;
                 case 2:
-                    dato_string = ingresar_string.ingresar("ingrese el dato a buscar: ", "string");
+                    /*dato_string = ingresar_string.ingresar("ingrese el dato a buscar: ", "string");
                     cout << endl;
-                    lista_string->Buscar(dato_string);
+                    lista_string->Buscar(dato_string);*/
+                    cout << endl << "Opcion en mantenimiento" << endl;
                     system("pause");
                     break;
                 case 3:
