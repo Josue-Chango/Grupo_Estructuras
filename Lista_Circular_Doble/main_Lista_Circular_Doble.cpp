@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <cstdlib> // para usar system("cls") y system("pause")
+#include <cstdlib> 
 #include <string>
 #include "Lista_Circular_Doble.cpp"
 #include "Nodo_Circular_Doble.cpp"
