@@ -1,11 +1,20 @@
 #include <iostream>
-#include "Elemento.cpp"
+#include "Cola.cpp"
 #include <limits>
 
 using namespace std;
 
+bool esEntero(const string& str) {
+    for (char c : str) {
+        if (!isdigit(c)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main() {
-    queue<Elemento> cola;
+    Cola cola;
     int opcion;
     bool salir = false;
     string linea;
@@ -41,121 +50,50 @@ int main() {
         switch (opcion) {
         case 1: { // Agregar elemento
             Elemento nuevo;
+
+            // Usamos los métodos setter para establecer los valores
+            string nombre;
             cout << "Ingrese el nombre: ";
-            getline(cin, nuevo.nombre);  // Usamos getline para el nombre
+            getline(cin, nombre);  // Leemos el nombre del usuario
+            nuevo.setNombre(nombre);  // Usamos el setter para asignar el nombre
 
             string entradaEdad;
             bool entradaValida = false;
             do {
                 cout << "Ingrese la edad: ";
-                getline(cin, entradaEdad);  // Usamos getline para la edad
+                getline(cin, entradaEdad);
 
                 if (esEntero(entradaEdad)) {
-                    nuevo.edad = stoi(entradaEdad);
+                    nuevo.setEdad(stoi(entradaEdad));  // Usamos el setter para asignar la edad
                     entradaValida = true;
                 } else {
                     cout << "La edad ingresada no es válida. Inténtalo nuevamente." << endl;
                 }
             } while (!entradaValida);
 
-            cola.push(nuevo);
-            cout << "Elemento agregado a la cola." << endl;
+            cola.agregarElemento(nuevo);
             break;
         }
         case 2: { // Eliminar elemento
-            if (cola.empty()) {
-                cout << "La cola está vacía." << endl;
-            } else {
-                cout << "Elemento eliminado: " << cola.front().nombre << ", " << cola.front().edad << endl;
-                cola.pop();
-            }
+            cola.eliminarElemento();
             break;
         }
         case 3: { // Buscar elemento
-            if (cola.empty()) {
-                cout << "La cola está vacía." << endl;
-            } else {
-                string nombre;
-                cout << "Ingrese el nombre a buscar: ";
-                getline(cin, nombre);  // Usamos getline para el nombre
-                bool encontrado = false;
-                queue<Elemento> temp;
-                while (!cola.empty()) {
-                    Elemento actual = cola.front();
-                    cola.pop();
-                    if (actual.nombre == nombre) {
-                        cout << "Elemento encontrado: " << actual.nombre << ", " << actual.edad << endl;
-                        encontrado = true;
-                    }
-                    temp.push(actual);
-                }
-                if (!encontrado) {
-                    cout << "Elemento no encontrado." << endl;
-                }
-                while (!temp.empty()) {
-                    cola.push(temp.front());
-                    temp.pop();
-                }
-            }
+            string nombre;
+            cout << "Ingrese el nombre a buscar: ";
+            getline(cin, nombre);
+            cola.buscarElemento(nombre);
             break;
         }
         case 4: { // Editar elemento
-            if (cola.empty()) {
-                cout << "La cola está vacía." << endl;
-            } else {
-                string nombre;
-                cout << "Ingrese el nombre a editar: ";
-                getline(cin, nombre);  // Usamos getline para el nombre
-                bool encontrado = false;
-                queue<Elemento> temp;
-                while (!cola.empty()) {
-                    Elemento actual = cola.front();
-                    cola.pop();
-                    if (actual.nombre == nombre) {
-                        cout << "Ingrese el nuevo nombre: ";
-                        getline(cin, actual.nombre);  // Usamos getline para el nuevo nombre
-                        cout << "Ingrese la nueva edad: ";
-                        string nuevaEdad;
-                        getline(cin, nuevaEdad);  // Usamos getline para la nueva edad
-
-                        if (esEntero(nuevaEdad)) {
-                            actual.edad = stoi(nuevaEdad);
-                            cout << "Elemento editado." << endl;
-                        } else {
-                            cout << "Edad no válida. No se ha editado." << endl;
-                        }
-                        temp.push(actual);
-                        encontrado = true;
-                    } else {
-                        temp.push(actual);
-                    }
-                }
-                if (!encontrado) {
-                    cout << "Elemento no encontrado." << endl;
-                }
-                while (!temp.empty()) {
-                    cola.push(temp.front());
-                    temp.pop();
-                }
-            }
+            string nombre;
+            cout << "Ingrese el nombre a editar: ";
+            getline(cin, nombre);
+            cola.editarElemento(nombre);
             break;
         }
         case 5: { // Mostrar elementos
-            if (cola.empty()) {
-                cout << "La cola está vacía." << endl;
-            } else {
-                queue<Elemento> temp;
-                while (!cola.empty()) {
-                    Elemento actual = cola.front();
-                    cola.pop();
-                    cout << "Nombre: " << actual.nombre << ", Edad: " << actual.edad << endl;
-                    temp.push(actual);
-                }
-                while (!temp.empty()) {
-                    cola.push(temp.front());
-                    temp.pop();
-                }
-            }
+            cola.mostrarElementos();
             break;
         }
         case 6: { // Salir
@@ -172,5 +110,6 @@ int main() {
 
     return 0;
 }
+
 
 
