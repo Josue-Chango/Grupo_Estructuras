@@ -1,6 +1,6 @@
 #pragma once
 template<typename T>
-class NodoDoble
+class Nodo_Circular_Doble
 {
 private:
 	T dato;
@@ -8,19 +8,19 @@ private:
     T nombre2;
     T apellido;
     T cedula;
-	NodoDoble* siguiente;
-	NodoDoble* anterior;
+	Nodo_Circular_Doble* siguiente;
+	Nodo_Circular_Doble* anterior;
 	T correo;
 public:
-	NodoDoble(T);
-	NodoDoble(T, T, T, T, T);
-	~NodoDoble();
+	Nodo_Circular_Doble(T);
+	Nodo_Circular_Doble(T, T, T, T, T);
+	~Nodo_Circular_Doble();
 	void setDato(T);
 	T getDato();
-	void setSiguiente(NodoDoble*);
-	NodoDoble* getSiguiente();
-	void setAnterior(NodoDoble*);
-	NodoDoble* getAnterior();
+	void setSiguiente(Nodo_Circular_Doble*);
+	Nodo_Circular_Doble* getSiguiente();
+	void setAnterior(Nodo_Circular_Doble*);
+	Nodo_Circular_Doble* getAnterior();
 	 void setNombre1(T);
     T getNombre1();
     void setNombre2(T);

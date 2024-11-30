@@ -1,18 +1,18 @@
 #pragma once
-#include "NodoDoble.h"
+#include "Nodo_Circular_Doble.h"
 #include "Validaciones.h"
 #include <string>
 #include <iostream>
 
 template<typename T>
-class ListaCircularDoble {
+class Lista_Circular_Doble {
 private:
-    NodoDoble<T>* cabeza;
-    NodoDoble<T>* cola;
+    Nodo_Circular_Doble<T>* cabeza;
+    Nodo_Circular_Doble<T>* cola;
 
 public:
-    ListaCircularDoble();
-    ~ListaCircularDoble();
+    Lista_Circular_Doble();
+    ~Lista_Circular_Doble();
 
 	void insertar_persona(T, T, T, T, T);
 

@@ -1,36 +1,36 @@
-#include "ListaCircularDoble.h"
+#include "Lista_Circular_Doble.h"
 #include <string>
 #include <cstring>
-//#include "NodoDoble.h"
+//#include "Nodo_Circular_Doble.h"
 #include <iostream>
 using namespace std;
 template <typename T>
-ListaCircularDoble<T>::ListaCircularDoble()
+Lista_Circular_Doble<T>::Lista_Circular_Doble()
 {
 	this->cabeza = nullptr;
 	this->cola = nullptr;
 }
 
 template <typename T>
-ListaCircularDoble<T>::~ListaCircularDoble()
+Lista_Circular_Doble<T>::~Lista_Circular_Doble()
 {
 }
 
 template <typename T>
-void ListaCircularDoble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
+void Lista_Circular_Doble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
     //Crear un nuevo nodo con los datos de la persona
-    NodoDoble<T>* nuevo = new NodoDoble(_nombre1, _nombre2, _apellido, _cedula, _correo);
+    Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo);
     
     // Si la lista está vacía, el nuevo nodo será tanto el cabeza como el último nodo
     if (cabeza == nullptr) {
         cabeza = nuevo;
-        nuevo->setSiguiente(cabeza);  // El siguiente del último nodo apunta al primero
+        nuevo->setSiguiente(cabeza);  // El siguiente del último nodo apunta al cabeza
         nuevo->setAnterior(cabeza);   // El anterior del primer nodo apunta al último
     }
     else {
         // Si la lista no está vacía, insertamos el nuevo nodo al final
-        NodoDoble<T>* aux = cabeza;
+        Nodo_Circular_Doble<T>* aux = cabeza;
         while (aux->getSiguiente() != cabeza) {  // Recorremos hasta llegar al nodo que apunta a cabeza
             aux = aux->getSiguiente();
         }
@@ -45,9 +45,9 @@ void ListaCircularDoble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido
 }
 
 template <typename T>
-void ListaCircularDoble<T>::insertar(T dato)
+void Lista_Circular_Doble<T>::insertar(T dato)
 {
-	NodoDoble<T>* nuevo = new NodoDoble(dato);
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(dato);
 	if (this->cabeza == nullptr)
 	{
 		this->cabeza = nuevo;
@@ -68,13 +68,13 @@ void ListaCircularDoble<T>::insertar(T dato)
 }
 
 template <typename T>
-void ListaCircularDoble<T>::eliminar(T dato)
+void Lista_Circular_Doble<T>::eliminar(T dato)
 {
 	if (this->cabeza != nullptr)
 	{
 		if (this->cabeza->getDato() == dato)
 		{
-			NodoDoble<T>* aux = this->cabeza;
+			Nodo_Circular_Doble<T>* aux = this->cabeza;
 			this->cabeza = this->cabeza->getSiguiente();
 			this->cabeza->setAnterior(this->cola);
 			this->cola->setSiguiente(this->cabeza);
@@ -82,12 +82,12 @@ void ListaCircularDoble<T>::eliminar(T dato)
 		}
 		else
 		{
-			NodoDoble<T>* aux = this->cabeza;
+			Nodo_Circular_Doble<T>* aux = this->cabeza;
 			while (aux->getSiguiente() != this->cabeza)
 			{
 				if (aux->getSiguiente()->getDato() == dato)
 				{
-					NodoDoble<T>* aux2 = aux->getSiguiente();
+					Nodo_Circular_Doble<T>* aux2 = aux->getSiguiente();
 					aux->setSiguiente(aux2->getSiguiente());
 					aux2->getSiguiente()->setAnterior(aux);
 					delete aux2;
@@ -100,11 +100,11 @@ void ListaCircularDoble<T>::eliminar(T dato)
 }
 
 template <typename T>
-void ListaCircularDoble<T>::mostrar()
+void Lista_Circular_Doble<T>::mostrar()
 {
 	if (this->cabeza != nullptr)
 	{
-		NodoDoble<T>* aux = this->cabeza;
+		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
 			cout << aux->getDato() << " ";
@@ -115,11 +115,11 @@ void ListaCircularDoble<T>::mostrar()
 }
 
 template <typename T>
-bool ListaCircularDoble<T>::buscar(int dato)
+bool Lista_Circular_Doble<T>::buscar(int dato)
 {
 	if (this->cabeza != nullptr)
 	{
-		NodoDoble<T>* aux = this->cabeza;
+		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
 			if (aux->getDato() == dato)
@@ -133,8 +133,8 @@ bool ListaCircularDoble<T>::buscar(int dato)
 }
 
 template<typename T> 
- void ListaCircularDoble<T>::Buscar(T _dato) {
-    NodoDoble<T>* aux = this->cabeza;
+ void Lista_Circular_Doble<T>::Buscar(T _dato) {
+    Nodo_Circular_Doble<T>* aux = this->cabeza;
     while (aux != NULL) {
         if (aux->getDato() == _dato) {
             cout << "El dato " << _dato << " si se encuentra en la lista" << endl;
@@ -148,10 +148,10 @@ template<typename T>
 // Eliminar una letra específica de todos los nodos
 
 template <typename T>
-void ListaCircularDoble<T>::eliminarLetra(char letra) {
+void Lista_Circular_Doble<T>::eliminarLetra(char letra) {
     if (!cabeza) return;
 
-    NodoDoble<T>* actual = cabeza;
+    Nodo_Circular_Doble<T>* actual = cabeza;
     do {
         std::string datoStr;
 
@@ -182,9 +182,9 @@ void ListaCircularDoble<T>::eliminarLetra(char letra) {
 // Cifrado César para los valores de los nodos
 
 template<typename T>
-void ListaCircularDoble<T>::cifrar_cesar(int desplazamiento) {
-    Nodo_Circular<T>* actual = primero;
-    if (primero == NULL) {
+void Lista_Circular_Doble<T>::cifrar_cesar(int desplazamiento) {
+    Nodo_Circular_Doble<T>* actual = cabeza;
+    if (cabeza == NULL) {
         cout << endl << "La lista esta vacia, imposible cifrar " << endl;
     }
     else {
@@ -261,15 +261,15 @@ void ListaCircularDoble<T>::cifrar_cesar(int desplazamiento) {
             actual->setCedula(cedula_cifrado);
             actual->setCorreo(correo_cifrado);
             actual = actual->getSiguiente();
-        }while(actual != primero);
+        }while(actual != cabeza);
     }
 }
 
 // Descifrado César
 template<typename T>
-void ListaCircularDoble<T>::descifrar_cesar(int desplazamiento) {
-    Nodo_Circular<T>* actual = primero;
-    if (primero == NULL) {
+void Lista_Circular_Doble<T>::descifrar_cesar(int desplazamiento) {
+    Nodo_Circular_Doble<T>* actual = cabeza;
+    if (cabeza == NULL) {
         cout << endl << "La lista esta vacia, imposible cifrar " << endl;
     }
     else {
@@ -346,14 +346,14 @@ void ListaCircularDoble<T>::descifrar_cesar(int desplazamiento) {
             actual->setCedula(cedula_cifrado);
             actual->setCorreo(correo_cifrado);
             actual = actual->getSiguiente();
-        }while (actual != primero);
+        }while (actual != cabeza);
     }
 }
 
 template <typename T>
-T ListaCircularDoble<T>::validar_cedula_existente()
+T Lista_Circular_Doble<T>::validar_cedula_existente()
 {
-     Nodo_Circular<T>* aux = primero;
+     Nodo_Circular_Doble<T>* aux = cabeza;
     bool repetir = true, valido = true;
     std::string _cedula = "";
     Validaciones<T> ingreso;
@@ -380,9 +380,9 @@ T ListaCircularDoble<T>::validar_cedula_existente()
 }
 
 template <typename T>
-T ListaCircularDoble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
+T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
 {
-    NodoDoble<T>* aux = cabeza;
+    Nodo_Circular_Doble<T>* aux = cabeza;
     string n1=_nombre, n2=_nombre2;
 
     char* cadena = new char[n1.length()+1];

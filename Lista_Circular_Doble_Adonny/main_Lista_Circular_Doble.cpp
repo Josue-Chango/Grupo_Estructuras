@@ -1,6 +1,6 @@
 
-#include "ListaCircularDoble.cpp"
-#include "NodoDoble.cpp"
+#include "Lista_Circular_Doble.cpp"
+#include "Nodo_Circular_Doble.cpp"
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
@@ -11,11 +11,11 @@
 using namespace std;
 
 int main() {
-    ListaCircularDoble<int>* lista_entero = new ListaCircularDoble<int>();
-    ListaCircularDoble<float>* lista_flotante = new ListaCircularDoble<float>();
-    ListaCircularDoble<double>* lista_doble = new ListaCircularDoble<double>();
-    ListaCircularDoble<std::string>* lista_string = new ListaCircularDoble<std::string>();
-    ListaCircularDoble<char>* lista_letras = new ListaCircularDoble<char>();
+    Lista_Circular_Doble<int>* lista_entero = new Lista_Circular_Doble<int>();
+    Lista_Circular_Doble<float>* lista_flotante = new Lista_Circular_Doble<float>();
+    Lista_Circular_Doble<double>* lista_doble = new Lista_Circular_Doble<double>();
+    Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
+    Lista_Circular_Doble<char>* lista_letras = new Lista_Circular_Doble<char>();
 
     int opcion, dato_entero;
     float dato_flotante;
@@ -88,7 +88,7 @@ int main() {
             } while (opcion != 5);
             break;
         case 2:
-            /*do {
+            do {
                 system("cls");
                 cout << "***********Listas Circulares Dobles***********" << endl;
                 cout << "1. Insertar" << endl;
@@ -130,7 +130,7 @@ int main() {
                     system("pause");
                     break;
                 }
-            } while (opcion != 5);*/
+            } while (opcion != 5);
             break;
         case 3:
             do {
