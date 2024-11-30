@@ -33,7 +33,7 @@ int main() {
 
         do {
             cout << "Opcion: ";
-            getline(cin, linea);  // Usamos getline para leer la opción
+            getline(cin, linea); 
 
             if (esEntero(linea)) {
                 repite = false;
@@ -51,11 +51,10 @@ int main() {
         case 1: { // Agregar elemento
             Elemento nuevo;
 
-            // Usamos los métodos setter para establecer los valores
             string nombre;
             cout << "Ingrese el nombre: ";
-            getline(cin, nombre);  // Leemos el nombre del usuario
-            nuevo.setNombre(nombre);  // Usamos el setter para asignar el nombre
+            getline(cin, nombre);  
+            nuevo.setNombre(nombre);  
 
             string entradaEdad;
             bool entradaValida = false;
@@ -64,7 +63,7 @@ int main() {
                 getline(cin, entradaEdad);
 
                 if (esEntero(entradaEdad)) {
-                    nuevo.setEdad(stoi(entradaEdad));  // Usamos el setter para asignar la edad
+                    nuevo.setEdad(stoi(entradaEdad));  
                     entradaValida = true;
                 } else {
                     cout << "La edad ingresada no es válida. Inténtalo nuevamente." << endl;
@@ -110,6 +109,8 @@ int main() {
 
     return 0;
 }
+
+
 
 
 
