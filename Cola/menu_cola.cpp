@@ -1,41 +1,17 @@
 #include <iostream>
-#include <queue>
-#include <string>
+#include "Elemento.cpp"
+#include <limits>
 
 using namespace std;
-
-// Definimos la estructura del elemento de la cola
-struct Elemento {
-    string nombre;
-    int edad;
-};
-
-bool esEntero(string linea) {
-	int i = 0;
-    if (linea[0] == '-') {
-		i = 1;
-	}
-    for (; i < linea.length(); i++) {
-        if (linea[i] < '0' || linea[i] > '9') {
-			return false;
-		}
-	}
-	return true;
-}
-
-
 
 int main() {
     queue<Elemento> cola;
     int opcion;
     bool salir = false;
     string linea;
-    bool rep = true;
     bool repite = true;
-    bool repetir = true;
-    
 
-    do{
+    do {
         system("cls");
 
         cout << "Seleccione una opción:" << endl;
@@ -45,35 +21,47 @@ int main() {
         cout << "4. Editar elemento" << endl;
         cout << "5. Mostrar elementos" << endl;
         cout << "6. Salir" << endl;
+
         do {
             cout << "Opcion: ";
             getline(cin, linea);
 
             if (esEntero(linea)) {
                 repite = false;
-                opcion = atoi(linea.c_str());
-                if (opcion > 5 || opcion < 1) {
-                    repetir = true;
+                opcion = stoi(linea);
+                if (opcion > 6 || opcion < 1) {
+                    repite = true;
                 }
-            }
-            else {
+            } else {
                 cout << "No has ingresado un valor entero. Intentalo nuevamente" << endl;
             }
         } while (repite);
-        //cin >> opcion;
-        opcion = atoi(linea.c_str());
 
         switch (opcion) {
-            case 1: { // Agregar elemento
-                Elemento nuevo;
-                cout << "Ingrese el nombre: ";
-                cin >> nuevo.nombre;
+        case 1: { // Agregar elemento
+            Elemento nuevo;
+            cout << "Ingrese el nombre: ";
+            cin >> nuevo.nombre;
+            cin.ignore(); // Limpiar el búfer después de leer con cin
+
+            string entradaEdad;
+            bool entradaValida = false;
+            do {
                 cout << "Ingrese la edad: ";
-                cin >> nuevo.edad;
-                cola.push(nuevo);
-                cout << "Elemento agregado a la cola." << endl;
-                break;
-            }
+                cin >> entradaEdad;
+
+                if (esEntero(entradaEdad)) {
+                    nuevo.edad = stoi(entradaEdad);
+                    entradaValida = true;
+                } else {
+                    cout << "La edad ingresada no es válida. Inténtalo nuevamente." << endl;
+                }
+            } while (!entradaValida);
+
+            cola.push(nuevo);
+            cout << "Elemento agregado a la cola." << endl;
+            break;
+        }
             case 2: { // Eliminar elemento
                 if (cola.empty()) {
                     cout << "La cola está vacía." << endl;
@@ -173,6 +161,9 @@ int main() {
             }
         }
         system("pause");
-    }while(opcion !=6 );
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpiar el búfer
+    } while (!salir);
+
     return 0;
 }
+
