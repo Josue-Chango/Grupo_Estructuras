@@ -146,38 +146,6 @@ T Lista_Circular<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
     Nodo_Circular<T>* aux = primero;
     string n1=_nombre, n2=_nombre2, ap=_apellido, completo =" ";;
     
-    /*int ultimaPosicion = 0;
-    
-    
-    size_t tamaño = n1.length() + 1;
-    char* cadena = new char[tamaño];
-    strcpy(cadena, n1.c_str());
-    cout << "tamaño" << tamaño << endl;
-    for (int i = 0; i < tamaño; ++i) {
-        if (*(auxiliar+i) == ' ') {
-            ultimaPosicion = i;
-            cout << "ultimo espacio " << i <<endl;
-        }
-    }
-
-    string cad;
-
-    for (int i = 0; ultimaPosicion+i < tamaño; i++){
-        cad = cad + *(auxiliar+(ultimaPosicion+(i)));
-    }
-    
-    tamaño = cad.length() + 1;
-    char* cadena = new char[tamaño];
-    strcpy(cadena, n1.c_str());
-    delete[] auxiliar;
-
-    //strcpy(cadena, n1.c_str());
-    size_t tamaño2 = n2.length() + 1;
-    char* cadena2 = new char[tamaño2];
-    strcpy(cadena2, n2.c_str());
-        std::string completo ="";
-        std::string ap = _apellido;
-*/
     if ((n1 != "" && n2 != "") || ap!="")  {
         char* cadena = new char[n1.length()+1];
         std::strcpy(cadena, n1.c_str());
