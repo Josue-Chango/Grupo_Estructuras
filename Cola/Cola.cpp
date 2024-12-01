@@ -3,12 +3,14 @@
 
 using namespace std;
 
-void Cola::agregarElemento(const Elemento& elemento) {
+template<typename T, typename U>
+void Cola<T, U>::agregarElemento(const Elemento<T, U>& elemento) {
     cola.push(elemento);
     cout << "Elemento agregado a la cola." << endl;
 }
 
-void Cola::eliminarElemento() {
+template<typename T, typename U>
+void Cola<T, U>::eliminarElemento() {
     if (cola.empty()) {
         cout << "La cola está vacía." << endl;
     } else {
@@ -18,14 +20,15 @@ void Cola::eliminarElemento() {
     }
 }
 
-void Cola::buscarElemento(const string& nombre) {
+template<typename T, typename U>
+void Cola<T, U>::buscarElemento(const string& nombre) {
     if (cola.empty()) {
         cout << "La cola está vacía." << endl;
     } else {
         bool encontrado = false;
-        queue<Elemento> temp;
+        queue<Elemento<T, U>> temp;
         while (!cola.empty()) {
-            Elemento actual = cola.front();
+            Elemento<T, U> actual = cola.front();
             cola.pop();
             if (actual.getNombre() == nombre) {
                 cout << "Elemento encontrado: ";
@@ -44,14 +47,15 @@ void Cola::buscarElemento(const string& nombre) {
     }
 }
 
-void Cola::editarElemento(const string& nombre) {
+template<typename T, typename U>
+void Cola<T, U>::editarElemento(const string& nombre) {
     if (cola.empty()) {
         cout << "La cola está vacía." << endl;
     } else {
         bool encontrado = false;
-        queue<Elemento> temp;
+        queue<Elemento<T, U>> temp;
         while (!cola.empty()) {
-            Elemento actual = cola.front();
+            Elemento<T, U> actual = cola.front();
             cola.pop();
             if (actual.getNombre() == nombre) {
                 cout << "Ingrese el nuevo nombre: ";
@@ -60,7 +64,7 @@ void Cola::editarElemento(const string& nombre) {
                 actual.setNombre(nuevoNombre);
 
                 cout << "Ingrese la nueva edad: ";
-                int nuevaEdad;
+                U nuevaEdad;
                 cin >> nuevaEdad;
                 actual.setEdad(nuevaEdad);
 
@@ -81,13 +85,14 @@ void Cola::editarElemento(const string& nombre) {
     }
 }
 
-void Cola::mostrarElementos() {
+template<typename T, typename U>
+void Cola<T, U>::mostrarElementos() {
     if (cola.empty()) {
         cout << "La cola está vacía." << endl;
     } else {
-        queue<Elemento> temp;
+        queue<Elemento<T, U>> temp;
         while (!cola.empty()) {
-            Elemento actual = cola.front();
+            Elemento<T, U> actual = cola.front();
             cola.pop();
             actual.mostrar();
             temp.push(actual);
@@ -98,5 +103,7 @@ void Cola::mostrarElementos() {
         }
     }
 }
+
+
 
 

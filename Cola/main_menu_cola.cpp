@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Cola.cpp"
 #include <limits>
+#include "Validaciones.cpp"
 
 using namespace std;
 
@@ -14,7 +15,13 @@ bool esEntero(const string& str) {
 }
 
 int main() {
-    Cola cola;
+    // Crear instancias de Cola con tipos específicos
+    Cola<string, int> colaEnteros;  // Cola para elementos con nombre tipo string y edad tipo int
+    Cola<string, float> colaFlotantes;  // Cola para elementos con nombre tipo string y edad tipo float
+    Cola<string, double> colaDobles;  // Cola para elementos con nombre tipo string y edad tipo double
+    Cola<string, string> colaStrings;  // Cola para elementos con nombre tipo string y edad tipo string
+    Cola<string, char> colaLetras;  // Cola para elementos con nombre tipo string y edad tipo char
+
     int opcion;
     bool salir = false;
     string linea;
@@ -49,12 +56,9 @@ int main() {
 
         switch (opcion) {
         case 1: { // Agregar elemento
-            Elemento nuevo;
-
             string nombre;
             cout << "Ingrese el nombre: ";
-            getline(cin, nombre);  
-            nuevo.setNombre(nombre);  
+            getline(cin, nombre);
 
             string entradaEdad;
             bool entradaValida = false;
@@ -63,36 +67,39 @@ int main() {
                 getline(cin, entradaEdad);
 
                 if (esEntero(entradaEdad)) {
-                    nuevo.setEdad(stoi(entradaEdad));  
+                    int edad = stoi(entradaEdad);  // Usamos entero para este ejemplo.
+
+                    // Crear un nuevo elemento con nombre y edad
+                    Elemento<string, int> nuevo(nombre, edad);
+                    colaEnteros.agregarElemento(nuevo);  // Usamos colaEnteros en este caso
+
                     entradaValida = true;
                 } else {
                     cout << "La edad ingresada no es válida. Inténtalo nuevamente." << endl;
                 }
             } while (!entradaValida);
-
-            cola.agregarElemento(nuevo);
             break;
         }
         case 2: { // Eliminar elemento
-            cola.eliminarElemento();
+            colaEnteros.eliminarElemento();  // Eliminar de la cola de enteros
             break;
         }
         case 3: { // Buscar elemento
             string nombre;
             cout << "Ingrese el nombre a buscar: ";
             getline(cin, nombre);
-            cola.buscarElemento(nombre);
+            colaEnteros.buscarElemento(nombre);  // Buscar en la cola de enteros
             break;
         }
         case 4: { // Editar elemento
             string nombre;
             cout << "Ingrese el nombre a editar: ";
             getline(cin, nombre);
-            cola.editarElemento(nombre);
+            colaEnteros.editarElemento(nombre);  // Editar en la cola de enteros
             break;
         }
         case 5: { // Mostrar elementos
-            cola.mostrarElementos();
+            colaEnteros.mostrarElementos();  // Mostrar en la cola de enteros
             break;
         }
         case 6: { // Salir
@@ -109,8 +116,6 @@ int main() {
 
     return 0;
 }
-
-
 
 
 
