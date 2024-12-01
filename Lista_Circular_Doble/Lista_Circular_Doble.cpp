@@ -1,4 +1,5 @@
 #include "Lista_Circular_Doble.h"
+#include "Nodo_Circular_Doble.h"
 #include "Validaciones.h"
 #include <iostream>
 #include <cstring>
@@ -13,11 +14,11 @@ Lista_Circular_Doble<T>::Lista_Circular_Doble()
 	this->cabeza = nullptr;
 	this->cola = nullptr;
 }
-
+/*
 template<typename T>
 Lista_Circular_Doble<T>::~Lista_Circular_Doble()
 {
-}
+}*/
 
 template<typename T>
 void Lista_Circular_Doble<T>::insertar(T dato)
@@ -112,7 +113,7 @@ bool Lista_Circular_Doble<T>::buscar(T dato)
 template<typename T>
 void Lista_Circular_Doble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
 {
-	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo);
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo);
 	if (this->cabeza == nullptr)
 	{
 		this->cabeza = nuevo;
@@ -150,7 +151,7 @@ void Lista_Circular_Doble<T>::mostrar_persona()
 template <typename T>
 T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
 {
-    Lista_Circular_Doble<T>* aux = this->cabeza;
+    Nodo_Circular_Doble<T>* aux = this->cabeza;
     string n1=_nombre, n2=_nombre2, ap=_apellido, completo =" ";;
     
     if ((n1 != "" && n2 != "") || ap!="")  {
@@ -469,7 +470,7 @@ void Lista_Circular_Doble<T>::descifrar_cesar(int desplazamiento) {
 
 
 template <typename T>
-T Lista_Circular_Doble<T>::validar_cedula_existente()
+std::string Lista_Circular_Doble<T>::validar_cedula_existente()
 {
     Nodo_Circular_Doble<T>* aux = this->cabeza;
     bool repetir = true, valido = true;
@@ -479,19 +480,23 @@ T Lista_Circular_Doble<T>::validar_cedula_existente()
         repetir = false;
         valido = true;
         _cedula = ingreso.Ingresar_Cedula();
-        while (aux->getSiguiente() != this->cabeza) {
-            if (_cedula.compare(aux->getCedula()) == 0){
-                cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
-                system("pause");
-                valido = false;
-                break;
-            }
-            aux = aux->getSiguiente();
-        }
-        if (valido == false){
-            repetir = true;
-        }else if(valido == true){
+        if (this->cabeza == nullptr){
             repetir = false;
+        }else{
+            do {
+                if (_cedula.compare(aux->getCedula()) == 0){
+                    cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
+                    system("pause");
+                    valido = false;
+                    break;
+                }
+                aux = aux->getSiguiente();
+            }while (aux != this->cabeza);
+            if (valido == false){
+                repetir = true;
+            }else if(valido == true){
+                repetir = false;
+            }
         }
     }while(repetir == true);
     return _cedula;

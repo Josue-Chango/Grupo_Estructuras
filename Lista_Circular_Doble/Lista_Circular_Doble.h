@@ -12,7 +12,7 @@ private:
 	Nodo_Circular_Doble<T>* cola;
 public:
 	Lista_Circular_Doble();
-	~Lista_Circular_Doble();
+	//~Lista_Circular_Doble();
 	void insertar(T);
 	void eliminar(T);
 	void mostrar();
@@ -27,7 +27,7 @@ public:
     void eliminarLetra(char);
     void cifrar_cesar(int);
     void descifrar_cesar(int);
-    T validar_cedula_existente();
+    std::string validar_cedula_existente();
 
 };
 

@@ -19,23 +19,23 @@
 using namespace std;
 
 int main() {
-    Lista_Circular_Doble<int>* lista_entero;
-    Lista_Circular_Doble<float>* lista_flotante;
-    Lista_Circular_Doble<double>* Lista_Circular_Doble;
-    //Lista_Circular_Doble<std::string>* lista_string;
-    Lista_Circular_Doble<string>* lista_personas;
-    Lista_Circular_Doble<char>* lista_letras;
+    Lista_Circular_Doble<int>* lista_entero = new Lista_Circular_Doble<int>();
+    Lista_Circular_Doble<float>* lista_flotante = new Lista_Circular_Doble<float>();
+    Lista_Circular_Doble<double>* lista_Doble = new Lista_Circular_Doble<double>();
+    Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
+    //Lista_Circular<string>* lista_personas = new Lista_Circular<string>();
+    Lista_Circular_Doble<char>* lista_letras = new Lista_Circular_Doble<char>();
 
     int opcion, dato_entero;
     float dato_flotante;
-    double dato_Circular;
+    double dato_Doble;
     std::string dato_string;
     char dato_char;
     string nombre1, nombre2, apellido, correo;
 
     Validaciones<int> ingresar_entero;
     Validaciones<float> ingresar_flotante;
-    Validaciones<double> ingresar_Circular;
+    Validaciones<double> ingresar_Doble;
     Validaciones<std::string> ingresar_string;
     Validaciones<char> ingresar_letra;
 
@@ -118,7 +118,7 @@ int main() {
                 case 1:
                     dato_flotante = ingresar_flotante.ingresar("ingrese el dato a insertar: ", "flotante");
                     cout << endl;
-                    lista_flotante->Insertar(dato_flotante);
+                    lista_flotante->insertar(dato_flotante);
                     cout << endl << "Dato ingresado correctamente" << endl;
                     system("pause");
                     break;
@@ -161,26 +161,26 @@ int main() {
                 cout << endl;
                 switch (opcion) {
                 case 1:
-                    dato_Circular = ingresar_Circular.ingresar("ingrese el dato a insertar: ", "double");
+                    dato_Doble = ingresar_Doble.ingresar("ingrese el dato a insertar: ", "double");
                     cout << endl;
-                    Lista_Circular_Doble->insertar(dato_Circular);
+                    lista_Doble->insertar(dato_Doble);
                     cout << endl << "Dato ingresado correctamente" << endl;
                     system("pause");
                     break;
                 case 2:
-                    dato_Circular = ingresar_Circular.ingresar("ingrese el dato a buscar: ", "double");
+                    dato_Doble = ingresar_Doble.ingresar("ingrese el dato a buscar: ", "double");
                     cout << endl;
-                    Lista_Circular_Doble->buscar(dato_Circular);
+                    lista_Doble->buscar(dato_Doble);
                     system("pause");
                     break;
                 case 3:
-                    dato_Circular = ingresar_Circular.ingresar("ingrese el dato a eliminar: ", "double");
+                    dato_Doble = ingresar_Doble.ingresar("ingrese el dato a eliminar: ", "double");
                     cout << endl;
-                    Lista_Circular_Doble->eliminar(dato_Circular);
+                    lista_Doble->eliminar(dato_Doble);
                     system("pause");
                     break;
                 case 4:
-                    Lista_Circular_Doble->mostrar();
+                    lista_Doble->mostrar();
                     cout << endl;
                     system("pause");
                     break;
@@ -309,24 +309,24 @@ int main() {
                 case 1:
                     dato_char = ingresar_letra.ingresar("ingrese el dato a insertar: ", "char");
                     cout << endl;
-                    lista_letras->Insertar(dato_char);
+                    lista_letras->insertar(dato_char);
                     cout << endl << "Dato ingresado correctamente" << endl;
                     system("pause");
                     break;
                 case 2:
                     dato_char = ingresar_letra.ingresar("ingrese el dato a buscar: ", "char");
                     cout << endl;
-                    lista_letras->Buscar(dato_char);
+                    lista_letras->buscar(dato_char);
                     system("pause");
                     break;
                 case 3:
                     dato_char = ingresar_letra.ingresar("ingrese el dato a eliminar: ", "char");
                     cout << endl;
-                    lista_letras->Eliminar(dato_char);
+                    lista_letras->eliminar(dato_char);
                     system("pause");
                     break;
                 case 4:
-                    lista_letras->Mostrar();
+                    lista_letras->mostrar();
                     cout << endl;
                     system("pause");
                     break;
@@ -351,7 +351,7 @@ int main() {
     } while (opcion != 6);
 
     delete[] lista_entero;
-    delete[] Lista_Circular_Doble;
+    delete[] lista_Doble;
     delete[] lista_flotante;
     delete[] lista_letras;
     delete[] lista_string;
