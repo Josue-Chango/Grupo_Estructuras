@@ -39,7 +39,7 @@ int main() {
         cout << "6. Salir" << endl;
 
         do {
-            cout << "Opcion: ";
+            cout << "Opcion: " << endl;
             getline(cin, linea); 
 
             if (esEntero(linea)) {
@@ -96,6 +96,7 @@ int main() {
             cout << "Ingrese el nombre a editar: ";
             getline(cin, nombre);
             colaEnteros.editarElemento(nombre);  // Editar en la cola de enteros
+            system("pause");
             break;
         }
         case 5: { // Mostrar elementos
@@ -111,7 +112,7 @@ int main() {
             break;
         }
         }
-        system("pause");
+        
     } while (!salir);
 
     return 0;
