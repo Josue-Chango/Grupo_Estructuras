@@ -111,7 +111,6 @@ T Calculadora_Polaca<T>::infija_a_prefija(T expresion)
                 validar1++;
             }else if(*(auxiliar+i) == 40){
                 //*(auxiliar+i) = " ";
-                int retroceso = 0;
                 int j = validar1-1;
                 do{
                     resultado = resultado + *(operadores+j);
@@ -126,7 +125,8 @@ T Calculadora_Polaca<T>::infija_a_prefija(T expresion)
     }else{
         cout << endl << "Se ha detectado un error sintactico" << endl;
     }
-
+    delete[] auxiliar;
+    delete[] operadores;
     return resultado;
 }
 /*
