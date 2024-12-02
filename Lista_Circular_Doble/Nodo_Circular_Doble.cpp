@@ -69,59 +69,59 @@ Nodo_Circular_Doble<T>* Nodo_Circular_Doble<T>::getAnterior()
 template <typename T>
 void Nodo_Circular_Doble<T>::setNombre1(T _nombre1)
 {
-    this->nombre1 = _nombre1;
+    nombre1 = _nombre1;
 };
 
 template <typename T>
 T Nodo_Circular_Doble<T>::getNombre1()
 {
-    return this->nombre1;
+    return nombre1;
 }
 
 template <typename T>
 void Nodo_Circular_Doble<T>::setNombre2(T _nombre2)
 {
-    this->nombre2 = _nombre2;
-};
+    nombre2 = _nombre2;
+}
 
 template <typename T>
 T Nodo_Circular_Doble<T>::getNombre2()
 {
-    return this->nombre2;
+    return nombre2;
 }
 
 template <typename T>
 void Nodo_Circular_Doble<T>::setApellido(T _apellido)
 {
-    this->apellido = _apellido;
+    apellido = _apellido;
 }
 
 template <typename T>
 T Nodo_Circular_Doble<T>::getApellido()
 {
-    return this->apellido;
+    return apellido;
 }
 
 template <typename T>
-void Nodo_Circular_Doble<T>::setCorreo(T _correo)
+void Nodo_Circular_Doble<T>::setCorreo(std::string _correo)
 {
-    this->correo = _correo;
+    correo = _correo;
 }
 
 template <typename T>
-T Nodo_Circular_Doble<T>::getCorreo()
+std::string Nodo_Circular_Doble<T>::getCorreo()
 {
-    return this->correo;
+    return correo;
 }
 
 template <typename T>
 void Nodo_Circular_Doble<T>::setCedula(T _cedula)
 {
-    this->cedula = _cedula;
+    cedula = _cedula;
 }
 
 template <typename T>
 T Nodo_Circular_Doble<T>::getCedula()
 {
-    return this->cedula;
+    return cedula;
 }

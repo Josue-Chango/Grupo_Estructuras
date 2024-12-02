@@ -1,10 +1,11 @@
 #pragma once
-
+#include <string>
 template<typename T>
 class Nodo_Circular_Doble
 {
 private:
-	T dato, nombre1, nombre2, apellido, cedula, correo;
+	T dato, nombre1, nombre2, apellido, cedula;
+	std::string correo;
 	Nodo_Circular_Doble* siguiente;
 	Nodo_Circular_Doble* anterior;
 public:
@@ -27,8 +28,8 @@ public:
 	T getApellido();
 	void setCedula(T);
 	T getCedula();
-	void setCorreo(T);
-	T getCorreo();
+	void setCorreo(std::string);
+	std::string getCorreo();
 
 };
 

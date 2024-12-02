@@ -9,7 +9,7 @@ template<typename T, typename U>  // T para el nombre y U para la edad
 class Elemento {
 private:
     std::string nombre;
-    U edad;  // La edad ahora es del tipo U (template)
+    U edad;  
 
 public:
     // Constructor
