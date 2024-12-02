@@ -80,6 +80,8 @@ T Calculadora_Polaca<T>::infija_a_prefija(T expresion)
     expresion = "(" + expresion + ")";
     int validar1 = 0, validar2 = 0;
     string resultado = "", cadena = "";
+    string resultado2 = "";
+    string cadena2 = "";
     char* auxiliar = new char[expresion.length() - 1];
     char* operadores = new char[1];
     //char* numeros = new char[1];
@@ -122,12 +124,23 @@ T Calculadora_Polaca<T>::infija_a_prefija(T expresion)
                 
             }
         }
+        cout << endl << resultado << endl;
+        char* cadena_final = new char[resultado.length()];
+        for (int i = resultado.length(); i >= 0; i--) {
+            cadena2 += resultado[i];
+            
+        }/*
+        std::strcpy(cadena_final, cadena2.c_str());
+        
+        for (int j = 0; j<=resultado.length(); j++){
+            resultado2 += resultado + *(cadena_final+j);
+        }*/
     }else{
         cout << endl << "Se ha detectado un error sintactico" << endl;
     }
     delete[] auxiliar;
     delete[] operadores;
-    return resultado;
+    return cadena2;
 }
 /*
 template <typename T>

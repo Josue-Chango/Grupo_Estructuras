@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Grupo_Estructuras/Calculadora_Polaca",
-      "program": "d:/Grupo_Estructuras/Calculadora_Polaca/build/Debug/outDebug",
+      "cwd": "c:/Users/Josue/Desktop/Grupo_Estructuras/Calculadora_Polaca",
+      "program": "c:/Users/Josue/Desktop/Grupo_Estructuras/Calculadora_Polaca/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
