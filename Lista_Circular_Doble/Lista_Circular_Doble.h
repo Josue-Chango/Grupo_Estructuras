@@ -19,7 +19,7 @@ public:
 	bool buscar(T);
 
 	//Funciones propias
-    void insertar_persona(T, T, T, T, T);
+    void insertar_persona(T, T, T, T, T, T);
     void mostrar_persona();
     T generar_correo(T, T, T);
     void guardarEnArchivo(const std::string&);

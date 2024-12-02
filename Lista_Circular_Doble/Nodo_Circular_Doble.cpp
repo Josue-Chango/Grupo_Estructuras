@@ -9,13 +9,14 @@ Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T dato)
 }
 
 template<typename T>
-Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
+Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa)
 {
 	this->nombre1 = _nombre1;
 	this->nombre2 = _nombre2;
 	this->apellido = _apellido;
 	this->cedula = _cedula;
 	this->correo = _correo;
+	this->placa = _placa;
 	this->siguiente = nullptr;
 	this->anterior = nullptr;
 }
@@ -103,15 +104,15 @@ T Nodo_Circular_Doble<T>::getApellido()
 }
 
 template <typename T>
-void Nodo_Circular_Doble<T>::setCorreo(std::string _correo)
+void Nodo_Circular_Doble<T>::setCorreo(T _correo)
 {
-    correo = _correo;
+    this->correo = _correo;
 }
 
 template <typename T>
-std::string Nodo_Circular_Doble<T>::getCorreo()
+T Nodo_Circular_Doble<T>::getCorreo()
 {
-    return correo;
+    return this->correo;
 }
 
 template <typename T>
@@ -124,4 +125,16 @@ template <typename T>
 T Nodo_Circular_Doble<T>::getCedula()
 {
     return cedula;
+}
+
+template <typename T>
+void Nodo_Circular_Doble<T>::setPlaca(T _placa)
+{
+    placa = _placa;
+};
+
+template <typename T>
+T Nodo_Circular_Doble<T>::getPlaca()
+{
+	return placa;
 }

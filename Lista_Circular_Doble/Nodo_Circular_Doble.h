@@ -4,13 +4,13 @@ template<typename T>
 class Nodo_Circular_Doble
 {
 private:
-	T dato, nombre1, nombre2, apellido, cedula;
-	std::string correo;
+	T dato, nombre1, nombre2, apellido, cedula, correo;
+	T placa;
 	Nodo_Circular_Doble* siguiente;
 	Nodo_Circular_Doble* anterior;
 public:
 	Nodo_Circular_Doble(T);
-	Nodo_Circular_Doble(T,T,T,T,T);
+	Nodo_Circular_Doble(T,T,T,T,T,T);
 	~Nodo_Circular_Doble();
 	void setDato(T);
 	T getDato();
@@ -28,8 +28,10 @@ public:
 	T getApellido();
 	void setCedula(T);
 	T getCedula();
-	void setCorreo(std::string);
-	std::string getCorreo();
+	void setCorreo(T);
+	T getCorreo();
+	void setPlaca(T);
+	T getPlaca();
 
 };
 

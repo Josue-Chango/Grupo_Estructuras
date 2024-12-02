@@ -111,9 +111,9 @@ bool Lista_Circular_Doble<T>::buscar(T dato)
 /////////////////////////////////////////////////77
 
 template<typename T>
-void Lista_Circular_Doble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo)
+void Lista_Circular_Doble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa)
 {
-	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo);
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa);
 	if (this->cabeza == nullptr)
 	{
 		this->cabeza = nuevo;
@@ -141,7 +141,7 @@ void Lista_Circular_Doble<T>::mostrar_persona()
 		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
-			cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << "->";
+			cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << "->";
 			aux = aux->getSiguiente();
 		} while (aux != this->cabeza);
 		cout << endl;
@@ -267,13 +267,14 @@ void Lista_Circular_Doble<T>::cargarDesdeArchivo(const std::string& nombreArchiv
         std::string linea;
         while (std::getline(archivo, linea)) {
             std::stringstream iss(linea);
-            std::string nombre1, nombre2, apellido, cedula, correo;
+            std::string nombre1, nombre2, apellido, cedula, correo,placa;
             std::getline(iss, nombre1, ',');
             std::getline(iss, nombre2, ',');
             std::getline(iss, apellido, ',');
             std::getline(iss, cedula, ',');
             std::getline(iss, correo, ',');
-            insertar_persona(nombre1, nombre2, apellido, cedula, correo);
+            std::getline(iss, placa, ',');
+            insertar_persona(nombre1, nombre2, apellido, cedula, correo, placa);
         }
         archivo.close();
         std::cout << "Lista cargada correctamente desde " << nombreArchivo << std::endl;
@@ -533,3 +534,4 @@ std::string Lista_Circular_Doble<T>::validar_cedula_existente()
     }while(repetir == true);
     return _cedula;
 }
+

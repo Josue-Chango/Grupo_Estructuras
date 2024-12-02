@@ -27,6 +27,7 @@ class Validaciones
       bool validarDigitoVerificador(std::string);
       bool esValida(std::string);
       T Ingresar_Cedula();
+      T Ingresar_Placa();
    protected:
    private:
       T numero;

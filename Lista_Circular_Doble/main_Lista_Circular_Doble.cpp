@@ -31,7 +31,7 @@ int main() {
     double dato_Doble;
     std::string dato_string;
     char dato_char;
-    string nombre1, nombre2, apellido, correo;
+    string nombre1, nombre2, apellido, correo, placa;
 
     Validaciones<int> ingresar_entero;
     Validaciones<float> ingresar_flotante;
@@ -217,6 +217,8 @@ int main() {
                         cout <<endl;
                         apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
                         cout << endl;
+                        placa = ingresar_string.Ingresar_Placa();
+                        cout << endl;
                         if((nombre1 == "" && nombre2 == "") || apellido == ""){
                             cout << "Persona no ingresada" << endl << "La persona necesita al menos un nombre y un apellido " << endl;
                             system("pause");
@@ -224,7 +226,7 @@ int main() {
                     }while((nombre1 == "" && nombre2 == "") || apellido =="");
                     dato_string = lista_string->validar_cedula_existente();
                     correo = lista_string->generar_correo(nombre1, nombre2, apellido);
-                    lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo);
+                    lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
                     cout << endl << "Persona ingresado correctamente" << endl;
                     system("pause");
                     break;
