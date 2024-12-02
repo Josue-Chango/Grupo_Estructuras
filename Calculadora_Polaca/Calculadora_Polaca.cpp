@@ -117,7 +117,10 @@ T Calculadora_Polaca<T>::infija_a_prefija(T expresion)
                     resultado = resultado + *(operadores+j);
                     j--;
                 }while(*(operadores+j) != 41);
-                *(operadores+j)= NULL;
+                for (j; j <= validar1-1; j++){
+                    *(operadores+j)= NULL;
+                }
+                
             }
         }
     }else{
