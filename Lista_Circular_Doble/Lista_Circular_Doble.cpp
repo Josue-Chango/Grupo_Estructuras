@@ -152,24 +152,26 @@ template <typename T>
 T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
 {
     Nodo_Circular_Doble<T>* aux = this->cabeza;
-    string n1=_nombre, n2=_nombre2, ap=_apellido, completo =" ";;
-    
+    string n1=_nombre, n2=_nombre2, ap="", completo =" ";;
+    for (char c : _apellido){
+        ap += (char)tolower(c);
+    }
     if ((n1 != "" && n2 != "") || ap!="")  {
         char* cadena = new char[n1.length()+1];
         std::strcpy(cadena, n1.c_str());
         char* cadena2 = new char[n2.length()+1];
         std::strcpy(cadena2, n2.c_str());
         if (this->cabeza == nullptr){
-            n1 = *(cadena+0);
-            n2 = *(cadena2+0);
+            n1 = (char)tolower(*(cadena+0));
+            n2 = (char)tolower(*(cadena2+0));
             completo = n1 + n2 + ap +  "@espe.edu.ec";
             return completo;
         }
             
             
         if(n2 == "") {
-            n1 = *(cadena+0);
-            n1 = n1 + *(cadena+1);
+            n1 = (char)tolower(*(cadena+0));
+            n1 = n1 + (char)tolower(*(cadena+1));
             //n1 = resultado[0];
             //n1 = n1 + resultado[1];
             completo = n1 + ap +"@espe.edu.ec";
@@ -182,8 +184,8 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
                 aux = aux->getSiguiente();
             }while (aux != this->cabeza);
         }else if(n1 == "") {
-            n2 = *(cadena2+0);
-            n2 = n2 + cadena2[1];
+            n2 = (char)tolower(*(cadena2+0));
+            n2 = n2 + (char)tolower(cadena2[1]);
             completo = n2 + ap +"@espe.edu.ec";
             do {
                 if (completo.compare(aux->getCorreo()) == 0){
@@ -194,8 +196,8 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
                 aux = aux->getSiguiente();
             }while (aux != this->cabeza);
         }else{
-            n1 = *(cadena+0);
-            n2 = *(cadena2+0);
+            n1 = (char)tolower(*(cadena+0));
+            n2 = (char)tolower(*(cadena2+0));
             completo = n1 + n2 + ap +"@espe.edu.ec";
             int paso = 0, numero = 0;
             bool cambio = false;
@@ -203,6 +205,7 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
             strcpy(aux_completo, completo.c_str());
             string correo_aux = aux->getCorreo();
             do {
+                /*
                 for (char c:correo_aux){
                     if (c==*(aux_completo+paso)){
                         cambio = true;
@@ -223,13 +226,13 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
                         }
                     }
                     }while(cambio!=true);
-                }
-                /*
+                }*/
+                
                 if (completo.compare(aux->getCorreo()) == 0){
                     for (int i = 2 ; completo.compare(aux->getCorreo()) == 0 ; i++){
                         completo = n1 + n2 + ap + to_string(i) + "@espe.edu.ec";
                     }
-                }*/
+                }
                 aux = aux->getSiguiente();
             }while (aux != this->cabeza);
         }

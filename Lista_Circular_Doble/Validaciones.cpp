@@ -215,24 +215,21 @@ T Validaciones<T>::Ingresar_Cedula()
 
 template <typename T>
 T Validaciones<T>::Ingresar_Placa() {
-    
+
      T placa;
     bool es_valida = false;
 
     do {
-        std::cout << "Ingrese la placa del vehículo (formato: ABC1234): ";
+        std::cout << "Ingrese la placa del vehiculo (formato: ABC1234): ";
         std::cin >> placa;
 
-        // Convertir a string si no es un string para validación
         std::string placa_str = placa;
-        es_valida = true;  // Asumimos que la placa es válida
+        es_valida = true; 
 
-        // Validar longitud (debe ser exactamente 7 caracteres)
         if (placa_str.length() != 7) {
             es_valida = false;
         }
 
-        // Validar que los primeros 3 caracteres sean letras mayúsculas
         for (int i = 0; i < 3; i++) {
             if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i])) {
                 es_valida = false;
@@ -240,7 +237,6 @@ T Validaciones<T>::Ingresar_Placa() {
             }
         }
 
-        // Validar que los últimos 4 caracteres sean dígitos
         for (int i = 3; i < 7; i++) {
             if (!std::isdigit(placa_str[i])) {
                 es_valida = false;
@@ -248,7 +244,6 @@ T Validaciones<T>::Ingresar_Placa() {
             }
         }
 
-        // Si no es válida, mostrar un mensaje y pedirla de nuevo
         if (!es_valida) {
             std::cout << "Formato inválido. Intente nuevamente." << std::endl;
         }
