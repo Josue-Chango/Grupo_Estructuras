@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Josue/Desktop/Grupo_Estructuras/Listas_simples",
-      "program": "c:/Users/Josue/Desktop/Grupo_Estructuras/Listas_simples/build/Debug/outDebug",
+      "cwd": "d:/Grupo_Estructuras/Matriz_Deber",
+      "program": "d:/Grupo_Estructuras/Matriz_Deber/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
