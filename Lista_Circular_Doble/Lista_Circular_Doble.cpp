@@ -168,8 +168,8 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
             
             
         if(n2 == "") {
-            n1 = *(cadena+0);
-            n1 = n1 + *(cadena+1);
+            n1 = (char)tolower(*(cadena+0));
+            n1 = n1 + (char)tolower(*(cadena+1));
             //n1 = resultado[0];
             //n1 = n1 + resultado[1];
             completo = n1 + ap +"@espe.edu.ec";
@@ -182,8 +182,8 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
                 aux = aux->getSiguiente();
             }while (aux != this->cabeza);
         }else if(n1 == "") {
-            n2 = *(cadena2+0);
-            n2 = n2 + cadena2[1];
+            n2 = (char)tolower(*(cadena2+0));
+            n2 = n2 + (char)tolower(cadena2[1]);
             completo = n2 + ap +"@espe.edu.ec";
             do {
                 if (completo.compare(aux->getCorreo()) == 0){
@@ -194,8 +194,8 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
                 aux = aux->getSiguiente();
             }while (aux != this->cabeza);
         }else{
-            n1 = *(cadena+0);
-            n2 = *(cadena2+0);
+            n1 = (char)tolower(*(cadena+0));
+            n2 = (char)tolower(*(cadena2+0));
             completo = n1 + n2 + ap +"@espe.edu.ec";
             int paso = 0, numero = 0;
             bool cambio = false;
@@ -250,7 +250,7 @@ void Lista_Circular_Doble<T>::guardarEnArchivo(const std::string& nombreArchivo)
     if (archivo.is_open()) {
         Nodo_Circular_Doble<T>* actual = this->cabeza;
         do {
-            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << std::endl;
+            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << "," << actual->getPlaca() << std::endl;
             actual = actual->getSiguiente();
         }while (actual != this->cabeza);
         archivo.close();

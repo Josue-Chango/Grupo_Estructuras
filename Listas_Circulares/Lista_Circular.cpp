@@ -155,8 +155,8 @@ T Lista_Circular<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
             
             
         if(n2 == "") {
-            n1 = *(cadena+0);
-            n1 = n1 + *(cadena+1);
+            n1 = (char)tolower(*(cadena+0));
+            n1 = n1 + (char)tolower(*(cadena+1));
             //n1 = resultado[0];
             //n1 = n1 + resultado[1];
             completo = n1 + ap +"@espe.edu.ec";
