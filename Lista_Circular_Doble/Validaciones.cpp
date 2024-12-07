@@ -355,7 +355,7 @@ T Validaciones<T>::Ingresar_Placa() {
     bool es_valida = false;
 
     do {
-        std::cout << "Ingrese la placa del vehículo (formato: ABC1234): ";
+        std::cout << "Ingrese la placa del vehiculo (formato: ABC1234): ";
         std::cin >> placa;
 
         // Convertir a string si no es un string para validación

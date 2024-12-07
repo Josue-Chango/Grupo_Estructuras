@@ -15,10 +15,13 @@
 #include <fstream>
 #include <stdio.h>
 #include "Validaciones.cpp"
+#include "Parqueadero.cpp"
 //#include <windows.h>
 using namespace std;
 
 int main() {
+    Parqueadero parqueadero(3, 3); // Parqueadero inicial de 3x3
+    parqueadero.mostrarParqueadero();
     Lista_Circular_Doble<int>* lista_entero = new Lista_Circular_Doble<int>();
     Lista_Circular_Doble<float>* lista_flotante = new Lista_Circular_Doble<float>();
     Lista_Circular_Doble<double>* lista_Doble = new Lista_Circular_Doble<double>();
@@ -204,7 +207,10 @@ int main() {
                 cout << "5. Guardar" << endl;
                 cout << "6. Cargar" << endl;
                 cout << "7. cifrar" << endl;
-                cout << "8. Salir" << endl;
+                cout << "8. Ingresar vehiculo" << endl;
+                cout << "9. Sacar vehiculo" << endl;
+                cout << "10. Mostrar Parqueadero" << endl;
+                cout << "11. Salir" << endl;
                 opcion = ingresar_entero.ingresar("Opcion: ","entero");
                 cout << endl;
                 switch (opcion) {
@@ -288,13 +294,48 @@ int main() {
                     }while (opcion != 3);
                     break;
                 case 8:
+                    do{
+                        system("cls");
+                        nombre1 = ingresar_string.ingresar("Ingrese su primer nombre: ", "string");
+                        cout << endl;
+                        nombre2 = ingresar_string.ingresar("Ingrese su segundo nombre: ", "string");
+                        cout <<endl;
+                        apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
+                        cout << endl;
+                        placa = ingresar_string.Ingresar_Placa();
+                        cout << endl;
+                        if((nombre1 == "" && nombre2 == "") || apellido == ""){
+                            cout << "Persona no ingresada" << endl << "La persona necesita al menos un nombre y un apellido " << endl;
+                            system("pause");
+                        }
+                    }while((nombre1 == "" && nombre2 == "") || apellido =="");
+                    dato_string = lista_string->validar_cedula_existente();
+                    correo = lista_string->generar_correo(nombre1, nombre2, apellido);
+                    parqueadero.ingresarVehiculo(placa, nombre1, nombre2, apellido, dato_string, correo);
+                    parqueadero.mostrarParqueadero();
+
+                    //lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
+
+                    cout << endl << "Vehiculo ingresado correctamente" << endl;
+                    system("pause");
+                    break;
+                case 9:
+                    placa = ingresar_string.Ingresar_Placa();
+                    parqueadero.retirarVehiculo(placa);
+                    system("pause");
+                    break;
+                case 10:
+                    parqueadero.mostrarParqueadero();
+                    system("pause");
+                    break;
+                case 11:
                     break;
                 default:
                     cout << "Opcion no valida, intente de nuevo" << endl;
                     system("pause");
                     break;
                 }
-            } while (opcion != 8);
+            } while (opcion != 11);
             break;
         case 5:
             do {
