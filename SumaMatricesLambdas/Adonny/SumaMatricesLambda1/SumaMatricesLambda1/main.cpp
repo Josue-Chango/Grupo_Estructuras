@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Matriz.h"
-#include "OperacionesMatriz.h"
+#include "Matriz.cpp"
+#include "OperacionesMatriz.cpp"
 
 using namespace std;
 

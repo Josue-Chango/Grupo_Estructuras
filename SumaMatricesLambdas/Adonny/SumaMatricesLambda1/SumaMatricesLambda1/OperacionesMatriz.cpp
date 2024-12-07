@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// Método para sumar dos matrices
+// Metodo para sumar dos matrices
 double OperacionesMatriz::sumarMatrices(const Matriz& mat1, const Matriz& mat2) {
     if (mat1.obtenerFilas() != mat2.obtenerFilas() || mat1.obtenerColumnas() != mat2.obtenerColumnas()) {
         throw invalid_argument("Las matrices deben tener las mismas dimensiones para sumarlas.");
