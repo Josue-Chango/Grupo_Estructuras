@@ -358,5 +358,54 @@ int main() {
     delete[] lista_letras;
     delete[] lista_string;
     
+    /*
+       // Crear un parqueadero con 10 espacios iniciales y un radio (que no se usa mucho aquí)
+    Parqueadero parqueadero(10, 5);  // 10 espacios y radio 5 para la visualización
+
+    // Mostrar el parqueadero inicial
+    std::cout << "Parqueadero inicial:" << std::endl;
+    parqueadero.mostrarParqueaderoCircular();
+
+    // Ocupamos algunos espacios y mostramos las posiciones
+    std::cout << "\nOcupando algunos espacios:" << std::endl;
+    parqueadero.ocuparEspacio(0);  // Vehículo en el primer espacio
+    parqueadero.ocuparEspacio(3);  // Vehículo en el cuarto espacio
+    parqueadero.ocuparEspacio(5);  // Vehículo en el sexto espacio
+    parqueadero.ocuparEspacio(7);  // Vehículo en el octavo espacio
+    parqueadero.ocuparEspacio(9);  // Vehículo en el décimo espacio
+
+    // Mostrar el parqueadero después de ocupar los espacios
+    std::cout << "\nParqueadero después de ocupar espacios:" << std::endl;
+    parqueadero.mostrarParqueaderoCircular();
+
+    // Expandir el parqueadero agregando 5 nuevos espacios
+    std::cout << "\nExpandimos el parqueadero agregando 5 espacios más..." << std::endl;
+    parqueadero.expandirEspacios(15);  // Ahora hay 15 espacios
+
+    // Mostrar el parqueadero después de la expansión
+    std::cout << "\nParqueadero después de la expansión:" << std::endl;
+    parqueadero.mostrarParqueaderoCircular();
+
+    // Ocupamos algunos de los nuevos espacios
+    std::cout << "\nOcupando más espacios después de la expansión:" << std::endl;
+    parqueadero.ocuparEspacio(10);  // Vehículo en el espacio 11
+    parqueadero.ocuparEspacio(12);  // Vehículo en el espacio 13
+
+    // Mostrar el parqueadero después de ocupar más espacios
+    std::cout << "\nParqueadero después de ocupar más espacios:" << std::endl;
+    parqueadero.mostrarParqueaderoCircular();
+    
+    
+    
+    
+    
+    
+    
+    
+    */
+
+
+
+    system("pause");
     return 0;
 }
