@@ -113,6 +113,23 @@ bool Lista_Circular_Doble<T>::buscar(T dato)
 template<typename T>
 void Lista_Circular_Doble<T>::insertar_persona(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa)
 {
+    string aux;
+    for (char c: _nombre1){
+        aux = aux + (char)toupper(c);
+    }
+    _nombre1 = aux;
+    aux = "";
+
+    for (char c: _nombre2){
+        aux = aux + (char)toupper(c);
+    }
+    _nombre2 = aux;
+    aux = "";
+
+    for (char c: _apellido){
+        aux = aux + (char)toupper(c);
+    }
+    _apellido = aux;
 	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa);
 	if (this->cabeza == nullptr)
 	{
@@ -152,7 +169,11 @@ template <typename T>
 T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
 {
     Nodo_Circular_Doble<T>* aux = this->cabeza;
-    string n1=_nombre, n2=_nombre2, ap=_apellido, completo =" ";;
+    string n1=_nombre, n2=_nombre2, ap, completo = "";
+
+    for (char c: _apellido){
+        ap = ap + (char)tolower(c);
+    }
     
     if ((n1 != "" && n2 != "") || ap!="")  {
         char* cadena = new char[n1.length()+1];
@@ -160,8 +181,8 @@ T Lista_Circular_Doble<T>::generar_correo(T _nombre, T _nombre2, T _apellido)
         char* cadena2 = new char[n2.length()+1];
         std::strcpy(cadena2, n2.c_str());
         if (this->cabeza == nullptr){
-            n1 = *(cadena+0);
-            n2 = *(cadena2+0);
+            n1 = (char)tolower(*(cadena+0));
+            n2 = (char)tolower(*(cadena2+0));
             completo = n1 + n2 + ap +  "@espe.edu.ec";
             return completo;
         }
