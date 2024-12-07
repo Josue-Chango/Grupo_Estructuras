@@ -1,99 +1,66 @@
 #include "Parqueadero.h"
-#include <cmath>
-#include <cstdlib>
-#include <cstdio>
-#include <iostream>
 
-Parqueadero::Parqueadero(int totalEspacios, int radio) {
-    this->totalEspacios = totalEspacios;
-    this->radio = radio;
-    
-    this->espacios = (bool*)calloc(totalEspacios, sizeof(bool)); 
-    if (espacios == nullptr) {
-        std::cerr << "Error al asignar memoria." << std::endl;
-        exit(1);  
-    }
+// Constructor
+Parqueadero::Parqueadero(int filas, int columnas) : filas(filas), columnas(columnas) {
+    espacios.resize(filas, std::vector<char>(columnas, 'O')); // Todos los espacios están libres inicialmente
 }
 
-Parqueadero::~Parqueadero() {
-    free(espacios);
-}
-
-void Parqueadero::ocuparEspacio(int espacio) {
-if (espacio >= 0 && espacio < totalEspacios) {
-        espacios[espacio] = true;  // Marca el espacio como ocupado
-        
-        int fila = 0;
-        int columna = espacio;
-        while (columna >= fila + 1) {
-            columna -= (fila + 1);
-            fila++;
+// Muestra el parqueadero en consola
+void Parqueadero::mostrarParqueadero() {
+    for (const auto& fila : espacios) {
+        for (const auto& espacio : fila) {
+            std::cout << "[" << espacio << "]";
         }
-        
-        std::cout << "Vehiculo ingresado en la posicion [" << fila << "," << columna << "]" << std::endl;
+        std::cout << std::endl;
     }
 }
 
-void Parqueadero::liberarEspacio(int espacio) {
-    if (espacio >= 0 && espacio < totalEspacios) {
-        espacios[espacio] = false;  
-    }
-}
-
-void Parqueadero::mostrarParqueaderoCircular() {
-     const int totalEspacios = this->totalEspacios;
-
-    int nivelesMaximos = 5;  
-    int espaciosRestantes = totalEspacios;
-    int espaciosPorNivel = 1;  // Comienza con un solo espacio en el primer nivel
-
-    // Dibujar cada nivel
-    for (int i = 0; i < nivelesMaximos && espaciosRestantes > 0; ++i) {
-        // Imprimir los espacios para el nivel actual
-        for (int j = 0; j < espaciosPorNivel && espaciosRestantes > 0; ++j) {
-            if (espaciosRestantes > 0) {
-                // Verificamos si el espacio está ocupado o libre
-                if (espacios[espaciosRestantes - 1]) {
-                    printf("[X] ");  // Espacio ocupado
-                } else {
-                    printf("[O] ");  // Espacio libre
-                }
-                espaciosRestantes--;
+// Ingresa un vehículo al parqueadero
+bool Parqueadero::ingresarVehiculo(const std::string& placa, const std::string& nombre1, const std::string& nombre2, const std::string& apellido, const std::string& cedula, const std::string& correo) {
+    // Buscar un espacio libre
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            if (espacios[i][j] == 'O') {
+                espacios[i][j] = 'X'; // Marcar espacio como ocupado
+                listaVehiculos.insertar_persona(nombre1, nombre2, apellido, cedula, correo, placa); // Guardar información en la lista
+                std::cout << "Vehiculo ingresado en posicion [" << i << ", " << j << "]\n";
+                return true;
             }
         }
-
-        
-        printf("\n");
-
-        
-        espaciosPorNivel++;
     }
+    std::cout << "No hay espacios disponibles en el parqueadero.\n";
+    return false;
 }
 
-int Parqueadero::getTotalEspacios() {
-    return totalEspacios;
+// Retira un vehículo del parqueadero
+bool Parqueadero::retirarVehiculo(const std::string& placa) {
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            if (espacios[i][j] == 'X') {
+                if (listaVehiculos.buscar(placa)) { // Verificar si el vehículo está registrado
+                    espacios[i][j] = 'O'; // Marcar espacio como libre
+                    listaVehiculos.eliminar(placa); // Eliminar vehículo de la lista
+                    std::cout << "Vehiculo con placa " << placa << " retirado de posicion [" << i << ", " << j << "]\n";
+                    return true;
+                }
+            }
+        }
+    }
+    std::cout << "Vehiculo con placa " << placa << " no encontrado.\n";
+    return false;
 }
 
-void Parqueadero::expandirEspacios(int nuevosEspacios) {
-    if (nuevosEspacios <= totalEspacios) {
-        std::cout << "El numero de nuevos espacios debe ser mayor al actual." << std::endl;
+// Expande el tamaño del parqueadero
+void Parqueadero::expandirParqueadero(int nuevasFilas, int nuevasColumnas) {
+    if (nuevasFilas <= 0 || nuevasColumnas <= 0) {
+        std::cout << "Dimensiones inválidas para expansión.\n";
         return;
     }
-
-    bool* nuevosEspaciosArray = (bool*)calloc(nuevosEspacios, sizeof(bool));
-    if (nuevosEspaciosArray == nullptr) {
-        std::cerr << "Error al asignar memoria para la expansion." << std::endl;
-        return;
+    for (int i = 0; i < filas; ++i) {
+        espacios[i].resize(columnas + nuevasColumnas, 'O'); // Expandir columnas
     }
-
-    
-    for (int i = 0; i < totalEspacios; ++i) {
-        nuevosEspaciosArray[i] = espacios[i];
-    }
-
-    free(espacios);
-
-    espacios = nuevosEspaciosArray;
-
-    totalEspacios = nuevosEspacios;
+    espacios.resize(filas + nuevasFilas, std::vector<char>(columnas + nuevasColumnas, 'O')); // Expandir filas
+    filas += nuevasFilas;
+    columnas += nuevasColumnas;
+    std::cout << "El parqueadero ha sido expandido a " << filas << " filas y " << columnas << " columnas.\n";
 }

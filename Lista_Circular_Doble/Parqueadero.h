@@ -1,18 +1,19 @@
 #pragma once
+#include "Lista_Circular_Doble.h"
+#include <vector>
 #include <iostream>
 
 class Parqueadero {
 private:
-    bool* espacios;  // Array dinámico para los espacios (true=ocupado, false=libre)
-    int totalEspacios;  // Número total de espacios en el parqueadero
-    int radio;          // Radio del círculo para la impresión
+    int filas;
+    int columnas;
+    std::vector<std::vector<char>> espacios; 
+    Lista_Circular_Doble<std::string> listaVehiculos; 
 
 public:
-    Parqueadero(int totalEspacios, int radio);
-    ~Parqueadero();
-    void ocuparEspacio(int espacio);
-    void liberarEspacio(int espacio);
-    void mostrarParqueaderoCircular();
-    int getTotalEspacios();
-    void expandirEspacios(int nuevosEspacios);  // Método para aumentar los espacios
+    Parqueadero(int filas, int columnas);
+    void mostrarParqueadero(); 
+    bool ingresarVehiculo(const std::string& placa, const std::string& nombre1, const std::string& nombre2, const std::string& apellido, const std::string& cedula, const std::string& correo);
+    bool retirarVehiculo(const std::string& placa);
+    void expandirParqueadero(int nuevasFilas, int nuevasColumnas);
 };
