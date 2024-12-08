@@ -64,3 +64,18 @@ void Parqueadero::expandirParqueadero(int nuevasFilas, int nuevasColumnas) {
     columnas += nuevasColumnas;
     std::cout << "El parqueadero ha sido expandido a " << filas << " filas y " << columnas << " columnas.\n";
 }
+// Buscar Vehiculo
+bool Parqueadero::buscarVehiculo(const std::string& placa) {
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            if (espacios[i][j] == 'X') { // Espacio ocupado
+                if (listaVehiculos.buscar(placa)) { // Buscar en la lista de vehículos
+                    std::cout << "Vehículo encontrado en la posición [" << i << ", " << j << "]" << std::endl;
+                    return true;
+                }
+            }
+        }
+    }
+    std::cout << "Vehículo no encontrado en el parqueadero." << std::endl;
+    return false;
+}

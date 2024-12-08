@@ -590,4 +590,3 @@ std::string Lista_Circular_Doble<T>::validar_placa_existente()
     return _placa;
 }
 
-

@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include "Validaciones.cpp"
 #include "Parqueadero.cpp"
+
 //#include <windows.h>
 using namespace std;
 
@@ -250,9 +251,19 @@ int main() {
                     cout << endl;
                     lista_string->buscar(dato_string);
                     system("pause");*/
-                    cout << endl << "funcion en mantenimiento" << endl;
+                    //cout << endl << "funcion en mantenimiento" << endl;
+                    placa = ingresar_string.Ingresar_Placa();
+                    cout << endl;
+                    if (parqueadero.buscarVehiculo(placa)) {
+                        cout << "Vehículo encontrado." << endl;
+                    } else {
+                        cout << "Vehículo no encontrado." << endl;
+                    }
+                    
+            
                     system("pause");
                     break;
+
                 case 3: //Eliminar
                     /*dato_char = ingresar_letra.ingresar("Ingrese la letra: ", "char");
                     cout << endl;
