@@ -29,6 +29,7 @@ public:
     void descifrar_cesar(int);
     std::string validar_cedula_existente();
     std::string validar_placa_existente();
+    bool buscar_Placa(std::string _placa);
 
 };
 

@@ -590,3 +590,20 @@ std::string Lista_Circular_Doble<T>::validar_placa_existente()
     return _placa;
 }
 
+template<typename T>
+bool Lista_Circular_Doble<T>::buscar_Placa(std::string _placa)
+{
+	if (this->cabeza != nullptr)
+	{
+		Nodo_Circular_Doble<T>* aux = this->cabeza;
+		do
+		{
+			if (aux->getPlaca() == _placa)
+			{
+				return true;
+			}
+			aux = aux->getSiguiente();
+		} while (aux != this->cabeza);
+	}
+	return false;
+}

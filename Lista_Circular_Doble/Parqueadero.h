@@ -18,4 +18,5 @@ public:
     bool retirarVehiculo(const std::string& placa);
     void expandirParqueadero(int nuevasFilas, int nuevasColumnas);
     bool buscarVehiculo(const std::string& placa);
+    
 };
