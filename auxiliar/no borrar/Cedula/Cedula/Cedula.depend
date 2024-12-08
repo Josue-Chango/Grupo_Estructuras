@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1732481046 source:c:\users\usuario\desktop\borrador estructura\parcial 1\cedula\cedula\cedula.cpp
+	"Cedula.h"
+	<iostream>
+	<cctype>
+
+1732481033 c:\users\usuario\desktop\borrador estructura\parcial 1\cedula\cedula\cedula.h
+	<string>
+
+1732481117 source:c:\users\usuario\desktop\borrador estructura\parcial 1\cedula\cedula\main.cpp
+	"Cedula.h"
+	<iostream>
+
