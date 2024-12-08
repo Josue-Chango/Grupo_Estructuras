@@ -70,12 +70,12 @@ bool Parqueadero::buscarVehiculo(const std::string& placa) {
         for (int j = 0; j < columnas; ++j) {
             if (espacios[i][j] == 'X') { // Espacio ocupado
                 if (listaVehiculos.buscar_Placa(placa)) { // Buscar en la lista de vehículos
-                    std::cout << "Vehículo encontrado en la posición [" << i << ", " << j << "]" << std::endl;
+                    std::cout << "Vehiculo encontrado en la posición [" << i << ", " << j << "]" << std::endl;
                     return true;
                 }
             }
         }
     }
-    std::cout << "Vehículo no encontrado en el parqueadero." << std::endl;
+    std::cout << "Vehiculo no encontrado en el parqueadero." << std::endl;
     return false;
 }

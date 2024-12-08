@@ -7,19 +7,17 @@
  * Materia:                        Estructura de datos                                 *
  * NRC :                           1978                                                *
  **************************************************************************************/
-#include "Lista_Circular_Doble.cpp"
-#include "Nodo_Circular_Doble.cpp"
-#include <string>
-#include <iostream>
-#include <stdlib.h>
-#include <fstream>
-#include <stdio.h>
-#include "Validaciones.cpp"
-#include "Parqueadero.cpp"
 
-//#include <windows.h>
+
+#include <iostream>
+#include <windows.h>
+#include "Menus.cpp"
+//using byte = unsigned char;
+
+
 using namespace std;
 
+/*
 int main() {
     Parqueadero parqueadero(3, 3); // Parqueadero inicial de 3x3
     parqueadero.mostrarParqueadero();
@@ -43,11 +41,6 @@ int main() {
     Validaciones<std::string> ingresar_string;
     Validaciones<char> ingresar_letra;
 
-    /*HINSTANCE hDLL = LoadLibrary("ValidDll.dll");
-    if (!hDLL) {
-        std::cerr << "No se pudo cargar la DLL.\n";
-        return 1;
-    }*/
 
 
    do {
@@ -247,28 +240,14 @@ int main() {
                     system("pause");
                     break;
                 case 2: //Buscar
-                    /*dato_string = ingresar_string.ingresar("ingrese el dato a buscar: ", "string");
-                    cout << endl;
-                    lista_string->buscar(dato_string);
-                    system("pause");*/
-                    //cout << endl << "funcion en mantenimiento" << endl;
-                    placa = ingresar_string.Ingresar_Placa();
-                    cout << endl;
-                    if (parqueadero.buscarVehiculo(placa)) {
-                        cout << "Vehículo encontrado." << endl;
-                    } else {
-                        cout << "Vehículo no encontrado." << endl;
-                    }
-                    
-            
+
+                    cout << endl << "funcion en mantenimiento" << endl;
                     system("pause");
                     break;
-
                 case 3: //Eliminar
-                    /*dato_char = ingresar_letra.ingresar("Ingrese la letra: ", "char");
-                    cout << endl;
-                    lista_string->eliminarLetra(dato_char);*/
-                    cout << endl << "funcion en mantenimiento" << endl;
+
+                    placa = ingresar_string.Ingresar_Placa();
+                    parqueadero.retirarVehiculo(placa);
                     system("pause");
                     break;
                 case 4: //Mostrar
@@ -424,17 +403,14 @@ int main() {
     parqueadero.expandirParqueadero(2, 2);
     parqueadero.mostrarParqueadero();
     
-    
-    
-    
-    
-    
-    
-    
-    */
-
-
-
     system("pause");
+    return 0;
+}
+*/
+
+int main() {
+    Menus<int> Menu;
+    
+    Menu.Menu();
     return 0;
 }
