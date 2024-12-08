@@ -556,4 +556,38 @@ std::string Lista_Circular_Doble<T>::validar_cedula_existente()
     return _cedula;
 }
 
+template <typename T>
+std::string Lista_Circular_Doble<T>::validar_placa_existente()
+{
+    Nodo_Circular_Doble<T>* aux = this->cabeza;
+    bool repetir = true, valido = true;
+    std::string _placa = "";
+    Validaciones<T> ingreso;
+    do{
+        repetir = false;
+        valido = true;
+        _placa = ingreso.Ingresar_Placa();
+        if (this->cabeza == nullptr){
+            repetir = false;
+        }else{
+            do {
+                if (_placa.compare(aux->getPlaca()) == 0){
+                    system("cls");
+                    cout << "Placa ya existente en el parqueadero" << endl << "Ingrese nueva placa " << endl;
+                    system("pause");
+                    valido = false;
+                    break;
+                }
+                aux = aux->getSiguiente();
+            }while (aux != this->cabeza);
+            if (valido == false){
+                repetir = true;
+            }else if(valido == true){
+                repetir = false;
+            }
+        }
+    }while(repetir == true);
+    return _placa;
+}
+
 

@@ -28,6 +28,7 @@ public:
     void cifrar_cesar(int);
     void descifrar_cesar(int);
     std::string validar_cedula_existente();
+    std::string validar_placa_existente();
 
 };
 

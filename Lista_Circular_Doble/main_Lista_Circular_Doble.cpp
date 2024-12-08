@@ -198,6 +198,7 @@ int main() {
             break;
         case 4:
             do {
+                
                 system("cls");
                 cout << "***********Listas Simples***********" << endl;
                 cout << "1. Insertar" << endl;
@@ -214,54 +215,67 @@ int main() {
                 opcion = ingresar_entero.ingresar("Opcion: ","entero");
                 cout << endl;
                 switch (opcion) {
-                case 1:
+                case 1: //Insertar
+                lista_string->cargarDesdeArchivo("Parqueadero.txt");
                     do{
                         system("cls");
+                        dato_string = lista_string->validar_cedula_existente();
+                        cout << endl;
                         nombre1 = ingresar_string.ingresar("Ingrese su primer nombre: ", "string");
                         cout << endl;
                         nombre2 = ingresar_string.ingresar("Ingrese su segundo nombre: ", "string");
                         cout <<endl;
                         apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
                         cout << endl;
-                        placa = ingresar_string.Ingresar_Placa();
+                        placa = lista_string->validar_placa_existente();
                         cout << endl;
                         if((nombre1 == "" && nombre2 == "") || apellido == ""){
                             cout << "Persona no ingresada" << endl << "La persona necesita al menos un nombre y un apellido " << endl;
                             system("pause");
                         }
                     }while((nombre1 == "" && nombre2 == "") || apellido =="");
-                    dato_string = lista_string->validar_cedula_existente();
+                    
                     correo = lista_string->generar_correo(nombre1, nombre2, apellido);
+                    parqueadero.ingresarVehiculo(placa, nombre1, nombre2, apellido, dato_string, correo);
                     lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
-                    cout << endl << "Persona ingresado correctamente" << endl;
+                    parqueadero.mostrarParqueadero();
+
+                    //lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
+
+                    cout << endl << "Vehiculo ingresado correctamente" << endl;
                     system("pause");
                     break;
-                case 2:
-                    dato_string = ingresar_string.ingresar("ingrese el dato a buscar: ", "string");
+                case 2: //Buscar
+                    /*dato_string = ingresar_string.ingresar("ingrese el dato a buscar: ", "string");
                     cout << endl;
                     lista_string->buscar(dato_string);
+                    system("pause");*/
+                    cout << endl << "funcion en mantenimiento" << endl;
                     system("pause");
                     break;
-                case 3:
-                    dato_char = ingresar_letra.ingresar("Ingrese la letra: ", "char");
+                case 3: //Eliminar
+                    /*dato_char = ingresar_letra.ingresar("Ingrese la letra: ", "char");
                     cout << endl;
-                    lista_string->eliminarLetra(dato_char);
+                    lista_string->eliminarLetra(dato_char);*/
+                    cout << endl << "funcion en mantenimiento" << endl;
                     system("pause");
                     break;
-                case 4:
+                case 4: //Mostrar
                     lista_string->mostrar_persona();
                     cout << endl;
+                    parqueadero.mostrarParqueadero();
+                    cout << endl;
                     system("pause");
                     break;
-                case 5:
-                    lista_string->guardarEnArchivo("Principal.txt");
+                case 5: //Guardar
+                    lista_string->guardarEnArchivo("Parqueadero.txt");
                     system("pause");
                     break;
-                case 6:
-                    lista_string->cargarDesdeArchivo("Principal.txt");
+                case 6: //Cargar
+                    lista_string->cargarDesdeArchivo("Parqueadero.txt");
                     system("pause");
                     break;
-                case 7:
+                case 7: //cifrar
                     dato_entero = ingresar_entero.ingresar("Ingrese el desplazamiento para cifrar: ", "entero");
                     do{
                         system("cls");
@@ -293,42 +307,20 @@ int main() {
                         }
                     }while (opcion != 3);
                     break;
-                case 8:
-                    do{
-                        system("cls");
-                        nombre1 = ingresar_string.ingresar("Ingrese su primer nombre: ", "string");
-                        cout << endl;
-                        nombre2 = ingresar_string.ingresar("Ingrese su segundo nombre: ", "string");
-                        cout <<endl;
-                        apellido = ingresar_string.ingresar("Ingrese su apellido: ", "string");
-                        cout << endl;
-                        placa = ingresar_string.Ingresar_Placa();
-                        cout << endl;
-                        if((nombre1 == "" && nombre2 == "") || apellido == ""){
-                            cout << "Persona no ingresada" << endl << "La persona necesita al menos un nombre y un apellido " << endl;
-                            system("pause");
-                        }
-                    }while((nombre1 == "" && nombre2 == "") || apellido =="");
-                    dato_string = lista_string->validar_cedula_existente();
-                    correo = lista_string->generar_correo(nombre1, nombre2, apellido);
-                    parqueadero.ingresarVehiculo(placa, nombre1, nombre2, apellido, dato_string, correo);
-                    parqueadero.mostrarParqueadero();
-
-                    //lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
-
-                    cout << endl << "Vehiculo ingresado correctamente" << endl;
+                case 8: //Ingresar vehiculo
+                    cout << endl << "funcion en mantenimiento" << endl;
                     system("pause");
                     break;
-                case 9:
+                case 9: //Sacar vehiculo
                     placa = ingresar_string.Ingresar_Placa();
                     parqueadero.retirarVehiculo(placa);
+                    break;
+                case 10: //Mostrar Parqueadero
+                    //parqueadero.mostrarParqueadero();
+                    cout << endl << "funcion en mantenimiento" << endl;
                     system("pause");
                     break;
-                case 10:
-                    parqueadero.mostrarParqueadero();
-                    system("pause");
-                    break;
-                case 11:
+                case 11: //Salir
                     break;
                 default:
                     cout << "Opcion no valida, intente de nuevo" << endl;
