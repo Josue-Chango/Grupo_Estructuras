@@ -350,42 +350,55 @@ T Validaciones<T>::Ingresar_Cedula()
 
 template <typename T>
 T Validaciones<T>::Ingresar_Placa() {
-    
-     T placa;
+    T placa;
     bool es_valida = false;
 
     do {
-        std::cout << "Ingrese la placa del vehiculo (formato: ABC1234): ";
+        std::cout << "Ingrese la placa del vehiculo o motocicleta (formato: ABC-1234 o XX-123A): ";
         std::cin >> placa;
-
-        // Convertir a string si no es un string para validación
         std::string placa_str = placa;
-        es_valida = true;  // Asumimos que la placa es válida
+        es_valida = true; 
 
-        // Validar longitud (debe ser exactamente 7 caracteres)
-        if (placa_str.length() != 7) {
+        if (placa_str.length() != 8 && placa_str.length() != 7) {
             es_valida = false;
-        }
-
-        // Validar que los primeros 3 caracteres sean letras mayúsculas
-        for (int i = 0; i < 3; i++) {
-            if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i])) {
-                es_valida = false;
-                break;
+        } else if (placa_str.length() == 8) {
+            // Validar formato de vehiculo (ABC-1234)
+            for (int i = 0; i < 3; i++) {
+                if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i])) {
+                    es_valida = false;
+                    break;
+                }
             }
-        }
-
-        // Validar que los últimos 4 caracteres sean dígitos
-        for (int i = 3; i < 7; i++) {
-            if (!std::isdigit(placa_str[i])) {
-                es_valida = false;
-                break;
+            if (placa_str[3] != '-') es_valida = false;
+            for (int i = 4; i < 8; i++) {
+                if (!std::isdigit(placa_str[i])) {
+                    es_valida = false;
+                    break;
+                }
             }
+        } else if (placa_str.length() == 7) {
+            // Validar formato de motocicleta (XX-123A)
+            for (int i = 0; i < 2; i++) {
+                if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i])) {
+                    es_valida = false;
+                    break;
+                }
+            }
+            if (placa_str[2] != '-') es_valida = false;
+            for (int i = 3; i < 6; i++) {
+                if (!std::isdigit(placa_str[i])) {
+                    es_valida = false;
+                    break;
+                }
+            }
+            if (!std::isalpha(placa_str[6]) || !std::isupper(placa_str[6])) {
+                es_valida = false;
+            }
+        } else {
+            es_valida = false; 
         }
-
-        // Si no es válida, mostrar un mensaje y pedirla de nuevo
         if (!es_valida) {
-            std::cout << "Formato inválido. Intente nuevamente." << std::endl;
+            std::cout << "Formato invalido. Intente nuevamente." << std::endl;
         }
     } while (!es_valida);
 
