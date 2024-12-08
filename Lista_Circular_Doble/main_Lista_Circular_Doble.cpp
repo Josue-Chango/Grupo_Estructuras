@@ -255,9 +255,9 @@ int main() {
                     placa = ingresar_string.Ingresar_Placa();
                     cout << endl;
                     if (parqueadero.buscarVehiculo(placa)) {
-                        cout << "Vehículo encontrado." << endl;
+                        cout << "Vehiculo encontrado." << endl;
                     } else {
-                        cout << "Vehículo no encontrado." << endl;
+                        cout << "Vehiculo no encontrado." << endl;
                     }
                     
             
