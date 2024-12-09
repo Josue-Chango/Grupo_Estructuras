@@ -115,7 +115,6 @@ Menus<int> entrada;
     Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
     int dato_entero;
     std::string dato_string;
-    char dato_char;
     string nombre1, nombre2, apellido, correo, placa;
 
     lista_string->cargarDesdeArchivo("Parqueadero.txt");

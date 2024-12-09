@@ -544,6 +544,12 @@ std::string Lista_Circular_Doble<T>::validar_cedula_existente()
                     valido = false;
                     break;
                 }
+                /*if (_cedula.compare(aux->getCedula()) == 0 &&){
+                    cout << endl << "Cedula ya existente" << endl << "Ingrese nueva cedula " << endl;
+                    system("pause");
+                    valido = false;
+                    break;
+                }*/
                 aux = aux->getSiguiente();
             }while (aux != this->cabeza);
             if (valido == false){
