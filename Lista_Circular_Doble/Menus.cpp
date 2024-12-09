@@ -140,7 +140,7 @@ Menus<int> entrada;
         case 13: // Enter
             switch (opcion) {
             case Sacar_Vehiculo:
-                
+                parqueadero.retirar_Vehiculo(placa);
                 system("pause");
                 break;
             case Salir_Menu_Principal:
