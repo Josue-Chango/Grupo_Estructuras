@@ -329,8 +329,8 @@ int main() {
                     system("pause");
                     break;
                 case 5: //Guardar
-                    lista_string->guardarEnArchivo("Parqueadero.txt");
-                    system("pause");
+                    //lista_string->guardarEnArchivo("Parqueadero.txt");
+                    //      system("pause");
                     break;
                 case 6: //Cargar
                     parqueadero.cargarVehiculosDesdeArchivo();
