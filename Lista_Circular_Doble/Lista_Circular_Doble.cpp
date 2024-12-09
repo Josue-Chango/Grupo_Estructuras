@@ -613,3 +613,60 @@ bool Lista_Circular_Doble<T>::buscar_Placa(std::string _placa)
 	}
 	return false;
 }
+
+template <typename T>
+void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _hora)
+{
+    string aux;
+    for (char c: _nombre1){
+        aux = aux + (char)toupper(c);
+    }
+    _nombre1 = aux;
+    aux = "";
+
+    for (char c: _nombre2){
+        aux = aux + (char)toupper(c);
+    }
+    _nombre2 = aux;
+    aux = "";
+
+    for (char c: _apellido){
+        aux = aux + (char)toupper(c);
+    }
+    _apellido = aux;
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa, _hora);
+	if (this->cabeza == nullptr)
+	{
+		this->cabeza = nuevo;
+		this->cola = nuevo;
+		this->cabeza->setSiguiente(this->cola);
+		this->cabeza->setAnterior(this->cola);
+		this->cola->setSiguiente(this->cabeza);
+		this->cola->setAnterior(this->cabeza);
+	}
+	else
+	{
+		this->cola->setSiguiente(nuevo);
+		nuevo->setAnterior(this->cola);
+		nuevo->setSiguiente(this->cabeza);
+		this->cabeza->setAnterior(nuevo);
+		this->cola = nuevo;
+	}
+}
+
+template <typename T>
+void Lista_Circular_Doble<T>::guardar_Registro (const std::string& nombreArchivo)
+{
+    std::ofstream archivo(nombreArchivo, std::ios::trunc);
+    if (archivo.is_open()) {
+        Nodo_Circular_Doble<T>* actual = this->cabeza;
+        do {
+            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << "," << actual->getPlaca() << "," << actual->getHora() << std::endl;
+            actual = actual->getSiguiente();
+        }while (actual != this->cabeza);
+        archivo.close();
+        std::cout << "Lista guardada correctamente en " << nombreArchivo << std::endl;
+    } else {
+        std::cerr << "No se pudo abrir el archivo." << std::endl;
+    }
+}

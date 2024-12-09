@@ -13,6 +13,7 @@
 #include "Nodo_Circular_Doble.cpp"
 #include "Validaciones.cpp"
 #include "Parqueadero.cpp"
+#include <ctime>
 //#include <cstdint>
 //using byte = unsigned char;
 
@@ -108,13 +109,17 @@ Menus<int> entrada;
     int opcion;
     bool Continuar_Menu_Principal = true;
 
+    std::time_t t;
+    std::tm* now;
+
     Validaciones<std::string> ingresar_string;
     Validaciones<int> ingresar_entero;
 
     Parqueadero parqueadero(3, 3); // Parqueadero inicial de 3x3
     Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
+    Lista_Circular_Doble<std::string>* lista_registro = new Lista_Circular_Doble<std::string>();
     int dato_entero;
-    std::string dato_string;
+    std::string dato_string, fecha;
     string nombre1, nombre2, apellido, correo, placa;
 
     lista_string->cargarDesdeArchivo("Parqueadero.txt");
@@ -161,10 +166,14 @@ Menus<int> entrada;
                     correo = lista_string->generar_correo(nombre1, nombre2, apellido);
                     parqueadero.ingresarVehiculo(placa, nombre1, nombre2, apellido, dato_string, correo);
                     lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
+                    t = std::time(nullptr);
+                    now = std::localtime(&t);
+                    fecha = to_string(now->tm_year+1900)+ "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_mday) + " " + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec);
+                    lista_registro->registro(nombre1, nombre2, apellido, dato_string, correo, placa, fecha);
                     parqueadero.mostrarParqueadero();
-
+                    lista_string->guardarEnArchivo("Parqueadero.txt");
+                    lista_registro->guardar_Registro("Registro.txt");
                     //lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
-
                     cout << endl << "Vehiculo ingresado correctamente" << endl;
                     system("pause");
                 break;

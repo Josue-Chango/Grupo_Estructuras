@@ -30,6 +30,8 @@ public:
     std::string validar_cedula_existente();
     std::string validar_placa_existente();
     bool buscar_Placa(std::string _placa);
+    void registro(T, T, T, T, T, T, T);
+    void guardar_Registro(const std::string&);
 
 };
 
