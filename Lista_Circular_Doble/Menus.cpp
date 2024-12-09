@@ -123,6 +123,7 @@ Menus<int> entrada;
     string nombre1, nombre2, apellido, correo, placa;
 
     lista_string->cargarDesdeArchivo("Parqueadero.txt");
+    parqueadero.cargarVehiculosDesdeArchivo();
     
     opcion = 0;
     while (Continuar_Menu_Principal) {
@@ -176,9 +177,9 @@ Menus<int> entrada;
                     fecha = to_string(now->tm_year+1900)+ "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_mday) + " " + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec);
                     lista_registro->registro(nombre1, nombre2, apellido, dato_string, correo, placa, fecha);
                     parqueadero.mostrarParqueadero();
-                    lista_string->guardarEnArchivo("Parqueadero.txt");
+                    //lista_string->guardarEnArchivo("Parqueadero.txt");
                     lista_registro->guardar_Registro("Registro.txt");
-                    //lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
+                    lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
                     cout << endl << "Vehiculo ingresado correctamente" << endl;
                     system("pause");
                 break;
@@ -198,8 +199,8 @@ Menus<int> entrada;
                 system("pause");
                 break;
             case Mostrar: //Mostrar
-                lista_string->mostrar_persona();
-                cout << endl;
+                //lista_string->mostrar_persona();
+                //cout << endl;
                 parqueadero.mostrarParqueadero();
                 cout << endl;
                 system("pause");                    
