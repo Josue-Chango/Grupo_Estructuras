@@ -139,6 +139,10 @@ Menus<int> entrada;
             break;
         case 13: // Enter
             switch (opcion) {
+            case Sacar_Vehiculo:
+                
+                system("pause");
+                break;
             case Salir_Menu_Principal:
                 cout << endl << "Gracias por visitarnos " << endl ;
                 Continuar_Menu_Principal=false;

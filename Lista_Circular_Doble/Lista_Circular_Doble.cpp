@@ -657,7 +657,7 @@ void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _c
 template <typename T>
 void Lista_Circular_Doble<T>::guardar_Registro (const std::string& nombreArchivo)
 {
-    std::ofstream archivo(nombreArchivo, std::ios::trunc);
+    std::ofstream archivo(nombreArchivo, std::ios::app);
     if (archivo.is_open()) {
         Nodo_Circular_Doble<T>* actual = this->cabeza;
         do {
@@ -669,4 +669,45 @@ void Lista_Circular_Doble<T>::guardar_Registro (const std::string& nombreArchivo
     } else {
         std::cerr << "No se pudo abrir el archivo." << std::endl;
     }
+}
+
+template <typename T>
+void Lista_Circular_Doble<T>::cargar_Registro(const std::string &nombreArchivo)
+{
+    std::ifstream archivo(nombreArchivo);
+    if (archivo.is_open()) {
+        std::string linea;
+        int lineasAgregadas = 0;
+        while (std::getline(archivo, linea)) {
+            std::stringstream iss(linea);
+            std::string nombre1, nombre2, apellido, cedula, correo, placa, hora;
+            std::getline(iss, nombre1, ',');
+            std::getline(iss, nombre2, ',');
+            std::getline(iss, apellido, ',');
+            std::getline(iss, cedula, ',');
+            std::getline(iss, correo, ',');
+            std::getline(iss, placa, ',');
+            std::getline(iss, hora, ',');
+            registro(nombre1, nombre2, apellido, cedula, correo, placa, hora);
+        }
+        archivo.close();
+        std::cout << "Lista cargada correctamente desde " << nombreArchivo << std::endl;
+    } else {
+        std::cerr << "No se pudo abrir el archivo." << std::endl;
+    }
+}
+
+template<typename T>
+void Lista_Circular_Doble<T>::mostrar_Registro()
+{
+	if (this->cabeza != nullptr)
+	{
+		Nodo_Circular_Doble<T>* aux = this->cabeza;
+		do
+		{
+			cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << " " aux->getPlaca() << " --> ";
+			aux = aux->getSiguiente();
+		} while (aux != this->cabeza);
+		cout << endl;
+	}
 }
