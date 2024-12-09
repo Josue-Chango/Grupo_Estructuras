@@ -25,6 +25,7 @@ void Parqueadero::ingresarVehiculo(const std::string& placa, const std::string& 
 
                 // Llamar a guardarVehiculoEnArchivo pasando los datos
                 guardarVehiculoEnArchivo(fila, columna, placa, nombre1, nombre2, apellido, cedula, correo);
+                cargarVehiculosDesdeArchivo();
                 std::cout << "Vehículo ingresado correctamente en el parqueadero.\n";
                 return; // Salir después de guardar el vehículo
             }
