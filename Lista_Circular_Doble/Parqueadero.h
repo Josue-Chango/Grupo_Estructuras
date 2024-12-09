@@ -14,9 +14,10 @@ private:
 public:
     Parqueadero(int filas, int columnas);
     void mostrarParqueadero(); 
-    bool ingresarVehiculo(const std::string& placa, const std::string& nombre1, const std::string& nombre2, const std::string& apellido, const std::string& cedula, const std::string& correo);
+    void ingresarVehiculo(const std::string& placa, const std::string& nombre1, const std::string& nombre2, const std::string& apellido, const std::string& cedula, const std::string& correo);
     bool retirarVehiculo(const std::string& placa);
     void expandirParqueadero(int nuevasFilas, int nuevasColumnas);
     bool buscarVehiculo(const std::string& placa);
-    
+    void guardarVehiculoEnArchivo(int fila, int columna, const std::string& placa, const std::string& nombre1, const std::string& nombre2, const std::string& apellido, const std::string& cedula, const std::string& correo);
+    void cargarVehiculosDesdeArchivo();
 };

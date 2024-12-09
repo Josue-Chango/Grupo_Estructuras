@@ -323,8 +323,7 @@ int main() {
                     system("pause");
                     break;
                 case 4: //Mostrar
-                    lista_string->mostrar_persona();
-                    cout << endl;
+                    //lista_string->mostrar_persona();
                     parqueadero.mostrarParqueadero();
                     cout << endl;
                     system("pause");
@@ -334,7 +333,9 @@ int main() {
                     system("pause");
                     break;
                 case 6: //Cargar
-                    lista_string->cargarDesdeArchivo("Parqueadero.txt");
+                    parqueadero.cargarVehiculosDesdeArchivo();
+                    std::cout << "Datos cargados desde el archivo.\n";
+                    parqueadero.mostrarParqueadero(); // Opcional: mostrar el estado del parqueadero después de cargar
                     system("pause");
                     break;
                 case 7: //cifrar
