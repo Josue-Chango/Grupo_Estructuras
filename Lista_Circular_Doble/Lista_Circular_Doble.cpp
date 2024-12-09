@@ -61,7 +61,7 @@ void Lista_Circular_Doble<T>::eliminar(T dato)
 			Nodo_Circular_Doble<T>* aux = this->cabeza;
 			while (aux->getSiguiente() != this->cabeza)
 			{
-				if (aux->getSiguiente()->getDato() == dato)
+				if (aux->getSiguiente()->getPlaca() == dato)
 				{
 					Nodo_Circular_Doble<T>* aux2 = aux->getSiguiente();
 					aux->setSiguiente(aux2->getSiguiente());
@@ -705,7 +705,7 @@ void Lista_Circular_Doble<T>::mostrar_Registro()
 		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
-			cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << " " aux->getPlaca() << " --> ";
+			cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << " " << aux->getPlaca() << " --> ";
 			aux = aux->getSiguiente();
 		} while (aux != this->cabeza);
 		cout << endl;
