@@ -118,8 +118,8 @@ Menus<int> entrada;
     Parqueadero parqueadero(5, 5); // Parqueadero inicial de 3x3
     Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
     Lista_Circular_Doble<std::string>* lista_registro = new Lista_Circular_Doble<std::string>();
-    int dato_entero;
-    std::string dato_string, fecha;
+    int dato_entero, dato_entero2;
+    std::string dato_string, fecha, hora, minuto;
     string nombre1, nombre2, apellido, correo, placa;
 
     lista_string->cargarDesdeArchivo("Parqueadero.txt");
@@ -178,8 +178,10 @@ Menus<int> entrada;
                     lista_string->insertar_persona(nombre1, nombre2, apellido, dato_string, correo, placa);
                     t = std::time(nullptr);
                     now = std::localtime(&t);
-                    fecha = to_string(now->tm_year+1900)+ "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_mday) + " " + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec);
-                    lista_registro->registro(nombre1, nombre2, apellido, dato_string, correo, placa, fecha);
+                    fecha = to_string(now->tm_year+1900)+ "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_mday);// + " " + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec);
+                    hora = to_string(now->tm_hour);
+                    minuto = to_string(now->tm_min);
+                    lista_registro->registro(nombre1, nombre2, apellido, dato_string, correo, placa, fecha, hora, minuto);
                     parqueadero.mostrarParqueadero();
                     //lista_string->guardarEnArchivo("Parqueadero.txt");
                     lista_registro->guardar_Registro("Registro.txt");
@@ -188,14 +190,27 @@ Menus<int> entrada;
                     system("pause");
                 break;
             case Buscar: // Flecha abajo
-                placa = ingresar_string.Ingresar_Placa();
+                lista_registro->cargar_Registro("Registro.txt");
+                //bool ingreso=true;
+                //do{
+                    cout << "ingrese en intervalo de horas a buscar" << endl ;
+                    dato_entero = ingresar_entero.ingresar("Ingrese la hora de inicio: ", "entero");
+                    cout << endl;
+                    dato_entero2 = ingresar_entero.ingresar("Ingrese la hora de final: ", "entero");
+                //    if(dato_entero < dato_entero2 && dato_entero < 23 && dato_entero2 < 24){
+                //        ingreso = false;
+                //    };
+                //}while (ingreso == false);
+                lista_registro->mostrar_RegistroPorRangoHoras(dato_entero, dato_entero2);
+                /*placa = ingresar_string.Ingresar_Placa();
                     cout << endl;
                     if (parqueadero.buscarVehiculo(placa)) {
                         cout << "Vehiculo encontrado." << endl;
                         lista_registro->mostrar_Registro(placa);
                     } else {
                         cout << "Vehiculo no encontrado." << endl;
-                    }
+                    }*/
+
                 system("pause");
                 break;
             case Eliminar: //Eliminar

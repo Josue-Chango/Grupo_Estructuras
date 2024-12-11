@@ -6,6 +6,9 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <vector>
+#include <ctime>
+#include <iomanip>
 using namespace std;
 
 template<typename T>
@@ -615,7 +618,7 @@ bool Lista_Circular_Doble<T>::buscar_Placa(std::string _placa)
 }
 
 template <typename T>
-void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _hora)
+void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _fecha, T _hora, T _minuto)
 {
     string aux;
     for (char c: _nombre1){
@@ -634,7 +637,7 @@ void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _c
         aux = aux + (char)toupper(c);
     }
     _apellido = aux;
-	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa, _hora);
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa, _fecha, _hora, _minuto);
 	if (this->cabeza == nullptr)
 	{
 		this->cabeza = nuevo;
@@ -661,7 +664,7 @@ void Lista_Circular_Doble<T>::guardar_Registro (const std::string& nombreArchivo
     if (archivo.is_open()) {
         Nodo_Circular_Doble<T>* actual = this->cabeza;
         do {
-            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << "," << actual->getPlaca() << "," << actual->getHora() << std::endl;
+            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << "," << actual->getPlaca() << "," << actual->getFecha() << "," << actual->getHora() << "," << actual->getMinuto() << std::endl;
             actual = actual->getSiguiente();
         }while (actual != this->cabeza);
         archivo.close();
@@ -680,15 +683,17 @@ void Lista_Circular_Doble<T>::cargar_Registro(const std::string &nombreArchivo)
         int lineasAgregadas = 0;
         while (std::getline(archivo, linea)) {
             std::stringstream iss(linea);
-            std::string nombre1, nombre2, apellido, cedula, correo, placa, hora;
+            std::string nombre1, nombre2, apellido, cedula, correo, placa, fecha, hora, minuto;
             std::getline(iss, nombre1, ',');
             std::getline(iss, nombre2, ',');
             std::getline(iss, apellido, ',');
             std::getline(iss, cedula, ',');
             std::getline(iss, correo, ',');
             std::getline(iss, placa, ',');
+            std::getline(iss, fecha, ',');
             std::getline(iss, hora, ',');
-            registro(nombre1, nombre2, apellido, cedula, correo, placa, hora);
+            std::getline(iss, minuto, ',');
+            registro(nombre1, nombre2, apellido, cedula, correo, placa, fecha, hora, minuto);
         }
         archivo.close();
         std::cout << "Lista cargada correctamente desde " << nombreArchivo << std::endl;
@@ -706,7 +711,7 @@ void Lista_Circular_Doble<T>::mostrar_Registro(std::string _placa)
 		do
 		{
             if(_placa == aux->getPlaca()){
-                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << " " << aux->getPlaca() << " " << aux->getHora()<< " --> ";
+                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << "," << aux->getFecha() << "," << aux->getHora() << "," << aux->getMinuto() << endl;
             }
 			aux = aux->getSiguiente();
 		} while (aux != this->cabeza);
@@ -745,3 +750,57 @@ void Lista_Circular_Doble<T>::eliminar_Vehiculo(T _placa)
 		}
 	}
 }
+/*
+template <typename T>
+bool Lista_Circular_Doble<T>::validar_formato_hora(std::string hora) {
+    // Validar que la hora tenga el formato correcto (HH:MM:SS)
+    if(hora.length() != 8 || hora[2] != ':' || hora[5] != ':') {
+    return false;
+    }
+    int hh = std::stoi(hora.substr(0, 2));
+    int mm = std::stoi(hora.substr(3, 2));
+    int ss = std::stoi(hora.substr(6, 2));
+
+    if (hh < 0 || hh > 23 || mm < 0 || mm > 59 || ss < 0 || ss > 59) {
+        return false;
+    }
+
+    return true;
+    }
+*/
+
+template <typename T>
+void Lista_Circular_Doble<T>::mostrar_RegistroPorRangoHoras(int horaInicio, int horaFin) {
+    if (this->cabeza != nullptr) {
+        Nodo_Circular_Doble<T>* aux = this->cabeza;
+
+        // Lambda para filtrar por hora sin tener en cuenta los minutos
+        auto filtroRangoHoras = [horaInicio, horaFin](int hora) {
+            return hora >= horaInicio && hora <= horaFin;
+        };
+
+        do {
+            try {
+                // Obtener la hora del nodo actual y convertirla a int
+                int hora = std::stoi(aux->getHora());  // Convertir la hora de string a int
+                int minuto = std::stoi(aux->getMinuto());  // Convertir los minutos de string a int
+
+                // Comprobar si el vehículo está dentro del rango de horas
+                if (filtroRangoHoras(hora)) {
+                    cout << aux->getNombre1() << " " << aux->getNombre2() << " " 
+                         << aux->getApellido() << " " << aux->getCedula() << " " 
+                         << aux->getCorreo() << " " << aux->getPlaca() << ", "
+                         << aux->getFecha() << ", " 
+                         << std::setw(2) << std::setfill('0') << hora << endl;  // Solo mostrar la hora
+                }
+            } catch (const std::invalid_argument& e) {
+                // Manejo de error si la hora o minuto no son válidos
+                std::cerr << "Error de formato en la hora o minuto. Se omite este registro." << std::endl;
+            }
+            aux = aux->getSiguiente();
+        } while (aux != this->cabeza);
+        cout << endl;
+    }
+}
+
+

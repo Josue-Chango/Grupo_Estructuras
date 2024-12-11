@@ -357,14 +357,15 @@ T Validaciones<T>::Ingresar_Placa() {
         std::cout << "Ingrese la placa del vehiculo o motocicleta (formato: ABC-1234 o XX-123A): ";
         std::cin >> placa;
         std::string placa_str = placa;
-        es_valida = true; 
+        es_valida = true;
 
         if (placa_str.length() != 8 && placa_str.length() != 7) {
             es_valida = false;
         } else if (placa_str.length() == 8) {
-            // Validar formato de vehiculo (ABC-1234)
+            // Validar formato de vehículo (ABC-1234)
             for (int i = 0; i < 3; i++) {
-                if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i])) {
+                if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i]) || 
+                    placa_str[i] == 'Ñ' || placa_str[i] == 'Q' || placa_str[i] == 'D' || placa_str[i] == 'F') {
                     es_valida = false;
                     break;
                 }
@@ -379,7 +380,8 @@ T Validaciones<T>::Ingresar_Placa() {
         } else if (placa_str.length() == 7) {
             // Validar formato de motocicleta (XX-123A)
             for (int i = 0; i < 2; i++) {
-                if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i])) {
+                if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i]) || 
+                    placa_str[i] == 'Ñ' || placa_str[i] == 'Q' || placa_str[i] == 'D' || placa_str[i] == 'F') {
                     es_valida = false;
                     break;
                 }
@@ -391,14 +393,15 @@ T Validaciones<T>::Ingresar_Placa() {
                     break;
                 }
             }
-            if (!std::isalpha(placa_str[6]) || !std::isupper(placa_str[6])) {
+            if (!std::isalpha(placa_str[6]) || !std::isupper(placa_str[6]) || 
+                placa_str[6] == 'Ñ' || placa_str[6] == 'Q' || placa_str[6] == 'D' || placa_str[6] == 'F') {
                 es_valida = false;
             }
         } else {
-            es_valida = false; 
+            es_valida = false;
         }
         if (!es_valida) {
-            std::cout << "Formato invalido. Intente nuevamente." << std::endl;
+            std::cout << "Formato invalido o contiene letras no permitidas. Intente nuevamente." << std::endl;
         }
     } while (!es_valida);
 

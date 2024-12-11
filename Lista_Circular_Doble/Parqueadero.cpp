@@ -124,3 +124,6 @@ void Parqueadero::cargarVehiculosDesdeArchivo() {
         std::cerr << "Error al abrir el archivo para cargar los vehículos.\n";
     }
 }
+
+
+
