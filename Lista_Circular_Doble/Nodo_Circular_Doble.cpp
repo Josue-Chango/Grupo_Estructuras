@@ -22,7 +22,7 @@ Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido,
 }
 
 template <typename T>
-Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _fecha, T _hora, T _minuto)
+Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _fecha, T _hora, T _minuto, T _segundo)
 {
 	this->nombre1 = _nombre1;
 	this->nombre2 = _nombre2;
@@ -33,6 +33,7 @@ Nodo_Circular_Doble<T>::Nodo_Circular_Doble(T _nombre1, T _nombre2, T _apellido,
 	this->fecha = _fecha;
 	this->hora = _hora;
 	this->minuto = _minuto;
+	this->segundo = _segundo;
 	this->siguiente = nullptr;
 	this->anterior = nullptr;
 }
@@ -189,4 +190,16 @@ template <typename T>
 T Nodo_Circular_Doble<T>::getMinuto()
 {
     return minuto;
+}
+
+template <typename T>
+void Nodo_Circular_Doble<T>::setSegundo(T _segundo)
+{
+	segundo = _segundo;
+}
+
+template <typename T>
+T Nodo_Circular_Doble<T>::getSegundo()
+{
+    return segundo;
 }

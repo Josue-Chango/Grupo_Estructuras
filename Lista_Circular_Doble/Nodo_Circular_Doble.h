@@ -5,13 +5,13 @@ class Nodo_Circular_Doble
 {
 private:
 	T dato, nombre1, nombre2, apellido, cedula, correo;
-	T placa, hora, fecha , minuto;
+	T placa, hora, fecha , minuto, segundo;
 	Nodo_Circular_Doble* siguiente;
 	Nodo_Circular_Doble* anterior;
 public:
 	Nodo_Circular_Doble(T);
 	Nodo_Circular_Doble(T,T,T,T,T,T);
-	Nodo_Circular_Doble(T,T,T,T,T,T,T,T,T);
+	Nodo_Circular_Doble(T,T,T,T,T,T,T,T,T, T);
 	~Nodo_Circular_Doble();
 	void setDato(T);
 	T getDato();
@@ -39,6 +39,8 @@ public:
 	T getFecha();
 	void setMinuto(T);
 	T getMinuto();
+	void setSegundo(T);
+	T getSegundo();
 };
 
 

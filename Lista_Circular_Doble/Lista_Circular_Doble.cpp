@@ -618,7 +618,7 @@ bool Lista_Circular_Doble<T>::buscar_Placa(std::string _placa)
 }
 
 template <typename T>
-void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _fecha, T _hora, T _minuto)
+void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _cedula, T _correo, T _placa, T _fecha, T _hora, T _minuto, T _segundo)
 {
     string aux;
     for (char c: _nombre1){
@@ -637,7 +637,7 @@ void Lista_Circular_Doble<T>::registro(T _nombre1, T _nombre2, T _apellido, T _c
         aux = aux + (char)toupper(c);
     }
     _apellido = aux;
-	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa, _fecha, _hora, _minuto);
+	Nodo_Circular_Doble<T>* nuevo = new Nodo_Circular_Doble(_nombre1, _nombre2, _apellido, _cedula, _correo, _placa, _fecha, _hora, _minuto, _segundo);
 	if (this->cabeza == nullptr)
 	{
 		this->cabeza = nuevo;
@@ -664,7 +664,7 @@ void Lista_Circular_Doble<T>::guardar_Registro (const std::string& nombreArchivo
     if (archivo.is_open()) {
         Nodo_Circular_Doble<T>* actual = this->cabeza;
         do {
-            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << "," << actual->getPlaca() << "," << actual->getFecha() << "," << actual->getHora() << "," << actual->getMinuto() << std::endl;
+            archivo << actual->getNombre1() << "," << actual->getNombre2() << "," << actual->getApellido() << "," << actual->getCedula() << "," << actual->getCorreo() << "," << actual->getPlaca() << "," << actual->getFecha() << "," << actual->getHora() << "," << actual->getMinuto() << "," << actual->getSegundo() << std::endl;
             actual = actual->getSiguiente();
         }while (actual != this->cabeza);
         archivo.close();
@@ -683,7 +683,7 @@ void Lista_Circular_Doble<T>::cargar_Registro(const std::string &nombreArchivo)
         int lineasAgregadas = 0;
         while (std::getline(archivo, linea)) {
             std::stringstream iss(linea);
-            std::string nombre1, nombre2, apellido, cedula, correo, placa, fecha, hora, minuto;
+            std::string nombre1, nombre2, apellido, cedula, correo, placa, fecha, hora, minuto, segundo;
             std::getline(iss, nombre1, ',');
             std::getline(iss, nombre2, ',');
             std::getline(iss, apellido, ',');
@@ -693,7 +693,8 @@ void Lista_Circular_Doble<T>::cargar_Registro(const std::string &nombreArchivo)
             std::getline(iss, fecha, ',');
             std::getline(iss, hora, ',');
             std::getline(iss, minuto, ',');
-            registro(nombre1, nombre2, apellido, cedula, correo, placa, fecha, hora, minuto);
+            std::getline(iss, segundo, ',');
+            registro(nombre1, nombre2, apellido, cedula, correo, placa, fecha, hora, minuto, segundo);
         }
         archivo.close();
         std::cout << "Lista cargada correctamente desde " << nombreArchivo << std::endl;
@@ -711,7 +712,7 @@ void Lista_Circular_Doble<T>::mostrar_Registro(std::string _placa)
 		do
 		{
             if(_placa == aux->getPlaca()){
-                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << "," << aux->getFecha() << "," << aux->getHora() << "," << aux->getMinuto() << endl;
+                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << "," << aux->getFecha() << "," << aux->getHora() << "," << aux->getMinuto() << "," << aux->getSegundo() << endl;
             }
 			aux = aux->getSiguiente();
 		} while (aux != this->cabeza);
@@ -770,36 +771,77 @@ bool Lista_Circular_Doble<T>::validar_formato_hora(std::string hora) {
 */
 
 template <typename T>
-void Lista_Circular_Doble<T>::mostrar_RegistroPorRangoHoras(int horaInicio, int horaFin) {
+void Lista_Circular_Doble<T>::mostrar_RegistroPorRangoHoras(string horaInicioEntrada, string horaFinEntrada) {
+    // Descomponer las horas de inicio y fin
+    int horaInicio, minutoInicio, segundoInicio;
+    int horaFin, minutoFin, segundoFin;
+
+    // Descomponer la hora de inicio
+    std::stringstream ssInicio(horaInicioEntrada);
+    char separador;
+    ssInicio >> horaInicio >> separador >> minutoInicio >> separador >> segundoInicio;
+
+    // Descomponer la hora de fin
+    std::stringstream ssFin(horaFinEntrada);
+    ssFin >> horaFin >> separador >> minutoFin >> separador >> segundoFin;
+
+    // Validación: Verificamos si la cadena de entrada es correcta, sin necesidad de comprobación del formato
+    if (ssInicio.fail() || ssFin.fail()) {
+        std::cerr << "Formato de hora incorrecto." << std::endl;
+        return;
+    }
+
+    // Validar rangos de hora
+    if (horaInicio < 0 || horaInicio >= 24 || minutoInicio < 0 || minutoInicio >= 60 || segundoInicio < 0 || segundoInicio >= 60 ||
+        horaFin < 0 || horaFin >= 24 || minutoFin < 0 || minutoFin >= 60 || segundoFin < 0 || segundoFin >= 60) {
+        std::cerr << "Valores fuera de rango." << std::endl;
+        return;
+    }
+
     if (this->cabeza != nullptr) {
         Nodo_Circular_Doble<T>* aux = this->cabeza;
-
-        // Lambda para filtrar por hora sin tener en cuenta los minutos
-        auto filtroRangoHoras = [horaInicio, horaFin](int hora) {
-            return hora >= horaInicio && hora <= horaFin;
+        auto filtroRangoHoras = [horaInicio, minutoInicio, segundoInicio, horaFin, minutoFin, segundoFin](int hora, int minuto, int segundo) {
+            // Convertir las horas, minutos y segundos a un valor comparable (HHMMSS)
+            int tiempoInicio = horaInicio * 10000 + minutoInicio * 100 + segundoInicio;
+            int tiempoFin = horaFin * 10000 + minutoFin * 100 + segundoFin;
+            int tiempoActual = hora * 10000 + minuto * 100 + segundo;
+            return tiempoActual >= tiempoInicio && tiempoActual <= tiempoFin;
         };
 
         do {
-            try {
-                // Obtener la hora del nodo actual y convertirla a int
-                int hora = std::stoi(aux->getHora());  // Convertir la hora de string a int
-                int minuto = std::stoi(aux->getMinuto());  // Convertir los minutos de string a int
+            // Obtener la hora, minuto y segundo del nodo actual
+            int hora = std::stoi(aux->getHora());  // Convertir la hora de string a int
+            int minuto = std::stoi(aux->getMinuto());  // Convertir los minutos de string a int
+            int segundo = std::stoi(aux->getSegundo()); // Convertir los segundos de string a int (si está disponible)
 
-                // Comprobar si el vehículo está dentro del rango de horas
-                if (filtroRangoHoras(hora)) {
-                    cout << aux->getNombre1() << " " << aux->getNombre2() << " " 
-                         << aux->getApellido() << " " << aux->getCedula() << " " 
-                         << aux->getCorreo() << " " << aux->getPlaca() << ", "
-                         << aux->getFecha() << ", " 
-                         << std::setw(2) << std::setfill('0') << hora << endl;  // Solo mostrar la hora
-                }
-            } catch (const std::invalid_argument& e) {
-                // Manejo de error si la hora o minuto no son válidos
-                std::cerr << "Error de formato en la hora o minuto. Se omite este registro." << std::endl;
+            // Comprobar si el vehículo está dentro del rango de horas
+            if (filtroRangoHoras(hora, minuto, segundo)) {
+                std::cout << aux->getNombre1() << " " << aux->getNombre2() << " " 
+                          << aux->getApellido() << " " << aux->getCedula() << " " 
+                          << aux->getCorreo() << " " << aux->getPlaca() << ", "
+                          << aux->getFecha() << ", " 
+                          << std::setw(2) << std::setfill('0') << hora << ":" 
+                          << std::setw(2) << std::setfill('0') << minuto << ":" 
+                          << std::setw(2) << std::setfill('0') << segundo << std::endl;
             }
             aux = aux->getSiguiente();
         } while (aux != this->cabeza);
-        cout << endl;
+        std::cout << std::endl;
+    }
+}
+
+
+template <typename T>
+void Lista_Circular_Doble<T>::descomponerHora(const std::string& horaEntrada, int& hora, int& minuto, int& segundo) {
+    std::stringstream ss(horaEntrada);
+    char separador; // Para almacenar el carácter ':' entre hora, minutos y segundos
+
+    // Usamos stringstream para dividir la cadena en tres partes
+    ss >> hora >> separador >> minuto >> separador >> segundo;
+
+    // Verificar que la cadena tiene el formato correcto y los valores son válidos
+    if (ss.fail() || separador != ':' || hora < 0 || hora >= 24 || minuto < 0 || minuto >= 60 || segundo < 0 || segundo >= 60) {
+        std::cerr << "Formato de hora incorrecto o valores fuera de rango." << std::endl;
     }
 }
 

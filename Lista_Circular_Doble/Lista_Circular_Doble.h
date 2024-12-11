@@ -30,12 +30,14 @@ public:
     std::string validar_cedula_existente();
     std::string validar_placa_existente();
     bool buscar_Placa(std::string _placa);
-    void registro(T, T, T, T, T, T, T, T, T);
+    void registro(T, T, T, T, T, T, T, T, T, T);
     void guardar_Registro(const std::string&);
     void cargar_Registro(const std::string&);
     void mostrar_Registro(std::string);
     void eliminar_Vehiculo(T _placa);
-    void mostrar_RegistroPorRangoHoras(int horaInicio, int horaFin);
+    void mostrar_RegistroPorRangoHoras(std::string horaInicioEntrada,  std::string horaFinEntrada);
+    void descomponerHora(const std::string& horaEntrada, int& hora, int& minuto, int& segundo);
+
     //bool validar_formato_hora(std::string hora);
 
 };

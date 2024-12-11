@@ -28,6 +28,7 @@ class Validaciones
       bool esValida(std::string);
       T Ingresar_Cedula();
       T Ingresar_Placa();
+      bool Validar_Hora(std::string);
    protected:
    private:
       T numero;

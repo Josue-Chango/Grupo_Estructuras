@@ -119,7 +119,8 @@ Menus<int> entrada;
     Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
     Lista_Circular_Doble<std::string>* lista_registro = new Lista_Circular_Doble<std::string>();
     int dato_entero, dato_entero2;
-    std::string dato_string, fecha, hora, minuto;
+    string hora_inicio, hora_final;
+    std::string dato_string, fecha, hora, minuto, segundo;
     string nombre1, nombre2, apellido, correo, placa;
 
     lista_string->cargarDesdeArchivo("Parqueadero.txt");
@@ -181,7 +182,8 @@ Menus<int> entrada;
                     fecha = to_string(now->tm_year+1900)+ "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_mday);// + " " + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec);
                     hora = to_string(now->tm_hour);
                     minuto = to_string(now->tm_min);
-                    lista_registro->registro(nombre1, nombre2, apellido, dato_string, correo, placa, fecha, hora, minuto);
+                    segundo = to_string(now->tm_sec);
+                    lista_registro->registro(nombre1, nombre2, apellido, dato_string, correo, placa, fecha, hora, minuto, segundo);
                     parqueadero.mostrarParqueadero();
                     //lista_string->guardarEnArchivo("Parqueadero.txt");
                     lista_registro->guardar_Registro("Registro.txt");
@@ -194,14 +196,21 @@ Menus<int> entrada;
                 //bool ingreso=true;
                 //do{
                     cout << "ingrese en intervalo de horas a buscar" << endl ;
-                    dato_entero = ingresar_entero.ingresar("Ingrese la hora de inicio: ", "entero");
+                    int hora,minuto,segundo;
+                    
+                    //hora_inicio = ingresar_entero.ingresar("Ingrese la hora de inicio: ", "hora");
+                    cin >> hora_inicio;
+                    cout << endl << hora_inicio << endl;
                     cout << endl;
-                    dato_entero2 = ingresar_entero.ingresar("Ingrese la hora de final: ", "entero");
+                    //hora_final = ingresar_entero.ingresar("Ingrese la hora de final: ", "hora");
+                    cin >> hora_final;
+                    cout << endl << hora_final << endl;
+                    cout << endl;
                 //    if(dato_entero < dato_entero2 && dato_entero < 23 && dato_entero2 < 24){
                 //        ingreso = false;
                 //    };
                 //}while (ingreso == false);
-                lista_registro->mostrar_RegistroPorRangoHoras(dato_entero, dato_entero2);
+                lista_registro->mostrar_RegistroPorRangoHoras(hora_inicio, hora_final);
                 /*placa = ingresar_string.Ingresar_Placa();
                     cout << endl;
                     if (parqueadero.buscarVehiculo(placa)) {

@@ -246,6 +246,46 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
                     printf("\b \b");
                 }
             }
+        }else if (tipo == "hora")
+        {
+            if (c >= '0' && c <= '9')
+            {
+                printf("%c", c);
+                cad[i++] = c;
+            }
+            else if (c == 8)
+            {
+                if (i > 0)
+                {
+                    printf("\b \b");
+                    i--;
+                }
+            }
+            else if (c == 58)
+            {
+                int contador = 0;
+                bool aux = false;
+                for (int j = 0; cad[j] != '\0'; j++)
+                {
+                    if (cad[j] == 58)
+                    {
+                        contador++;
+                        /*aux = true;
+                        break;*/
+                    }if (contador == 2){
+                        aux = true;
+                        break;
+                    }if(contador < 2){
+                        //aux = true;
+                        break;
+                    }
+                }
+                if (aux == false)
+                {
+                    printf("%c", c);
+                    cad[i++] = c;
+                }
+            }
         }
     }
     cad[i] = '\0';
@@ -277,7 +317,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
     {
         return valor;
     }
-    else if (tipo == "string" || tipo == "cedula")
+    else if (tipo == "string" || tipo == "cedula" || tipo == "hora")
     {
         for (int j = 0; cad[j] != '\0'; j++)
         {
@@ -347,7 +387,6 @@ T Validaciones<T>::Ingresar_Cedula()
     return aux;
 }
 
-
 template <typename T>
 T Validaciones<T>::Ingresar_Placa() {
     T placa;
@@ -364,6 +403,7 @@ T Validaciones<T>::Ingresar_Placa() {
         } else if (placa_str.length() == 8) {
             // Validar formato de vehículo (ABC-1234)
             for (int i = 0; i < 3; i++) {
+                // Verificar que las primeras letras no sean Ñ, Q, D o F
                 if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i]) || 
                     placa_str[i] == 'Ñ' || placa_str[i] == 'Q' || placa_str[i] == 'D' || placa_str[i] == 'F') {
                     es_valida = false;
@@ -380,6 +420,7 @@ T Validaciones<T>::Ingresar_Placa() {
         } else if (placa_str.length() == 7) {
             // Validar formato de motocicleta (XX-123A)
             for (int i = 0; i < 2; i++) {
+                // Verificar que las primeras letras no sean Ñ, Q, D o F
                 if (!std::isalpha(placa_str[i]) || !std::isupper(placa_str[i]) || 
                     placa_str[i] == 'Ñ' || placa_str[i] == 'Q' || placa_str[i] == 'D' || placa_str[i] == 'F') {
                     es_valida = false;
@@ -393,6 +434,7 @@ T Validaciones<T>::Ingresar_Placa() {
                     break;
                 }
             }
+            // Verificar que la última letra también sea válida
             if (!std::isalpha(placa_str[6]) || !std::isupper(placa_str[6]) || 
                 placa_str[6] == 'Ñ' || placa_str[6] == 'Q' || placa_str[6] == 'D' || placa_str[6] == 'F') {
                 es_valida = false;
@@ -401,10 +443,25 @@ T Validaciones<T>::Ingresar_Placa() {
             es_valida = false;
         }
         if (!es_valida) {
-            std::cout << "Formato invalido o contiene letras no permitidas. Intente nuevamente." << std::endl;
+            std::cout << "Formato invalido o contiene letras no permitidas en el inicio. Intente nuevamente." << std::endl;
         }
     } while (!es_valida);
 
     return placa;
 }
 
+template <typename T>
+bool Validaciones<T>::Validar_Hora(std::string _hora) {
+    char* auxiliar =new char[_hora.length()];
+    strcpy(auxiliar, _hora.c_str());
+    for(int i = 0;i<=_hora.length();i++){
+        if (*(auxiliar+0) >= 0  && *(auxiliar+0) <= 24){
+
+        }else {
+            cout << "La hora ingresada es incorrecta" << endl;
+            return false;
+            break;
+        }
+    }
+    return true;
+}
