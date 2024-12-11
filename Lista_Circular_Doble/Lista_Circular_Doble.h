@@ -37,6 +37,8 @@ public:
     void eliminar_Vehiculo(T _placa);
     void mostrar_RegistroPorRangoHoras(std::string horaInicioEntrada,  std::string horaFinEntrada);
     void descomponerHora(const std::string& horaEntrada, int& hora, int& minuto, int& segundo);
+    bool validarHora( std::string ,  std::string);
+    void buscarEnRegistro( std::string,  std::string);
 
     //bool validar_formato_hora(std::string hora);
 

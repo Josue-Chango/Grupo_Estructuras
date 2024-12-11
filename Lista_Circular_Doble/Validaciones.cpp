@@ -248,6 +248,7 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
             }
         }else if (tipo == "hora")
         {
+            int contador = 0;
             if (c >= '0' && c <= '9')
             {
                 printf("%c", c);
@@ -259,34 +260,16 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
                 {
                     printf("\b \b");
                     i--;
+                    contador = 0;
                 }
             }
             else if (c == 58)
             {
-                int contador = 0;
-                bool aux = false;
-                for (int j = 0; cad[j] != '\0'; j++)
-                {
-                    if (cad[j] == 58)
-                    {
-                        contador++;
-                        /*aux = true;
-                        break;*/
-                    }if (contador == 2){
-                        aux = true;
-                        break;
-                    }if(contador < 2){
-                        //aux = true;
-                        break;
-                    }
-                }
-                if (aux == false)
-                {
                     printf("%c", c);
                     cad[i++] = c;
-                }
             }
         }
+
     }
     cad[i] = '\0';
     if (tipo == "entero")
@@ -317,11 +300,20 @@ T Validaciones<T>::ingresar(char *msj, char *tipo)
     {
         return valor;
     }
-    else if (tipo == "string" || tipo == "cedula" || tipo == "hora")
+    else if (tipo == "string" || tipo == "cedula" )
     {
         for (int j = 0; cad[j] != '\0'; j++)
         {
             valor = valor + cad[j];
+        }
+        return valor;
+    }
+    else if (tipo == "hora")
+    {
+        //std::string hora;
+        for (int j = 0; cad[j] != '\0'; j++)
+        {
+            valor+=cad[j];
         }
         return valor;
     }
@@ -449,14 +441,16 @@ T Validaciones<T>::Ingresar_Placa() {
 
     return placa;
 }
-
+/*
 template <typename T>
 bool Validaciones<T>::Validar_Hora(std::string _hora) {
     char* auxiliar =new char[_hora.length()];
+    int hms;
     strcpy(auxiliar, _hora.c_str());
     for(int i = 0;i<=_hora.length();i++){
-        if (*(auxiliar+0) >= 0  && *(auxiliar+0) <= 24){
-
+        if (*(auxiliar+0) >= 0  && *(auxiliar+0) <= 2){
+            //hms = to_integer(*(auxiliar+0)) + to_integer(*(auxiliar+1));
+            return false;
         }else {
             cout << "La hora ingresada es incorrecta" << endl;
             return false;
@@ -464,4 +458,4 @@ bool Validaciones<T>::Validar_Hora(std::string _hora) {
         }
     }
     return true;
-}
+}*/

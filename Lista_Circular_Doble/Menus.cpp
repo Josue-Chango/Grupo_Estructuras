@@ -198,19 +198,24 @@ Menus<int> entrada;
                     cout << "ingrese en intervalo de horas a buscar" << endl ;
                     int hora,minuto,segundo;
                     
-                    //hora_inicio = ingresar_entero.ingresar("Ingrese la hora de inicio: ", "hora");
-                    cin >> hora_inicio;
+                    hora_inicio = ingresar_string.ingresar("Ingrese la hora de inicio: ", "hora");
                     cout << endl << hora_inicio << endl;
                     cout << endl;
-                    //hora_final = ingresar_entero.ingresar("Ingrese la hora de final: ", "hora");
-                    cin >> hora_final;
+                    hora_final = ingresar_string.ingresar("Ingrese la hora de final: ", "hora");
                     cout << endl << hora_final << endl;
                     cout << endl;
+                    lista_string->buscarEnRegistro(hora_inicio, hora_final);
+                    /*if (lista_registro->validarHora(hora_inicio, hora_final)) {
+                        // Buscar en el registro los datos que se encuentren dentro del rango de horas
+                        lista_registro->buscarEnRegistro(hora_inicio, hora_final);
+                    } else {
+                        std::cout << "El rango de horas no es válido." << std::endl;
+}*/
                 //    if(dato_entero < dato_entero2 && dato_entero < 23 && dato_entero2 < 24){
                 //        ingreso = false;
                 //    };
                 //}while (ingreso == false);
-                lista_registro->mostrar_RegistroPorRangoHoras(hora_inicio, hora_final);
+                //lista_registro->mostrar_RegistroPorRangoHoras(hora_inicio, hora_final);
                 /*placa = ingresar_string.Ingresar_Placa();
                     cout << endl;
                     if (parqueadero.buscarVehiculo(placa)) {
