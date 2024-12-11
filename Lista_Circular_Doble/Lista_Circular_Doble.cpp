@@ -698,16 +698,50 @@ void Lista_Circular_Doble<T>::cargar_Registro(const std::string &nombreArchivo)
 }
 
 template<typename T>
-void Lista_Circular_Doble<T>::mostrar_Registro()
+void Lista_Circular_Doble<T>::mostrar_Registro(std::string _placa)
 {
 	if (this->cabeza != nullptr)
 	{
 		Nodo_Circular_Doble<T>* aux = this->cabeza;
 		do
 		{
-			cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << " " << aux->getPlaca() << " --> ";
+            if(_placa == aux->getPlaca()){
+                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << " " << aux->getPlaca() << " " << aux->getHora()<< " --> ";
+            }
 			aux = aux->getSiguiente();
 		} while (aux != this->cabeza);
 		cout << endl;
+	}
+}
+
+template<typename T>
+void Lista_Circular_Doble<T>::eliminar_Vehiculo(T _placa)
+{
+	if (this->cabeza != nullptr)
+	{
+		if (this->cabeza->getPlaca() == _placa)
+		{
+			Nodo_Circular_Doble<T>* aux = this->cabeza;
+			this->cabeza = this->cabeza->getSiguiente();
+			this->cabeza->setAnterior(this->cola);
+			this->cola->setSiguiente(this->cabeza);
+			delete aux;
+		}
+		else
+		{
+			Nodo_Circular_Doble<T>* aux = this->cabeza;
+			while (aux->getSiguiente() != this->cabeza)
+			{
+				if (aux->getSiguiente()->getPlaca() == _placa)
+				{
+					Nodo_Circular_Doble<T>* aux2 = aux->getSiguiente();
+					aux->setSiguiente(aux2->getSiguiente());
+					aux2->getSiguiente()->setAnterior(aux);
+					delete aux2;
+					break;
+				}
+				aux = aux->getSiguiente();
+			}
+		}
 	}
 }

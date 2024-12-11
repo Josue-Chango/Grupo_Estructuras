@@ -110,6 +110,11 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "fstream": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "chrono": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "ratio": "cpp",
+    "iomanip": "cpp"
   }
 }

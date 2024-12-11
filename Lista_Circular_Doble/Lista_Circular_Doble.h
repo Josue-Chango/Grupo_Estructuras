@@ -33,7 +33,8 @@ public:
     void registro(T, T, T, T, T, T, T);
     void guardar_Registro(const std::string&);
     void cargar_Registro(const std::string&);
-    void mostrar_Registro();
+    void mostrar_Registro(std::string);
+    void eliminar_Vehiculo(T _placa);
 
 };
 

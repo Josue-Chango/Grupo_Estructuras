@@ -41,8 +41,8 @@ bool Parqueadero::retirarVehiculo(const std::string& placa) {
         for (int j = 0; j < columnas; ++j) {
             if (espacios[i][j] == 'X') {
                 if (listaVehiculos.buscar_Placa(placa)) { // Verificar si el vehículo está registrado
-                    espacios[i][j] = 'O'; // Marcar espacio como libre
-                    listaVehiculos.eliminar(placa); // Eliminar vehículo de la lista
+                    espacios[i][j] = 'O'; 
+                    listaVehiculos.eliminar_Vehiculo(placa); // Eliminar vehículo de la lista
                     std::cout << "Vehiculo con placa " << placa << " retirado de posicion [" << i << ", " << j << "]\n";
                     return true;
                 }

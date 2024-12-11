@@ -115,7 +115,7 @@ Menus<int> entrada;
     Validaciones<std::string> ingresar_string;
     Validaciones<int> ingresar_entero;
 
-    Parqueadero parqueadero(3, 3); // Parqueadero inicial de 3x3
+    Parqueadero parqueadero(5, 5); // Parqueadero inicial de 3x3
     Lista_Circular_Doble<std::string>* lista_string = new Lista_Circular_Doble<std::string>();
     Lista_Circular_Doble<std::string>* lista_registro = new Lista_Circular_Doble<std::string>();
     int dato_entero;
@@ -123,6 +123,7 @@ Menus<int> entrada;
     string nombre1, nombre2, apellido, correo, placa;
 
     lista_string->cargarDesdeArchivo("Parqueadero.txt");
+    lista_registro->cargar_Registro("Registro.txt");
     parqueadero.cargarVehiculosDesdeArchivo();
     
     opcion = 0;
@@ -143,6 +144,9 @@ Menus<int> entrada;
             case Sacar_Vehiculo:
                 placa = ingresar_string.Ingresar_Placa();
                 parqueadero.retirarVehiculo(placa);
+                
+                //parqueadero.guardarVehiculoEnArchivo();
+                //parqueadero.cargarVehiculosDesdeArchivo();
                 system("pause");
                 break;
             case Salir_Menu_Principal:
@@ -188,6 +192,7 @@ Menus<int> entrada;
                     cout << endl;
                     if (parqueadero.buscarVehiculo(placa)) {
                         cout << "Vehiculo encontrado." << endl;
+                        lista_registro->mostrar_Registro(placa);
                     } else {
                         cout << "Vehiculo no encontrado." << endl;
                     }
@@ -196,6 +201,9 @@ Menus<int> entrada;
             case Eliminar: //Eliminar
                 placa = ingresar_string.Ingresar_Placa();
                 parqueadero.retirarVehiculo(placa);
+                lista_string->eliminar_Vehiculo(placa);
+                //lista_string->guardarEnArchivo("Parqueadero.txt");
+
                 system("pause");
                 break;
             case Mostrar: //Mostrar
