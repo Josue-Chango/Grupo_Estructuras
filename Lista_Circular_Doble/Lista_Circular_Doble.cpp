@@ -904,8 +904,7 @@ bool esEntreLimites(const std::string& horaStr, const std::string& minutoStr, co
 
 
 template<typename T>
-void Lista_Circular_Doble<T>::buscarEnRegistroNuevo(std::string hora_inicio, std::string hora_final)
-{
+void Lista_Circular_Doble<T>::buscarEnRegistroNuevo(std::string hora_inicio, std::string hora_final) {
     int hora1, minuto1, segundo1;
     if (!parseHora(hora_inicio, hora1, minuto1, segundo1)) {
         std::cerr << "Error al descomponer la hora de inicio" << std::endl;
@@ -918,18 +917,21 @@ void Lista_Circular_Doble<T>::buscarEnRegistroNuevo(std::string hora_inicio, std
         return;
     }
 
-    if (this->cabeza != nullptr)
-    {
+    if (this->cabeza != nullptr) {
         Nodo_Circular_Doble<T>* aux = this->cabeza;
-        do
-        {
+        do {
+            std::cout << "Verificando registro: " << aux->getNombre1() << " " << aux->getHora() << ":" << aux->getMinuto() << ":" << aux->getSegundo() << std::endl;
+            
             if (esHoraValida(aux->getHora(), aux->getMinuto(), aux->getSegundo()) &&
-                esEntreLimites(aux->getHora(), aux->getMinuto(), aux->getSegundo(), hora1, minuto1, segundo1, hora2, minuto2, segundo2))
-            {
-                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << "," << aux->getFecha() << "," << aux->getHora() << "," << aux->getMinuto() << "," << aux->getSegundo() << endl;
+                esEntreLimites(aux->getHora(), aux->getMinuto(), aux->getSegundo(), hora1, minuto1, segundo1, hora2, minuto2, segundo2)) {
+                
+                std::cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " "
+                          << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << ","
+                          << aux->getFecha() << "," << aux->getHora() << "," << aux->getMinuto() << "," << aux->getSegundo() << std::endl;
             }
             aux = aux->getSiguiente();
         } while (aux != this->cabeza);
     }
 }
+
 
