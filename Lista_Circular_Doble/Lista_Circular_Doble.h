@@ -38,7 +38,7 @@ public:
     void mostrar_RegistroPorRangoHoras(std::string horaInicioEntrada,  std::string horaFinEntrada);
     void descomponerHora(const std::string& horaEntrada, int& hora, int& minuto, int& segundo);
     bool validarHora( std::string ,  std::string);
-    void buscarEnRegistro( std::string,  std::string);
+    void buscarEnRegistroNuevo( std::string hora_inicio,  std::string hora_final);
 
     //bool validar_formato_hora(std::string hora);
 
