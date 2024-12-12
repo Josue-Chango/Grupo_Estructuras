@@ -955,7 +955,7 @@ void Lista_Circular_Doble<T>::buscarEnRegistro(const std::string& horaInicio, co
 }*/
 
 
-template<typename T>
+/*template<typename T>
 void Lista_Circular_Doble<T>::buscarEnRegistro(std::string hora_inicio, std::string hora_final)
 {
     int hora1, minuto1, segundo1;
@@ -1008,4 +1008,73 @@ void Lista_Circular_Doble<T>::buscarEnRegistro(std::string hora_inicio, std::str
 			aux = aux->getSiguiente();
 		} while (aux != this->cabeza);
 	}
+}*/
+
+// Función auxiliar para parsear la hora
+bool parseHora(const std::string& horaStr, int& hora, int& minuto, int& segundo)
+{
+    std::stringstream iss(horaStr);
+    std::string horaStr_, minutoStr, segundoStr;
+
+    std::getline(iss, horaStr_, ':');
+    std::getline(iss, minutoStr, ':');
+    std::getline(iss, segundoStr, ':');
+
+    try {
+        hora = std::stoi(horaStr_);
+        minuto = std::stoi(minutoStr);
+        segundo = std::stoi(segundoStr);
+        return true;
+    } catch (const std::invalid_argument& e) {
+        return false;
+    }
 }
+
+// Función auxiliar para verificar si la hora es válida
+bool esHoraValida(const std::string& horaStr, const std::string& minutoStr, const std::string& segundoStr)
+{
+    return !horaStr.empty() && !minutoStr.empty() && !segundoStr.empty();
+}
+
+// Función auxiliar para verificar si la hora está dentro de los límites
+bool esEntreLimites(const std::string& horaStr, const std::string& minutoStr, const std::string& segundoStr,
+                    int hora1, int minuto1, int segundo1, int hora2, int minuto2, int segundo2)
+{
+    int hora = std::stoi(horaStr);
+    int minuto = std::stoi(minutoStr);
+    int segundo = std::stoi(segundoStr);
+
+    return (hora >= hora1 && hora <= hora2 && minuto >= minuto1 && minuto <= minuto2 && segundo >= segundo1 && segundo <= segundo2);
+}
+
+
+template<typename T>
+void Lista_Circular_Doble<T>::buscarEnRegistro(std::string hora_inicio, std::string hora_final)
+{
+    int hora1, minuto1, segundo1;
+    if (!parseHora(hora_inicio, hora1, minuto1, segundo1)) {
+        std::cerr << "Error al descomponer la hora de inicio" << std::endl;
+        return;
+    }
+
+    int hora2, minuto2, segundo2;
+    if (!parseHora(hora_final, hora2, minuto2, segundo2)) {
+        std::cerr << "Error al descomponer la hora final" << std::endl;
+        return;
+    }
+
+    if (this->cabeza != nullptr)
+    {
+        Nodo_Circular_Doble<T>* aux = this->cabeza;
+        do
+        {
+            if (esHoraValida(aux->getHora(), aux->getMinuto(), aux->getSegundo()) &&
+                esEntreLimites(aux->getHora(), aux->getMinuto(), aux->getSegundo(), hora1, minuto1, segundo1, hora2, minuto2, segundo2))
+            {
+                cout << aux->getNombre1() << " " << aux->getNombre2() << " " << aux->getApellido() << " " << aux->getCedula() << " " << aux->getCorreo() << " " << aux->getPlaca() << "," << aux->getFecha() << "," << aux->getHora() << "," << aux->getMinuto() << "," << aux->getSegundo() << endl;
+            }
+            aux = aux->getSiguiente();
+        } while (aux != this->cabeza);
+    }
+}
+
