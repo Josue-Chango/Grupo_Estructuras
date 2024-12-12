@@ -204,7 +204,7 @@ Menus<int> entrada;
                     hora_final = ingresar_string.ingresar("Ingrese la hora de final: ", "hora");
                     cout << endl << hora_final << endl;
                     cout << endl;
-                    lista_string->buscarEnRegistroNuevo(hora_inicio, hora_final);
+                    lista_registro->buscarEnRegistroNuevo(hora_inicio, hora_final);
                     /*if (lista_registro->validarHora(hora_inicio, hora_final)) {
                         // Buscar en el registro los datos que se encuentren dentro del rango de horas
                         lista_registro->buscarEnRegistro(hora_inicio, hora_final);
