@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Usuario/Desktop/Grupo Estructura de Datos/Grupo_Estructuras/Lista_Circular_Doble",
-      "program": "c:/Users/Usuario/Desktop/Grupo Estructura de Datos/Grupo_Estructuras/Lista_Circular_Doble/build/Debug/outDebug",
+      "cwd": "c:/Users/Josue/Desktop/Grupo_Estructuras/Lista_Circular_Doble",
+      "program": "c:/Users/Josue/Desktop/Grupo_Estructuras/Lista_Circular_Doble/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
