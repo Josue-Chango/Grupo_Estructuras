@@ -562,6 +562,7 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             "Bucket Sort",
             "Bubble Sort",
             "Shell Sort",
+            "Radix",
             "Volver al Menu Principal"};
 
         int seleccionMetodo = menuInteractivo(opcionesMetodo, "Seleccione el método de ordenamiento:");
@@ -694,6 +695,37 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             case 0:
                 ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
                                       { return a.getPlaca() < b.getPlaca(); });
+                cout << "Lista ordenada por placa y guardada exitosamente." << endl;
+                break;
+            case 1:
+                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
+                                      { return a.getPropietario().getApellido() < b.getPropietario().getApellido(); });
+                cout << "Lista ordenada por apellido del propietario y guardada exitosamente." << endl;
+                break;
+            case 2:
+                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
+                                      { return a.getColor() < b.getColor(); });
+                cout << "Lista ordenada por color y guardada exitosamente." << endl;
+                break;
+            case 3:
+                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
+                                      { return a.getModelo() < b.getModelo(); });
+                cout << "Lista ordenada por modelo y guardada exitosamente." << endl;
+                break;
+            case 4:
+                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
+                                      { return a.getMarca() < b.getMarca(); });
+                cout << "Lista ordenada por marca y guardada exitosamente." << endl;
+                break;
+            default:
+                cout << "Opción inválida. Intente de nuevo." << endl;
+            }
+        }else if (seleccionMetodo == 4){ // Radix
+            switch (seleccionOrdenar)
+            {
+            case 0:
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPlaca(); });
+                lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por placa y guardada exitosamente." << endl;
                 break;
             case 1:
