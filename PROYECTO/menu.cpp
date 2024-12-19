@@ -729,23 +729,23 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
                 cout << "Lista ordenada por placa y guardada exitosamente." << endl;
                 break;
             case 1:
-                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
-                                      { return a.getPropietario().getApellido() < b.getPropietario().getApellido(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPropietario().getApellido(); });
+                lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por apellido del propietario y guardada exitosamente." << endl;
                 break;
             case 2:
-                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
-                                      { return a.getColor() < b.getColor(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getColor(); });
+                lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por color y guardada exitosamente." << endl;
                 break;
             case 3:
-                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
-                                      { return a.getModelo() < b.getModelo(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getModelo(); });
+                lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por modelo y guardada exitosamente." << endl;
                 break;
             case 4:
-                ordenarListaShellSort(lista, [](const Coche &a, const Coche &b)
-                                      { return a.getMarca() < b.getMarca(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getMarca(); });
+                lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por marca y guardada exitosamente." << endl;
                 break;
             default:
