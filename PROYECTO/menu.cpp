@@ -724,6 +724,8 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             switch (seleccionOrdenar)
             {
             case 0:
+                /*ordenarListaPorRadix(lista, [](const Coche &a, const Coche &b)
+                                      { return a.getPlaca() < b.getPlaca(); });*/
                 ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPlaca(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por placa y guardada exitosamente." << endl;

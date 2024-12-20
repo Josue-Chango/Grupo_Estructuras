@@ -1,8 +1,10 @@
 #include <iostream>
+#include <stdio.h>
 #include <vector>
 #include <algorithm>
 #include "Coche.h"
 #include <functional>
+#include <cmath>
 
 template <typename T, typename Comparator>
 int partition(std::vector<T>& lista, int low, int high, Comparator comp) {
@@ -233,3 +235,85 @@ void ordenarListaPorRadix(ListaCircularDoble<T>& lista, KeyExtractor getKey) {
 
     lista.mostrar(lista.getPrimero());
 }
+
+/*template <typename T>
+void radixSort(T* arr, int n, int base) {
+    for (int posicion = 0; posicion < sizeof(T) * 8 / std::log2(base); ++posicion) {
+        // Crear un arreglo de conteo
+        int* conteo = new int[base]();
+        T* salida = new T[n];
+
+        // Contar ocurrencias de cada dígito
+        for (int i = 0; i < n; i++) {
+            int digito = obtenerDigito(arr[i], base, posicion);
+            conteo[digito]++;
+        }
+
+        // Cambiar conteo para que contenga posiciones
+        for (int i = 1; i < base; i++) {
+            conteo[i] += conteo[i - 1];
+        }
+
+        // Construir el arreglo de salida
+        for (int i = n - 1; i >= 0; i--) {
+            int digito = obtenerDigito(arr[i], base, posicion);
+            salida[conteo[digito] - 1] = arr[i];
+            conteo[digito]--;
+        }
+
+        // Copiar el arreglo de salida de nuevo a arr
+        for (int i = 0; i < n; i++) {
+            arr[i] = salida[i];
+        }
+
+        // Liberar memoria
+        delete[] conteo;
+        delete[] salida;
+    }
+}
+
+template <typename T, typename Comparator>
+void ordenarListaRadix(ListaCircularDoble<T>& lista, Comparator comp) {
+    // Contar el número de elementos en la lista circular doble
+    int n = 0;
+    Nodo<T>* aux = lista.getPrimero();
+    if (aux != nullptr) {
+        do {
+            n++;
+            aux = aux->getSiguiente();
+        } while (aux != lista.getPrimero());
+    }
+
+    // Crear un arreglo dinámico para almacenar los elementos
+    T* elementos = new T[n];
+
+    // Copiar los elementos de la lista al arreglo
+    aux = lista.getPrimero();
+    for (int i = 0; i < n; ++i) {
+        elementos[i] = aux->getDato();
+        aux = aux->getSiguiente();
+    }
+
+    // Función para obtener el dígito en una posición específica
+    auto obtenerDigito = [](T num, int base, int posicion) {
+        return (num / static_cast<T>(base << posicion)) % base;
+    };
+
+    // Llamar a la función de ordenamiento por Radix
+    radixSort(elementos, n, 10); // Base 10 para números decimales
+
+    // Volver a copiar los elementos ordenados en la lista
+    aux = lista.getPrimero();
+    for (int i = 0; i < n; ++i) {
+        aux->setDato(elementos[i]);
+        aux = aux->getSiguiente();
+    }
+
+    // Liberar memoria dinámica
+    delete[] elementos;
+
+    // Mostrar la lista ordenada
+    lista.mostrar(lista.getPrimero());
+}*/
+
+
