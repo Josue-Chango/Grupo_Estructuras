@@ -202,7 +202,7 @@ void ordenarListaShellSort(ListaCircularDoble<T>& lista, Comparator comp) {
     lista.mostrar(lista.getPrimero());
 }
 
-template <typename T, typename KeyExtractor>
+/*template <typename T, typename KeyExtractor>
 void ordenarListaPorRadix(ListaCircularDoble<T>& lista, KeyExtractor getKey) {
     std::vector<T> elementos;
 
@@ -234,9 +234,9 @@ void ordenarListaPorRadix(ListaCircularDoble<T>& lista, KeyExtractor getKey) {
     } while (aux != lista.getPrimero());
 
     lista.mostrar(lista.getPrimero());
-}
+}*/
 
-/*template <typename T>
+template <typename T>
 void radixSort(T* arr, int n, int base) {
     for (int posicion = 0; posicion < sizeof(T) * 8 / std::log2(base); ++posicion) {
         // Crear un arreglo de conteo
@@ -314,6 +314,6 @@ void ordenarListaRadix(ListaCircularDoble<T>& lista, Comparator comp) {
 
     // Mostrar la lista ordenada
     lista.mostrar(lista.getPrimero());
-}*/
+}
 
 

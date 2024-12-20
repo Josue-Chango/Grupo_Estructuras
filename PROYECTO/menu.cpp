@@ -726,27 +726,27 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             case 0:
                 /*ordenarListaPorRadix(lista, [](const Coche &a, const Coche &b)
                                       { return a.getPlaca() < b.getPlaca(); });*/
-                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPlaca(); });
+                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getPlaca(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por placa y guardada exitosamente." << endl;
                 break;
             case 1:
-                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPropietario().getApellido(); });
+                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getPropietario().getApellido(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por apellido del propietario y guardada exitosamente." << endl;
                 break;
             case 2:
-                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getColor(); });
+                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getColor(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por color y guardada exitosamente." << endl;
                 break;
             case 3:
-                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getModelo(); });
+                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getModelo(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por modelo y guardada exitosamente." << endl;
                 break;
             case 4:
-                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getMarca(); });
+                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getMarca(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por marca y guardada exitosamente." << endl;
                 break;
