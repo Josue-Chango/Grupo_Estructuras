@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "f:/Codigos/Grupo_Estructuras/PROYECTO REFERENCIA",
-      "program": "f:/Codigos/Grupo_Estructuras/PROYECTO REFERENCIA/build/Debug/outDebug",
+      "cwd": "d:/Josue/Grupo_Estructuras/Listas_Dobles",
+      "program": "d:/Josue/Grupo_Estructuras/Listas_Dobles/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

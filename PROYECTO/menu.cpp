@@ -283,7 +283,7 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
             system("cls");
             cout << "========================================" << endl;
             cout << "========================================" << endl;
-            cout << "     BIENVENIDOS A LA BUSQUEDA AVANZADA  " << endl;
+            cout << "   BIENVENIDOS A LA BUSQUEDA AVANZADA   " << endl;
             cout << "========================================" << endl;
             cout << "========================================" << endl;
 
@@ -296,11 +296,11 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
         case 5:
         {
             system("cls");
-            cout << "========================================" << endl;
-            cout << "========================================" << endl;
-            cout << "  BIENVENIDOS A LA GESTION DE ESTACIONAMIENTO " << endl;
-            cout << "========================================" << endl;
-            cout << "========================================" << endl;
+            cout << "=============================================" << endl;
+            cout << "=============================================" << endl;
+            cout << " BIENVENIDOS A LA GESTION DE ESTACIONAMIENTO " << endl;
+            cout << "=============================================" << endl;
+            cout << "=============================================" << endl;
             string placa;
             cout << "Ingrese la placa del coche que  va a  dejar el estacionamiento: ";
             cin >> placa;
@@ -487,7 +487,7 @@ void menuBusquedaAvanzada(ListaCircularDoble<Coche> &lista, ListaCircularDoble<C
             {
                 system("cls");
                 cout << "========================================" << endl;
-                cout << "  Buscar por Año/Fecha" << endl;
+                cout << "  Buscar por Anio/Fecha" << endl;
                 cout << "========================================" << endl;
                 string fecha;
                 cout << "Ingrese la fecha (DD-MM-AAAA): ";
@@ -562,12 +562,12 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             "Bucket Sort",
             "Bubble Sort",
             "Shell Sort",
-            "Radix",
+            "Radix sort",
             "Volver al Menu Principal"};
 
         int seleccionMetodo = menuInteractivo(opcionesMetodo, "Seleccione el método de ordenamiento:");
 
-        if (seleccionMetodo == 4)
+        if (seleccionMetodo == 5)
         {
             salirSubmenu = true;
             continue;
@@ -588,6 +588,7 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             continue;
         }
 
+        system("cls");
         if (seleccionMetodo == 0)
         { // Quick Sort
             switch (seleccionOrdenar)
@@ -726,27 +727,27 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
             case 0:
                 /*ordenarListaPorRadix(lista, [](const Coche &a, const Coche &b)
                                       { return a.getPlaca() < b.getPlaca(); });*/
-                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getPlaca(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPlaca(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por placa y guardada exitosamente." << endl;
                 break;
             case 1:
-                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getPropietario().getApellido(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getPropietario().getApellido(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por apellido del propietario y guardada exitosamente." << endl;
                 break;
             case 2:
-                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getColor(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getColor(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por color y guardada exitosamente." << endl;
                 break;
             case 3:
-                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getModelo(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getModelo(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por modelo y guardada exitosamente." << endl;
                 break;
             case 4:
-                ordenarListaRadix(lista, [](const Coche& coche) { return coche.getMarca(); });
+                ordenarListaPorRadix(lista, [](const Coche& coche) { return coche.getMarca(); });
                 lista.GuardarArchivo("autos.txt");
                 cout << "Lista ordenada por marca y guardada exitosamente." << endl;
                 break;
