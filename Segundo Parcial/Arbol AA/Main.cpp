@@ -14,7 +14,7 @@ int main() {
     arbol.insertar(20);
 
     // Visualización del árbol
-    std::cout << "Árbol AA: ";
+    std::cout << "Arbol AA: ";
     arbol.mostrar();
 
     // Búsqueda de elementos
@@ -34,7 +34,7 @@ int main() {
 
     // Eliminación de elementos
     arbol.eliminar(15);
-    std::cout << "Árbol AA después de eliminar 15: ";
+    std::cout << "Arbol AA despus de eliminar 15: ";
     arbol.mostrar();
     system("pause");
     return 0;
