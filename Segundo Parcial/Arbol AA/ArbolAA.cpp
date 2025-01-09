@@ -57,7 +57,7 @@ bool ArbolAA::buscar(int clave) {
     while (actual != nullptr) {
         if (clave == actual->clave) {
             std::cout << "Encontrado en el nivel " << nivel << ", nodo con clave " << actual->clave << std::endl;
-            return true;
+            return true; // Aquí se puede devolver la profundidad si es necesario
         } else if (clave < actual->clave) {
             actual = actual->izquierda;
         } else {
@@ -115,7 +115,58 @@ void ArbolAA::recorridoInorden(Nodo* nodo) {
     recorridoInorden(nodo->derecha);
 }
 
+void ArbolAA::recorridoPreorden(Nodo* nodo) {
+    if (nodo != nullptr) {
+        std::cout << nodo->clave << " ";  // Visitar el nodo raíz
+        recorridoPreorden(nodo->izquierda);  // Recorrer el subárbol izquierdo
+        recorridoPreorden(nodo->derecha);  // Recorrer el subárbol derecho
+    }
+}
+
+void ArbolAA::recorridoPostorden(Nodo* nodo) {
+    if (nodo != nullptr) {
+        recorridoPostorden(nodo->izquierda);  // Recorrer el subárbol izquierdo
+        recorridoPostorden(nodo->derecha);  // Recorrer el subárbol derecho
+        std::cout << nodo->clave << " ";  // Visitar el nodo raíz
+    }
+}
+
 void ArbolAA::mostrar() {
     recorridoInorden(raiz);
     std::cout << std::endl;
+    recorridoPreorden(raiz);
+    std::cout << std::endl;
+    recorridoPostorden(raiz);
+    std::cout << std::endl;
+}
+
+int ArbolAA::altura(Nodo* nodo) {
+    if (nodo == nullptr) {
+        return -1; // Altura de un árbol vacío es -1
+    }
+    int alturaIzquierda = altura(nodo->izquierda);
+    int alturaDerecha = altura(nodo->derecha);
+    return std::max(alturaIzquierda, alturaDerecha) + 1;
+}
+
+int ArbolAA::profundidad(int clave) {
+    Nodo* actual = raiz;
+    int nivel = 0;
+    
+    while (actual != nullptr) {
+        if (clave == actual->clave) {
+            return nivel; // Devolver la profundidad del nodo encontrado
+        } else if (clave < actual->clave) {
+            actual = actual->izquierda;
+        } else {
+            actual = actual->derecha;
+        }
+        nivel++;
+    }
+    
+    return -1; // Indicar que no se encontró el nodo
+}
+
+int ArbolAA::niveles() {
+    return altura(raiz) + 1; // La cantidad de niveles es altura + 1
 }

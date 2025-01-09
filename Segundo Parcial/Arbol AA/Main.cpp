@@ -1,4 +1,4 @@
-#include "ArbolAA.h"
+#include "ArbolAA.cpp"
 #include <iostream>
 
 int main() {
@@ -14,7 +14,7 @@ int main() {
     arbol.insertar(20);
 
     // Visualización del árbol
-    std::cout << "Arbol AA: ";
+    std::cout << "Árbol AA: ";
     arbol.mostrar();
 
     // Búsqueda de elementos
@@ -34,8 +34,20 @@ int main() {
 
     // Eliminación de elementos
     arbol.eliminar(15);
-    std::cout << "Arbol AA despus de eliminar 15: ";
+    std::cout << "Árbol AA después de eliminar 15: ";
     arbol.mostrar();
+    
+
+     std::cout << "Altura del árbol: " << arbol.altura(arbol.raiz) << std::endl;
+    std::cout << "Niveles del árbol: " << arbol.niveles() << std::endl;
+    int clave = 10;
+    int profundidad = arbol.profundidad(clave);
+    if (profundidad != -1) {
+        std::cout << "Profundidad del nodo " << clave << ": " << profundidad << std::endl;
+    } else {
+        std::cout << "Nodo no encontrado." << std::endl;
+    }
+
     system("pause");
     return 0;
 }
