@@ -2,30 +2,34 @@
 #define ARBOLAA_H
 
 #include "Nodo.h"
+#include <graphics.h>
 
+template <typename T>
 class ArbolAA {
 public:
     ArbolAA() : raiz(nullptr) {}
 
     void insertar(int clave);
-    bool buscar(int clave);
+    void buscar(int clave);
     void eliminar(int clave);
     void mostrar();
-    int altura(Nodo* nodo);
+    int altura(Nodo<T>* nodo);
     int profundidad(int clave);
     int niveles();
-    Nodo* raiz;
+    Nodo<T>* raiz;
+    void verArbol();
 
 private:
     
 
-    Nodo* inclinar(Nodo* nodo);
-    Nodo* dividir(Nodo* nodo);
-    Nodo* insertar(Nodo* nodo, int clave);
-    Nodo* eliminar(Nodo* nodo, int clave);
-    void recorridoInorden(Nodo* nodo);
-    void recorridoPreorden(Nodo* nodo);
-    void recorridoPostorden(Nodo* nodo);
+    Nodo<T>* inclinar(Nodo<T>* nodo);
+    Nodo<T>* dividir(Nodo<T>* nodo);
+    Nodo<T>* insertar(Nodo<T>* nodo, int clave);
+    Nodo<T>* eliminar(Nodo<T>* nodo, int clave);
+    void recorridoInorden(Nodo<T>* nodo);
+    void recorridoPreorden(Nodo<T>* nodo);
+    void recorridoPostorden(Nodo<T>* nodo);
+    void dibujarArbol(Nodo<T>* nodo, int x, int y, int offset);
     
 
 };

@@ -1,8 +1,9 @@
 #include "ArbolAA.cpp"
 #include <iostream>
+#include <graphics.h>
 
 int main() {
-    ArbolAA arbol;
+    ArbolAA<int> arbol;
 
     // Inserción de elementos
     arbol.insertar(10);
@@ -14,32 +15,25 @@ int main() {
     arbol.insertar(20);
 
     // Visualización del árbol
-    std::cout << "Árbol AA: ";
-    arbol.mostrar();
-
-    // Búsqueda de elementos
-    std::cout << "Buscando 7: " << (arbol.buscar(7) ? "Encontrado" : "No encontrado") << std::endl;
-    std::cout << "Buscando 8: " << (arbol.buscar(8) ? "Encontrado" : "No encontrado") << std::endl;
-
-     // Visualización del árbol
-    std::cout << "Árbol AA: ";
+    std::cout << "Arbol AA: " << std::endl;
     arbol.mostrar();
 
     // Búsqueda de elementos
     std::cout << "Buscando 7: ";
-    arbol.buscar(7); // Ahora solo se pasa la clave
+    arbol.buscar(7) ;
+    std::cout << std::endl;
 
     std::cout << "Buscando 8: ";
-    arbol.buscar(8); // Ahora solo se pasa la clave
+    arbol.buscar(8);
+    std::cout << std::endl;
 
     // Eliminación de elementos
     arbol.eliminar(15);
-    std::cout << "Árbol AA después de eliminar 15: ";
+    std::cout << "Arbol AA después de eliminar 15: " << std::endl;
     arbol.mostrar();
-    
 
-     std::cout << "Altura del árbol: " << arbol.altura(arbol.raiz) << std::endl;
-    std::cout << "Niveles del árbol: " << arbol.niveles() << std::endl;
+    std::cout << "Altura del arbol: " << arbol.altura(arbol.raiz) << std::endl;
+    std::cout << "Niveles del arbol: " << arbol.niveles() << std::endl;
     int clave = 10;
     int profundidad = arbol.profundidad(clave);
     if (profundidad != -1) {
@@ -47,6 +41,8 @@ int main() {
     } else {
         std::cout << "Nodo no encontrado." << std::endl;
     }
+
+    arbol.verArbol();
 
     system("pause");
     return 0;
