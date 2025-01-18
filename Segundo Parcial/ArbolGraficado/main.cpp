@@ -63,8 +63,8 @@ void drawTree(Node* node, int x, int y, int offset) {
     circle(x, y, 20);
     //outtextxy(x - 10, y - 10, to_string(node->data).c_str());
     char buffer[10];
-sprintf(buffer, "%d", node->data); // Convierte el entero a una cadena
-outtextxy(x - 10, y - 10, buffer); // Usa la cadena para graficar
+    sprintf(buffer, "%d", node->data); // Convierte el entero a una cadena
+    outtextxy(x - 10, y - 10, buffer); // Usa la cadena para graficar
 
     // Dibujar el subárbol izquierdo
     if (node->left) {
