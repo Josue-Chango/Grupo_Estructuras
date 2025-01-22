@@ -1,4 +1,4 @@
-#include "ArbolAA.cpp"
+#include "ArbolAA.h"
 #include <iostream>
 #include <graphics.h>
 
@@ -29,7 +29,7 @@ int main() {
 
     // Eliminación de elementos
     arbol.eliminar(15);
-    std::cout << "Arbol AA después de eliminar 15: " << std::endl;
+    std::cout << "Arbol AA despues de eliminar 15: " << std::endl;
     arbol.mostrar();
 
     std::cout << "Altura del arbol: " << arbol.altura(arbol.raiz) << std::endl;
