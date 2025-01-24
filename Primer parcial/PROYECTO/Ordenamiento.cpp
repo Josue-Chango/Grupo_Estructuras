@@ -5,6 +5,7 @@
 #include "Coche.h"
 #include <functional>
 #include <cmath>
+#include <type_traits>
 
 template <typename T, typename Comparator>
 int partition(std::vector<T>& lista, int low, int high, Comparator comp) {
