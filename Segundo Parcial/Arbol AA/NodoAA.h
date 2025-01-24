@@ -16,6 +16,7 @@ public:
     NodoAA(/* args */);
     ~NodoAA();
     NodoAA(int k) : clave(k), nivel(1), izquierda(nullptr), derecha(nullptr) {}
+    NodoAA(T/*nombre*/, T/*appellido*/, T/*cedula*/, T/**/);
 };
 
 template <typename T>
