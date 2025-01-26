@@ -4,7 +4,7 @@
 
 int main() {
     ArbolAA<std::string> arbol;
-
+/*
     // Inserción de elementos
     arbol.insertar(10);
     arbol.insertar(5);
@@ -42,7 +42,11 @@ int main() {
         std::cout << "Nodo no encontrado." << std::endl;
     }
 
+    arbol.verArbol();*/
+    //arbol.insertarPersona("josue", "andel", "1720", "PYC0486");
+    arbol.reconstruirDesdeArchivo("pruebav1.txt");
     arbol.verArbol();
+    arbol.guardarEnArchivo("pruebav1.txt");
 
     system("pause");
     return 0;

@@ -4,6 +4,9 @@
 #include "NodoAA.h"
 #include <graphics.h>
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 template <typename T>
 class ArbolAA {
@@ -11,6 +14,7 @@ public:
     ArbolAA() : raiz(nullptr) {}
 
     void insertar(int clave);
+    void insertarPersona(T,T,T,T);
     void buscar(int clave);
     void eliminar(int clave);
     void mostrar();
@@ -19,6 +23,9 @@ public:
     int niveles();
     NodoAA<T>* raiz;
     void verArbol();
+    void guardarEnArchivo(const std::string& nombreArchivo);
+    void reconstruirDesdeArchivo(const std::string& nombreArchivo);
+    //void insertarNodo(const std::string& nombre, const std::string& apellido, const std::string& cedula, const std::string& placa);
 
 private:
     
@@ -26,12 +33,13 @@ private:
     NodoAA<T>* inclinar(NodoAA<T>* nodo);
     NodoAA<T>* dividir(NodoAA<T>* nodo);
     NodoAA<T>* insertar(NodoAA<T>* nodo, int clave);
+    NodoAA<T>* insertarPersona(NodoAA<T>* nodo, T _nombre, T _apellido, T _cedula, T _placa);
     NodoAA<T>* eliminar(NodoAA<T>* nodo, int clave);
     void recorridoInorden(NodoAA<T>* nodo);
     void recorridoPreorden(NodoAA<T>* nodo);
     void recorridoPostorden(NodoAA<T>* nodo);
     void dibujarArbol(NodoAA<T>* nodo, int x, int y, int offset);
-    
+    void guardarEnArchivoRecursivo(NodoAA<T>* nodo, std::ofstream& archivo);
 
 };
 
@@ -87,6 +95,29 @@ NodoAA<T>* ArbolAA<T>::insertar(NodoAA<T>* nodo, int clave) {
 template <typename T>
 void ArbolAA<T>::insertar(int clave) {
     raiz = insertar(raiz, clave);
+}
+
+template <typename T>
+NodoAA<T>* ArbolAA<T>::insertarPersona(NodoAA<T>* nodo, T _nombre, T _apellido, T _cedula, T _placa) {
+    if (nodo == nullptr)
+        return new NodoAA<T>(_nombre, _apellido, _cedula, _placa);
+
+    if (stoi(_cedula) < stoi(nodo->cedula))
+        nodo->izquierda = insertarPersona(nodo->izquierda, _nombre, _apellido, _cedula, _placa);
+    else if (stoi(_cedula) > stoi(nodo->cedula))
+        nodo->derecha = insertarPersona(nodo->derecha, _nombre, _apellido, _cedula, _placa);
+    else
+        return nodo;
+
+    nodo = inclinar(nodo);
+    nodo = dividir(nodo);
+    return nodo;
+}
+
+template <typename T>
+inline void ArbolAA<T>::insertarPersona(T _nombre, T _apellido, T _cedula, T _placa)
+{
+    raiz = insertarPersona(raiz, _nombre, _apellido, _cedula, _placa);
 }
 
 template <typename T>
@@ -255,5 +286,53 @@ void ArbolAA<T>::verArbol() {
     getch();
     closegraph();
 }
+
+template <typename T>
+void ArbolAA<T>::guardarEnArchivoRecursivo(NodoAA<T>* nodo, std::ofstream& archivo) {
+    if (nodo != nullptr) {
+        archivo << nodo->getNombre() << "," << nodo->getApellido() << "," << nodo->getCedula() << "," << nodo->getPlaca() << std::endl;
+        guardarEnArchivoRecursivo(nodo->izquierda, archivo);
+        guardarEnArchivoRecursivo(nodo->derecha, archivo);
+    }
+}
+
+template <typename T>
+void ArbolAA<T>::guardarEnArchivo(const std::string& nombreArchivo) {
+    std::ofstream archivo(nombreArchivo, std::ios::out);
+    if (archivo.is_open()) {
+        guardarEnArchivoRecursivo(raiz, archivo);
+        archivo.close();
+    } else {
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
+    }
+}
+
+template <typename T>
+void ArbolAA<T>::reconstruirDesdeArchivo(const std::string& nombreArchivo) {
+    std::ifstream archivo(nombreArchivo, std::ios::in);
+    if (archivo.is_open()) {
+        std::string linea;
+        while (std::getline(archivo, linea)) {
+            std::stringstream ss(linea);
+            std::string nombre, apellido, cedula, placa;
+            std::getline(ss, nombre, ',');
+            std::getline(ss, apellido, ',');
+            std::getline(ss, cedula, ',');
+            std::getline(ss, placa, ',');
+            insertarPersona(nombre, apellido, cedula, placa);
+        }
+        archivo.close();
+    } else {
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
+    }
+}
+
+/*template <typename T>
+void ArbolAA<T>::insertarNodo(const std::string& nombre, const std::string& apellido, const std::string& cedula, const std::string& placa) {
+    //NodoAA<T>* nuevoNodo = new NodoAA<T>(nombre, apellido, cedula, placa);
+    raiz = insertarPersona(raiz, nombre, apellido, cedula, placa);
+}*/
+
+
 
 #endif // ARBOLAA_H
