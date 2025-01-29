@@ -26,7 +26,8 @@ public:
     void guardarEnArchivo(const std::string& nombreArchivo);
     void reconstruirDesdeArchivo(const std::string& nombreArchivo);
     //void insertarNodo(const std::string& nombre, const std::string& apellido, const std::string& cedula, const std::string& placa);
-
+    void cargarDesdeArchivoParqueadero(const std::string& nombreArchivo);
+    void imprimirArbol(NodoAA<T>* nodo, int espacio);
 private:
     
 
@@ -278,13 +279,42 @@ void ArbolAA<T>::dibujarArbol(NodoAA<T>* nodo, int x, int y, int offset) {
     }
 }
 
-template <typename T>
+/*template <typename T>
 void ArbolAA<T>::verArbol() {
     int gd = DETECT, gm;
     initgraph(&gd, &gm, (char*)"");
     dibujarArbol(raiz, getmaxx() / 3, 50, 100); // Dibuja el árbol centrado en la pantalla
     getch();
     closegraph();
+}*/
+template <typename T>
+void ArbolAA<T>::verArbol() {
+    if (raiz == nullptr) {
+        std::cout << "El árbol está vacío." << std::endl;
+        return;
+    }
+
+    imprimirArbol(raiz, 0);
+}
+
+template <typename T>
+void ArbolAA<T>::imprimirArbol(NodoAA<T>* nodo, int espacio) {
+    if (nodo == nullptr) return;
+
+    const int ESPACIO_ENTRE_NIVELES = 6;
+    espacio += ESPACIO_ENTRE_NIVELES;
+
+    // Primero imprime el subárbol derecho
+    imprimirArbol(nodo->derecha, espacio);
+
+    // Imprime el nodo con el espaciado correcto
+    std::cout << std::endl;
+    for (int i = ESPACIO_ENTRE_NIVELES; i < espacio; i++)
+        std::cout << " ";
+    std::cout << nodo->clave << "\n";
+
+    // Luego imprime el subárbol izquierdo
+    imprimirArbol(nodo->izquierda, espacio);
 }
 
 template <typename T>
@@ -333,6 +363,25 @@ void ArbolAA<T>::insertarNodo(const std::string& nombre, const std::string& apel
     raiz = insertarPersona(raiz, nombre, apellido, cedula, placa);
 }*/
 
-
+template <typename T>
+    void ArbolAA<T>::cargarDesdeArchivoParqueadero(const std::string& nombreArchivo) {
+    std::ifstream archivo(nombreArchivo);
+    if (archivo.is_open()) {
+        std::string linea;
+        while (std::getline(archivo, linea)) {
+            std::stringstream ss(linea);
+            std::string nombre, apellido, cedula, placa, correo;
+            std::getline(ss, nombre, ',');
+            std::getline(ss, apellido, ',');
+            std::getline(ss, cedula, ',');
+            std::getline(ss, correo, ',');
+            std::getline(ss, placa, ',');
+            insertarPersona(nombre, apellido, cedula, placa);
+        }
+        archivo.close();
+    } else {
+        std::cerr << "No se pudo abrir el archivo " << nombreArchivo << std::endl;
+    }
+    }
 
 #endif // ARBOLAA_H

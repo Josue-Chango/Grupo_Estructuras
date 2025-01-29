@@ -132,13 +132,14 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
         
     vector<string> opciones = {
         "Insertar Coche",
-        "Mostrar Lista de Coches",
+        "Mostrar Coches",
         "Busqueda de Coche Por Placa",
         "Busqueda Avanzada",
         "Menu de Gestion de Propietarios",
         "Liberar el parqueadero",
-        "Ordenar lista de coches",
+        "Ordenar coches",
         "Ayuda",
+        "Imprimir arbol",
         "Salir"};
 
     string archivo = "autos.txt";
@@ -330,6 +331,18 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
             break;
         }
         case 8:
+        {
+            ArbolAA<std::string> arbol;
+            arbol.cargarDesdeArchivoParqueadero("propietarios.txt");
+            if (arbol.raiz != nullptr) {
+                arbol.verArbol();  // Ahora imprimirá en consola
+            } else {
+                cout << "El árbol está vacío. No hay nada que graficar." << endl;
+            }
+            system("pause");
+            break;
+        }
+        case 9:
         {
             cout << "Saliendo..." << endl;
             return;

@@ -1,1 +1,2 @@
-Josue,Chango,1720901980,josuechango21@hotmail.com,RAE2608
+Josue,Chango,1720901980,josuechango21@hotmail.com,RAE2608,CUF1099
+Adonny,Calero,1723449557,Adonny@hotmail.com
