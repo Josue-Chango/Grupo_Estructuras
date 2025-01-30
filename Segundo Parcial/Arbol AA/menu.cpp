@@ -10,6 +10,8 @@
 #include "Ordenamiento.cpp"
 #include "ArbolAA.h"
 #include <graphics.h>
+#include "vehiculo_mas_cercano.h"
+
 
 
 using namespace std;
@@ -140,6 +142,7 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
         "Ordenar coches",
         "Ayuda",
         "Imprimir arbol",
+        "Buscar Vehículo Más Cercano",
         "Salir"};
 
     string archivo = "autos.txt";
@@ -342,7 +345,26 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
             system("pause");
             break;
         }
-        case 9:
+
+        case 9:{
+             system("cls");
+            cout << "========================================" << endl;
+            cout << "  BUSQUEDA DEL VEHICULO MAS CERCANO    " << endl;
+            cout << "========================================" << endl;
+            int posicionReferencia;
+            cout << "Ingrese la posición de referencia: ";
+            cin >> posicionReferencia;
+
+            // Llamada a la función para buscar el vehículo más cercano
+            Coche cocheMasCercano = VehiculoMasCercano::buscarVehiculoMasCercano(lista, posicionReferencia);
+
+            // Mostrar el coche más cercano
+            cout << "El vehiculo mas cercano a la posicion " << posicionReferencia << " es:" << endl;
+            cout << cocheMasCercano << endl;
+            system("pause");
+            break;
+        }
+        case 10:
         {
             cout << "Saliendo..." << endl;
             return;
@@ -664,7 +686,7 @@ void menuOrdenar(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &li
                 { return item.getMarca(); };
                 break;
             default:
-                cout << "Opción inválida. Intente de nuevo." << endl;
+                cout << "Opcion invalida. Intente de nuevo." << endl;
                 continue; // Salir del switch si la opción es inválida
             }
 

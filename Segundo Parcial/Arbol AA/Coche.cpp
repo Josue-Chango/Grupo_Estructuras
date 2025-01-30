@@ -7,6 +7,9 @@
 #include <string> 
 #include <vector>
 #include <cstdlib>
+#include <chrono>
+#include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,6 +27,10 @@ Coche::Coche(string placa, string modelo, string color, string marca, int anio, 
 Coche::Coche(string placa, string modelo, string color, string marca,
              chrono::system_clock::time_point horaIngreso, chrono::system_clock::time_point horaSalida, Propietario propietario)
     : placa(placa), modelo(modelo), color(color), marca(marca), anio(0), horaIngreso(horaIngreso), horaSalida(horaSalida), propietario(propietario) {}
+
+Coche::Coche(string placa, string modelo, string color, string marca, int anio, Propietario propietario, int posicion)
+    : placa(placa), modelo(modelo), color(color), marca(marca), anio(anio), propietario(propietario), posicion(posicion), horaIngreso(chrono::system_clock::now()) {}
+
 
 
 void Coche::setHoraSalida(chrono::system_clock::time_point hora)
@@ -86,6 +93,9 @@ chrono::system_clock::time_point Coche::getHora() const
     return horaIngreso;
 }
 
+int Coche::getPosicion() const {
+    return posicion;
+}
 
 
 ostream &operator<<(ostream &os, const Coche &coche)
@@ -137,7 +147,7 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
                 if (cocheActual.getPlaca() == placa && cocheActual.getHoraSalida() == chrono::system_clock::time_point())
                 {
-                    cout << "\nEl coche con la placa " << placa << " ya está en el parqueadero. Ingrese una placa nueva." << endl;
+                    cout << "\nEl coche con la placa " << placa << " ya esta en el parqueadero. Ingrese una placa nueva." << endl;
                     placaDuplicada = true;
                     break;
                 }
@@ -183,7 +193,7 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
                     cout << "Placa:    " << placa << endl;
 
                     do {
-                        string cedula = validaciones.ingresarCedula("Ingrese la cédula del propietario: ");
+                        string cedula = validaciones.ingresarCedula("Ingrese la cedula del propietario: ");
                         propietario = listaPropietarios.buscarPropietarioPorCedula(cedula);
                         if (propietario != nullptr) {
                             propietario->agregarPlaca(placa);
@@ -232,3 +242,5 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 Propietario Coche::getPropietario() const {
     return propietario;
 }
+
+
