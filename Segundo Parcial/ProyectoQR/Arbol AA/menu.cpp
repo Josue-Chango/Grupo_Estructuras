@@ -317,9 +317,11 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
             cout << "  BIENVENIDOS A LA GESTION DE ESTACIONAMIENTO " << endl;
             cout << "========================================" << endl;
             cout << "========================================" << endl;
-            string placa;
+            /*string placa;
             cout << "Ingrese la placa del coche que  va a  dejar el estacionamiento: ";
-            cin >> placa;
+            cin >> placa;*/
+            Placa<Coche> validador;
+                    string placa = validador.ingresarPlaca(nullptr);
             listaHistorial.salirDelParqueadero(placa);
             lista.eliminarPorPlaca(placa);
             break;
