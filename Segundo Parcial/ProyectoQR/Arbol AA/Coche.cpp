@@ -202,16 +202,18 @@ ostream &operator<<(ostream &os, const Coche &coche)
 Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHistorial, ListaPropietarios &listaPropietarios)
 {
     Validaciones validaciones;
-    Placa<Coche> validador;
+    Placa<Coche> validador;  // Usamos la validación de placas
 
     string placa, modelo, color, marca;
     int anio = 0;
     Propietario* propietario = nullptr;
 
+    // ✅ VALIDACIÓN: INGRESO Y FORMATO DE PLACA CORRECTO
     while (true)
     {
-        placa = validador.ingresarPlaca(lista.getPrimero());
-        
+        placa = validador.ingresarPlaca(lista.getPrimero()); // Se usa la validación de placa
+
+        // ✅ COMPROBAR SI LA PLACA YA EXISTE EN EL PARQUEADERO
         Nodo<Coche> *temp = lista.getPrimero();
         bool placaDuplicada = false;
 
@@ -223,7 +225,8 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
                 if (cocheActual.getPlaca() == placa && cocheActual.getHoraSalida() == chrono::system_clock::time_point())
                 {
-                    cout << "\nEl coche con la placa " << placa << " ya esta en el parqueadero. Ingrese una placa nueva." << endl;
+                    cout << "\n❌ ERROR: La placa " << placa << " ya está registrada en el parqueadero." << endl;
+                    cout << "Por favor, ingrese una placa diferente." << endl;
                     placaDuplicada = true;
                     break;
                 }
@@ -234,10 +237,11 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
         if (!placaDuplicada)
         {
-            break;
+            break; // Placa válida y no duplicada
         }
     }
 
+    // ✅ BUSCAR SI LA PLACA YA EXISTE EN EL HISTORIAL PARA RECUPERAR DATOS
     Nodo<Coche> *tempHistorial = listaHistorial.getPrimero();
     if (tempHistorial != nullptr)
     {
@@ -247,66 +251,27 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
             if (cocheHistorial.getPlaca() == placa)
             {
-                cout << "\nLa placa " << placa << " fue encontrada en el historial. Recuperando datos..." << endl;
+                cout << "\n🔍 La placa " << placa << " fue encontrada en el historial. Recuperando datos..." << endl;
                 modelo = cocheHistorial.getModelo();
                 color = cocheHistorial.getColor();
                 marca = cocheHistorial.getMarca();
 
-                cout << "Marca: " << marca << "\nColor: " << color << "\nModelo: " << modelo << "\n";
-                string foto = "Auto.html";
-                string automovil = marca + " " + modelo + " " + color;
-                mostrar_auto_imagen(foto, automovil);
-                string comando = "start " + foto;
-                generarCodigoQR(placa);
-                system(comando.c_str());
+                cout << "✅ Datos Recuperados:" << endl;
+                cout << "Marca:  " << marca << endl;
+                cout << "Modelo: " << modelo << endl;
+                cout << "Color:  " << color << endl;
+
                 vector<string> opciones = {"Si", "No"};
-                int seleccion = menuInteractivo(opciones, "Auto encontrado en el sistema.\n¿Desea sobreescribir los datos del historial?");
+                int seleccion = menuInteractivo(opciones, "¿Desea sobreescribir los datos del historial?");
 
-                if (seleccion == 0) 
+                if (seleccion == 0) // Aceptar datos del historial
                 {
-                    system("cls");
-                    cout << "========================================" << endl;
-                    cout << "        Datos Recuperados Exitosamente  " << endl;
-                    cout << "========================================" << endl;
-                    cout << "\nMarca:    " << marca << endl;
-                    cout << "Modelo:   " << modelo << endl;
-                    cout << "Color:    " << color << endl;
-                    cout << "Placa:    " << placa << endl;
-
-                    do {
-                        string cedula;
-                        do
-                        {
-                            cedula = validaciones.ingresarCedula("Ingrese la cedula del propietario: ");
-                            if (!validaciones.validarCedula(cedula))
-                            {
-                                cout << "Cedula invalida. Intente de nuevo." << endl;
-                            }
-                        } while (!validaciones.validarCedula(cedula));
-
-                        propietario = listaPropietarios.buscarPropietarioPorCedula(cedula);
-                        if (propietario != nullptr) {
-                            propietario->agregarPlaca(placa);
-                            cout << "Placa asociada exitosamente al propietario." << endl;
-                            string foto = "Auto.html";
-                            string automovil = marca + " " + modelo + " " + color;
-                            mostrar_auto_imagen(foto, automovil);
-                            string comando = "start " + foto;
-                            generarCodigoQR(placa);
-                            system(comando.c_str());
-                            listaPropietarios.guardarArchivo("propietarios.txt");
-                            break;
-                        } else {
-                            cout << "Propietario no encontrado. Intente de nuevo." << endl;
-                        }
-                    } while (true);
-
-                    return Coche(placa, modelo, color, marca, anio, *propietario);
+                    cout << "✅ Datos del historial aceptados." << endl;
+                    break;
                 }
-                else 
+                else // Reingresar datos manualmente
                 {
-                    system("cls");
-                    cout << "\nPor favor, ingrese los datos manualmente:" << endl;
+                    cout << "\n🔄 Ingrese los datos manualmente:" << endl;
                     break;
                 }
             }
@@ -315,40 +280,40 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
         } while (tempHistorial != listaHistorial.getPrimero());
     }
 
-    marca = validaciones.ingresarString("Ingrese la marca: ");
-    color = validaciones.ingresarString("Ingrese el color: ");
-    modelo = validaciones.ingresarString("Ingrese el modelo: ");
+    // ✅ INGRESAR MANUALMENTE LOS DATOS SI NO FUERON RECUPERADOS
+    if (modelo.empty() || color.empty() || marca.empty()) {
+        marca = validaciones.ingresarString("Ingrese la marca: ");
+        color = validaciones.ingresarString("Ingrese el color: ");
+        modelo = validaciones.ingresarString("Ingrese el modelo: ");
+    }
 
+    // ✅ VALIDAR PROPIETARIO POR CÉDULA
     do {
         string cedula;
-         do
+        do
         {
-            cedula = validaciones.ingresarCedula("Ingrese la cedula del propietario: ");
+            cedula = validaciones.ingresarCedula("Ingrese la cédula del propietario: ");
             if (!validaciones.validarCedula(cedula))
             {
-                cout << "Cedula invalida. Intente de nuevo." << endl;
+                cout << "❌ Cédula inválida. Intente de nuevo." << endl;
             }
         } while (!validaciones.validarCedula(cedula));
 
         propietario = listaPropietarios.buscarPropietarioPorCedula(cedula);
         if (propietario != nullptr) {
             propietario->agregarPlaca(placa);
-            string foto = "Auto.html";
-            string automovil = marca + " " + modelo + " " + color;
-            cout << "Placa asociada exitosamente al propietario." << endl;
-            mostrar_auto_imagen(foto, automovil);
+            cout << "✅ Placa asociada exitosamente al propietario." << endl;
             listaPropietarios.guardarArchivo("propietarios.txt");
-            string comando = "start " + foto;
-            generarCodigoQR(placa);
-            system(comando.c_str());
             break;
         } else {
-            cout << "Propietario no encontrado. Intente de nuevo." << endl;
+            cout << "❌ Propietario no encontrado. Intente de nuevo." << endl;
         }
     } while (true);
 
+    // ✅ REGISTRAR EL NUEVO COCHE
     return Coche(placa, modelo, color, marca, anio, *propietario);
 }
+
 
 Propietario Coche::getPropietario() const {
     return propietario;
