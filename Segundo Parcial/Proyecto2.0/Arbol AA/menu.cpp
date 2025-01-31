@@ -149,7 +149,7 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
         "Ordenar coches",
         "Ayuda",
         "Imprimir arbol",
-        "Buscar Vehículo Más Cercano",
+        "Buscar Vehiculo Mas Cercano",
         "Salir"};
 
     string archivo = "autos.txt";

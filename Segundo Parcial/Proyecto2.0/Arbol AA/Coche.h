@@ -27,6 +27,7 @@ private:
     Propietario propietario;
 
 public:
+void generarCodigoQR(const string& datos);
 void mostrar_auto_imagen(const std::string& nombreArchivo, const std::string& modelo);
     Coche();
     Coche(string placa, string modelo, string color, string marca, int anio, Propietario propietario);

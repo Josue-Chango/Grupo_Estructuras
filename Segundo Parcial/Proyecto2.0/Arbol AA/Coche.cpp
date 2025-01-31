@@ -13,6 +13,23 @@
 
 using namespace std;
 
+
+void Coche::generarCodigoQR(const string& datos) {
+    string apiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + datos;
+    string outputFile = "codigoQR.png";
+
+    string command = "curl -o " + outputFile + " \"" + apiUrl + "\"";
+
+    int result = system(command.c_str());
+
+    if (result == 0) {
+        cout << "✅ Código QR generado y guardado en " << outputFile << endl;
+        system(("start " + outputFile).c_str()); // Abrir en Windows
+    } else {
+        cout << "❌ Error al generar el código QR." << endl;
+    }
+}
+
 void Coche::mostrar_auto_imagen(const std::string& nombreArchivo, const std::string& modelo) {
     // Parte 1 del HTML antes del modelo
     std::string parte1 = R"(<!DOCTYPE html>
@@ -237,9 +254,10 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
                 cout << "Marca: " << marca << "\nColor: " << color << "\nModelo: " << modelo << "\n";
                 string foto = "Auto.html";
-                string automovil = modelo + " " + color;
+                string automovil = marca + " " + modelo + " " + color;
                 mostrar_auto_imagen(foto, automovil);
                 string comando = "start " + foto;
+                generarCodigoQR(placa);
                 system(comando.c_str());
                 vector<string> opciones = {"Si", "No"};
                 int seleccion = menuInteractivo(opciones, "Auto encontrado en el sistema.\n¿Desea sobreescribir los datos del historial?");
@@ -271,9 +289,10 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
                             propietario->agregarPlaca(placa);
                             cout << "Placa asociada exitosamente al propietario." << endl;
                             string foto = "Auto.html";
-                            string automovil = modelo + " " + color;
+                            string automovil = marca + " " + modelo + " " + color;
                             mostrar_auto_imagen(foto, automovil);
                             string comando = "start " + foto;
+                            generarCodigoQR(placa);
                             system(comando.c_str());
                             listaPropietarios.guardarArchivo("propietarios.txt");
                             break;
@@ -315,11 +334,12 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
         if (propietario != nullptr) {
             propietario->agregarPlaca(placa);
             string foto = "Auto.html";
-            string automovil = modelo + " " + color;
+            string automovil = marca + " " + modelo + " " + color;
             cout << "Placa asociada exitosamente al propietario." << endl;
             mostrar_auto_imagen(foto, automovil);
             listaPropietarios.guardarArchivo("propietarios.txt");
             string comando = "start " + foto;
+            generarCodigoQR(placa);
             system(comando.c_str());
             break;
         } else {
