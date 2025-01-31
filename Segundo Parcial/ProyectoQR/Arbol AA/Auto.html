@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Imagen de Automóvil</title>
+  <script>
+    function showCarImage() {
+      // Obtener el modelo de automóvil desde la URL
+      var urlParams = new URLSearchParams(window.location.search);
+      var model = urlParams.get('model') || 'NISSAN QASHQAI ROJO';
+
+      // Construir la URL de la imagen de Google Images
+      var apiKey = "AIzaSyCmZ5odHg7yZxs2eAPnNxH-WWEW-wurOCc";
+      var cx = "b2146b1832abc4b95";
+      var imageUrl = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&searchType=image&q=" + encodeURIComponent(model);
+
+      // Hacer una solicitud a la API de Google Custom Search
+      fetch(imageUrl)
+        .then(response => response.json())
+        .then(data => {
+          // Obtener la URL de la primera imagen
+          var imageUrl = data.items[0].link;
+
+          // Mostrar la imagen en la página
+          var imageElement = document.getElementById("carImage");
+          imageElement.src = imageUrl;
+        })
+        .catch(error => {
+          console.error("Error al obtener la imagen:", error);
+        });
+    }
+  </script>
+</head>
+<body onload="showCarImage()">
+<img id="carImage" alt="Imagen de Automóvil">
+</body>
+</html>
