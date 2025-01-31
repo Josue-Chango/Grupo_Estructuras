@@ -251,9 +251,11 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
                     cout << "========================================" << endl;
                     cout << "   BUSQUEDA DE PLACA EN PARQUEADERO     " << endl;
                     cout << "========================================" << endl;
-                    string placa;
+                    /*string placa;
                     cout << "Ingrese la placa a buscar(Utilize mayusculas para validar su placa): ";
-                    cin >> placa;
+                    cin >> placa;*/
+                    Placa<Coche> validador;
+                    string placa = validador.ingresarPlaca(nullptr);
                     lista.buscarPorPlaca(placa);
                     system("pause");
                     break;

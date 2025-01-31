@@ -237,7 +237,7 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
                 cout << "Marca: " << marca << "\nColor: " << color << "\nModelo: " << modelo << "\n";
                 string foto = "Auto.html";
-                string automovil = modelo + " " + color;
+                string automovil = marca + " " + modelo + " " + color;
                 mostrar_auto_imagen(foto, automovil);
                 string comando = "start " + foto;
                 system(comando.c_str());
@@ -262,7 +262,7 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
                             propietario->agregarPlaca(placa);
                             cout << "Placa asociada exitosamente al propietario." << endl;
                             string foto = "Auto.html";
-                            string automovil = modelo + " " + color;
+                            string automovil = marca + " " + modelo + " " + color;
                             mostrar_auto_imagen(foto, automovil);
                             string comando = "start " + foto;
                             system(comando.c_str());
@@ -297,7 +297,7 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
         if (propietario != nullptr) {
             propietario->agregarPlaca(placa);
             string foto = "Auto.html";
-            string automovil = modelo + " " + color;
+            string automovil = marca + " " + modelo + " " + color;
             cout << "Placa asociada exitosamente al propietario." << endl;
             mostrar_auto_imagen(foto, automovil);
             listaPropietarios.guardarArchivo("propietarios.txt");

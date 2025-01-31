@@ -9,3 +9,4 @@ RAE2608,grandvitara,Dorado,Chevrolet,Thu Jan 30 20:52:34 2025,Thu Jan 30 20:57:5
 REH2039,Grandvitara,Azul,Chevrolet,Thu Jan 30 20:53:57 2025,Thu Jan 30 20:58:05 2025
 RAE2608,grandvitara,Dorado,Chevrolet,Thu Jan 30 21:01:01 2025,N/A
 REH2039,Ferrari,rojo,Ferrari,Thu Jan 30 21:01:58 2025,N/A
+RAE2609,SERIETRES,AZUL,BMW,Fri Jan 31 03:14:42 2025,N/A
