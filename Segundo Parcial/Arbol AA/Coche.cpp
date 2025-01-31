@@ -13,6 +13,65 @@
 
 using namespace std;
 
+void Coche::mostrar_auto_imagen(const std::string& nombreArchivo, const std::string& modelo) {
+    // Parte 1 del HTML antes del modelo
+    std::string parte1 = R"(<!DOCTYPE html>
+<html>
+<head>
+  <title>Imagen de Automóvil</title>
+  <script>
+    function showCarImage() {
+      // Obtener el modelo de automóvil desde la URL
+      var urlParams = new URLSearchParams(window.location.search);
+      var model = urlParams.get('model') || ')";
+
+    // Parte 2 del HTML después del modelo
+    std::string parte2 = R"(';
+
+      // Construir la URL de la imagen de Google Images
+      var apiKey = "AIzaSyCmZ5odHg7yZxs2eAPnNxH-WWEW-wurOCc";
+      var cx = "b2146b1832abc4b95";
+      var imageUrl = "https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=" + cx + "&searchType=image&q=" + encodeURIComponent(model);
+
+      // Hacer una solicitud a la API de Google Custom Search
+      fetch(imageUrl)
+        .then(response => response.json())
+        .then(data => {
+          // Obtener la URL de la primera imagen
+          var imageUrl = data.items[0].link;
+
+          // Mostrar la imagen en la página
+          var imageElement = document.getElementById("carImage");
+          imageElement.src = imageUrl;
+        })
+        .catch(error => {
+          console.error("Error al obtener la imagen:", error);
+        });
+    }
+  </script>
+</head>
+<body onload="showCarImage())";
+
+    // Parte 3 del HTML después del modelo en <h2>
+    std::string parte3 = R"(">
+<img id="carImage" alt="Imagen de Automóvil">
+</body>
+</html>)";
+
+    // Unir las partes correctamente
+    std::string contenido = parte1 + modelo + parte2 + parte3;
+
+    // Crear y escribir en el archivo TXT
+    std::ofstream archivo(nombreArchivo);
+    if (archivo.is_open()) {
+        archivo << contenido;
+        archivo.close();
+        std::cout << " Archivo TXT '" << nombreArchivo << "' creado exitosamente con el modelo: " << modelo << std::endl;
+    } else {
+        std::cerr << " Error al crear el archivo: " << nombreArchivo << std::endl;
+    }
+}
+
 Coche::Coche()
 {
     this->placa = "";
@@ -177,7 +236,11 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
                 marca = cocheHistorial.getMarca();
 
                 cout << "Marca: " << marca << "\nColor: " << color << "\nModelo: " << modelo << "\n";
-
+                string foto = "Auto.html";
+                string automovil = modelo + " " + color;
+                mostrar_auto_imagen(foto, automovil);
+                string comando = "start " + foto;
+                system(comando.c_str());
                 vector<string> opciones = {"Si", "No"};
                 int seleccion = menuInteractivo(opciones, "Auto encontrado en el sistema.\n¿Desea sobreescribir los datos del historial?");
 
@@ -198,6 +261,11 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
                         if (propietario != nullptr) {
                             propietario->agregarPlaca(placa);
                             cout << "Placa asociada exitosamente al propietario." << endl;
+                            string foto = "Auto.html";
+                            string automovil = modelo + " " + color;
+                            mostrar_auto_imagen(foto, automovil);
+                            string comando = "start " + foto;
+                            system(comando.c_str());
                             listaPropietarios.guardarArchivo("propietarios.txt");
                             break;
                         } else {
@@ -228,8 +296,13 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
         propietario = listaPropietarios.buscarPropietarioPorCedula(cedula);
         if (propietario != nullptr) {
             propietario->agregarPlaca(placa);
+            string foto = "Auto.html";
+            string automovil = modelo + " " + color;
             cout << "Placa asociada exitosamente al propietario." << endl;
+            mostrar_auto_imagen(foto, automovil);
             listaPropietarios.guardarArchivo("propietarios.txt");
+            string comando = "start " + foto;
+            system(comando.c_str());
             break;
         } else {
             cout << "Propietario no encontrado. Intente de nuevo." << endl;

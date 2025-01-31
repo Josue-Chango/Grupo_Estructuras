@@ -1,4 +1,4 @@
-Josue,Chango,1720901980,josuechango21@hotmail.com,RAE2608,CUF1099,RCC3876,REH9891
+Josue,Chango,1720901980,josuechango21@hotmail.com,RAE2608,CUF1099,RCC3876,REH9891,RAE2608,RAE2608,REH2039,RAE2608,REH2039,RAE2608,REH2039
 Adonny,Calero,1723449557,Adonny@hotmail.com
 Adonny,Calero,1723449557,matius_2501@hotmail.com
 Eduardo,Altamirano,1728879733,olaqase@hotmail.com

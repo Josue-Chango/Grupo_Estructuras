@@ -16,6 +16,7 @@ public:
   Nodo<T>* getPrimero() {
         return primero;
     }
+    
     ListaCircularDoble();     
     void insertar(T dato,const std::string& nombreArchivo);    
     void buscarPorPlaca(string placa);
