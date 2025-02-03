@@ -1,0 +1,1 @@
+g++ Main.cpp Coche.cpp Lista.h Nodo.h menu.cpp Propietario.cpp ListaPropietarios.cpp Validaciones.cpp Ordenamiento.cpp ArbolAA.h vehiculo_mas_cercano.cpp -o main.exe
