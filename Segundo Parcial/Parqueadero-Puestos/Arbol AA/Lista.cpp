@@ -293,19 +293,22 @@ void ListaCircularDoble<T>::CargarArchivo(std::string nombreArchivo)
     while (std::getline(archivo, linea))
     {
         std::istringstream ss(linea);
-        std::string placa, modelo, color, marca, fechaIngreso, horaSalida;
+        std::string placa, modelo, color, marca, fechaIngreso, horaSalida, puestoStr;
+        int puesto = 0;  // ✅ Inicializar la posición
 
-
+        // ✅ Leer todos los campos, incluida la posición (puestoStr)
         if (std::getline(ss, placa, ',') &&
             std::getline(ss, modelo, ',') &&
             std::getline(ss, color, ',') &&
             std::getline(ss, marca, ',') &&
             std::getline(ss, fechaIngreso, ',') &&
-            std::getline(ss, horaSalida, ','))
+            std::getline(ss, horaSalida, ',') &&
+            std::getline(ss, puestoStr))  // ✅ Leer la posición del coche
         {
-
             placa = descifrarTexto(placa);
+            puesto = std::stoi(puestoStr);  // ✅ Convertir la posición a entero
 
+            // ✅ Parsear la fecha de ingreso
             std::tm tm = {};
             std::istringstream ssFecha(fechaIngreso);
             ssFecha >> std::get_time(&tm, "%a %b %d %H:%M:%S %Y");
@@ -316,7 +319,7 @@ void ListaCircularDoble<T>::CargarArchivo(std::string nombreArchivo)
             }
             auto horaIngreso = std::chrono::system_clock::from_time_t(std::mktime(&tm));
 
-
+            // ✅ Parsear la hora de salida
             std::chrono::system_clock::time_point horaSalidaParsed;
             if (horaSalida == "N/A" || horaSalida.empty())
             {
@@ -338,12 +341,13 @@ void ListaCircularDoble<T>::CargarArchivo(std::string nombreArchivo)
                 }
             }
 
-
+            // ✅ Crear el propietario (en caso de no tener datos)
             Propietario propietario("Desconocido", "Desconocido", "0000000000", "desconocido@correo.com");
 
+            // ✅ Crear el coche con la posición cargada
+            T coche(placa, modelo, color, marca, horaIngreso, horaSalidaParsed, propietario, puesto);
 
-            T coche(placa, modelo, color, marca, horaIngreso, horaSalidaParsed, propietario);
-
+            // ✅ Insertar el coche en la lista
             this->insertar(coche, nombreArchivo);
         }
         else
@@ -354,6 +358,7 @@ void ListaCircularDoble<T>::CargarArchivo(std::string nombreArchivo)
 
     archivo.close();
 }
+
 
 template <typename T>
 void ListaCircularDoble<T>::GuardarArchivo(std::string nombreArchivo)
@@ -401,11 +406,12 @@ void ListaCircularDoble<T>::GuardarArchivo(std::string nombreArchivo)
         }
 
         archivo << placaCifrada << ","
-                << coche.getModelo() << ","
-                << coche.getColor() << ","
-                << coche.getMarca() << ","
-                << std::put_time(&tmHoraIngreso, "%a %b %d %H:%M:%S %Y") << ","
-                << horaSalidaStream.str() << std::endl;
+        << coche.getModelo() << ","
+        << coche.getColor() << ","
+        << coche.getMarca() << ","
+        << std::put_time(&tmHoraIngreso, "%a %b %d %H:%M:%S %Y") << ","
+        << horaSalidaStream.str() << ","
+        << coche.getPuesto() << endl;
 
         actual = actual->getSiguiente();
     } while (actual != primero);
