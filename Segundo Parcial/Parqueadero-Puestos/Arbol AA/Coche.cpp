@@ -140,6 +140,13 @@ Coche::Coche(string placa, string modelo, string color, string marca,
 Coche::Coche(string placa, string modelo, string color, string marca, int anio, Propietario propietario, int posicion)
     : placa(placa), modelo(modelo), color(color), marca(marca), anio(anio), propietario(propietario), posicion(posicion), horaIngreso(chrono::system_clock::now()) {}
 
+Coche::Coche(string placa, string modelo, string color, string marca,
+             chrono::system_clock::time_point horaIngreso,
+             chrono::system_clock::time_point horaSalida,
+             Propietario propietario, int puesto)
+    : placa(placa), modelo(modelo), color(color), marca(marca),
+      horaIngreso(horaIngreso), horaSalida(horaSalida),
+      propietario(propietario), posicion(puesto) {}
 
 
 void Coche::setHoraSalida(chrono::system_clock::time_point hora)
@@ -251,18 +258,26 @@ Coche Coche::InsertarDatos(ListaCircularDoble<Coche> &lista, ListaCircularDoble<
 
     cargarEstadoPuestos();
 
-    // Asignar el primer puesto disponible
-    for (int i = 0; i < TOTAL_PUESTOS; i++) {
-        if (!puestos[i]) {  // Si el puesto está libre
-            puestos[i] = true;  // Marcar como ocupado
-            puestoAsignado = i + 1;  // Los puestos comienzan desde 1
+    
+    srand(time(nullptr));
+
+    
+    int intentos = 0;
+    do {
+        int puestoAleatorio = rand() % TOTAL_PUESTOS;  
+
+        if (!puestos[puestoAleatorio]) {  // Si el puesto está libre
+            puestos[puestoAleatorio] = true;  // Marcar como ocupado
+            puestoAsignado = puestoAleatorio + 1;  
             break;
         }
-    }
+
+        intentos++;
+    } while (intentos < TOTAL_PUESTOS);
 
     if (puestoAsignado == -1) {
-        std::cout << "No hay puestos disponibles en el parqueadero." << endl;
-        return Coche();  // Retornar un coche vacío si no hay espacio
+        std::cout << "No hay puestos disponibles en el parqueadero." << std::endl;
+        return Coche();  
     }
 
     while (true)

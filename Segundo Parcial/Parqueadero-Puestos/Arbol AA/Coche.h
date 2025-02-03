@@ -34,6 +34,10 @@ void mostrar_auto_imagen(const std::string& nombreArchivo, const std::string& mo
     Coche(string placa, string modelo, string color, string marca, int anio, Propietario propietario, int posicion);
     Coche(string placa, string modelo, string color, string marca,
       chrono::system_clock::time_point horaIngreso, chrono::system_clock::time_point horaSalida, Propietario propietario);
+Coche(string placa, string modelo, string color, string marca,
+      chrono::system_clock::time_point horaIngreso,
+      chrono::system_clock::time_point horaSalida,
+      Propietario propietario, int puesto);
 
     void setHoraSalida(chrono::system_clock::time_point hora);
     void setPlaca(const string &placa);

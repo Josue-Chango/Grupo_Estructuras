@@ -2,6 +2,8 @@
 #include "Nodo.h"
 #include <graphics.h>
 
+//const int TOTAL_PUESTOS = 20;       
+//extern bool puestos[TOTAL_PUESTOS];
 
 using namespace std;
 
