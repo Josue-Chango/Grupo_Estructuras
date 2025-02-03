@@ -16,9 +16,9 @@ using namespace std;
 
 
 const int TOTAL_PUESTOS = 20;  // Puedes ajustar este número según la capacidad del parqueadero
-bool puestos[TOTAL_PUESTOS] = {false};  // false significa que el puesto está libre
+bool puestos[TOTAL_PUESTOS] = {false}; 
 
-// ✅ Función para guardar el estado de los puestos
+//  Función para guardar el estado de los puestos
 void guardarEstadoPuestos() {
     ofstream archivo("puestos.txt");
     for (int i = 0; i < TOTAL_PUESTOS; i++) {
@@ -27,7 +27,7 @@ void guardarEstadoPuestos() {
     archivo.close();
 }
 
-// ✅ Función para cargar el estado de los puestos
+//  Función para cargar el estado de los puestos
 void cargarEstadoPuestos() {
     ifstream archivo("puestos.txt");
     if (archivo.is_open()) {

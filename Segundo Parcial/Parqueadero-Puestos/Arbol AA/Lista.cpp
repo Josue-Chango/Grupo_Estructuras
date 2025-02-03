@@ -87,23 +87,29 @@ void ListaCircularDoble<T>::mostrar(Nodo<T> *primero)
 {
     if (primero == nullptr)
     {
-        std::cout << "La lista esta vacia." << std::endl;
+        std::cout << "La lista está vacía." << std::endl;
         return;
     }
 
     Nodo<T> *aux = primero;
 
-    cout << "AUTOMOVIL REGISTRADO" << endl;
+    cout << "AUTOMÓVILES REGISTRADOS EN EL PARQUEADERO" << endl;
     cout << "========================================" << endl;
-    cout << aux->getDato() << endl;
 
-    aux = aux->getSiguiente();
-    while (aux != primero)
+    do
     {
-        cout << aux->getDato() << endl;
+        T coche = aux->getDato();
+        cout << "Placa: " << coche.getPlaca()
+             << " | Marca: " << coche.getMarca()
+             << " | Modelo: " << coche.getModelo()
+             << " | Color: " << coche.getColor()
+             << " | Puesto: " << coche.getPuesto()  
+             << endl;
+
         aux = aux->getSiguiente();
-    }
+    } while (aux != primero);
 }
+
 
 template <typename T>
 void ListaCircularDoble<T>::eliminarPorPlaca(string placa)
@@ -491,6 +497,9 @@ void ListaCircularDoble<T>::salirDelParqueadero(const std::string &placa)
 
             std::cout << "El coche con placa " << placa << " ha salido del parqueadero." << std::endl;
             std::cout << "El coche con la placa " << placa << " estaba en el puesto: " << puesto << std::endl;
+
+            liberarPuesto(puesto);
+
             encontrado = true;
         }
 

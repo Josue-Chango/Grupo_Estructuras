@@ -1,3 +1,1 @@
-Josue,Chango,1720901980,josuechango21@hotmail.com,RAE2608,RAE2608,RAE2608,RAE2608,CUF6781,RDN7439
-Adonny,Calero,1723449557,matius_2501@hotmail.com,RDN3456,RUJ3456
-Adonny,Calero,1728879733,Todo20@hotmail.com,REJ7439
+Adonny,Calero,1723449557,matius_2501@hotmail.com,RDN7439,RDN3456
