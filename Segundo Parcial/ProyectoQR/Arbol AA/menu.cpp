@@ -344,6 +344,7 @@ void menu(ListaCircularDoble<Coche> &lista, ListaCircularDoble<Coche> &listaHist
             arbol.cargarDesdeArchivoParqueadero("propietarios.txt");
             if (arbol.raiz != nullptr) {
                 arbol.verArbol();  // Ahora imprimirá en consola
+                arbol.mostrar();
             } else {
                 cout << "El árbol está vacío. No hay nada que graficar." << endl;
             }
