@@ -1,6 +1,6 @@
 #pragma once
 #include "Nodo.h"
-#include <graphics.h>
+//#include <graphics.h>
 
 //const int TOTAL_PUESTOS = 20;       
 //extern bool puestos[TOTAL_PUESTOS];

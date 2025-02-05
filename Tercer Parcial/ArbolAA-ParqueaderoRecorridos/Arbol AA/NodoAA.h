@@ -1,6 +1,8 @@
 #ifndef NodoAA_H
 #define NodoAA_H
-#include <graphics.h>
+//#include <graphics.h>
+#include <SFML/Graphics.hpp>
+
 
 template <typename T>
 class NodoAA

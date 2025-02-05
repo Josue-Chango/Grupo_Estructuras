@@ -3,9 +3,9 @@
 #include <graphics.h>
 
 int main() {
-    ArbolAA<std::string> arbol;
-/*
-    // Inserción de elementos
+    ArbolAA<int> arbol;
+
+     //Inserción de elementos
     arbol.insertar(10);
     arbol.insertar(5);
     arbol.insertar(15);
@@ -13,7 +13,7 @@ int main() {
     arbol.insertar(7);
     arbol.insertar(12);
     arbol.insertar(20);
-
+/*
     // Visualización del árbol
     std::cout << "Arbol AA: " << std::endl;
     arbol.mostrar();
@@ -44,9 +44,9 @@ int main() {
 
     arbol.verArbol();*/
     //arbol.insertarPersona("josue", "andel", "1720", "PYC0486");
-    arbol.reconstruirDesdeArchivo("pruebav1.txt");
+    //arbol.reconstruirDesdeArchivo("pruebav1.txt");
     arbol.verArbol();
-    arbol.guardarEnArchivo("pruebav1.txt");
+    //arbol.guardarEnArchivo("pruebav1.txt");
 
     system("pause");
     return 0;

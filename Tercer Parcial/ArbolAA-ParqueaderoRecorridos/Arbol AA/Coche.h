@@ -8,7 +8,7 @@
 #include <sstream>
 #include "ListaPropietarios.h"
 #include "Propietario.h"
-#include <graphics.h>
+//#include <graphics.h>
 
 
 using namespace std;

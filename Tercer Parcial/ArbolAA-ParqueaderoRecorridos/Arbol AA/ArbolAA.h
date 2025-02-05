@@ -4,11 +4,13 @@
 #include "NodoAA.h"
 #include "Lista.h"     
 #include "Coche.h" 
-#include <graphics.h>
+//#include <graphics.h>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <SFML/Graphics.hpp>
+
 
 template <typename T>
 class ArbolAA {
@@ -24,6 +26,7 @@ public:
     int profundidad(int clave);
     int niveles();
     NodoAA<T>* raiz;
+    void dibujarArbol(sf::RenderWindow& window, NodoAA<T>* nodo, float x, float y, float offset, sf::Font& font);
     void verArbol();
     void guardarEnArchivo(const std::string& nombreArchivo);
     void reconstruirDesdeArchivo(const std::string& nombreArchivo);
@@ -43,7 +46,6 @@ private:
     void recorridoInorden(NodoAA<T>* nodo);
     void recorridoPreorden(NodoAA<T>* nodo);
     void recorridoPostorden(NodoAA<T>* nodo);
-    void dibujarArbol(NodoAA<T>* nodo, int x, int y, int offset);
     void guardarEnArchivoRecursivo(NodoAA<T>* nodo, std::ofstream& archivo);
     NodoAA<T>* encontrarPadre(NodoAA<T>* actual, NodoAA<T>* nodo);
     NodoAA<T>* buscarNodo(NodoAA<T>* nodo, int clave);
@@ -261,38 +263,81 @@ int ArbolAA<T>::niveles() {
     return altura(raiz) + 1; // La cantidad de niveles es altura + 1
 }
 
-template <typename T>
-void ArbolAA<T>::dibujarArbol(NodoAA<T>* nodo, int x, int y, int offset) {
+
+/*template <typename T>
+void ArbolAA<T>::dibujarArbol(sf::RenderWindow& window, NodoAA<T>* nodo, float x, float y, float offset, sf::Font& font) {
     if (nodo == nullptr) return;
 
-    // Dibujar el nodo actual
-    circle(x, y, 20);
-    //outtextxy(x - 10, y - 10, to_string(nodo->data).c_str());
-    char buffer[10];
-    sprintf(buffer, "%d", nodo->clave); // Convierte el entero a una cadena
-    outtextxy(x - 10, y - 10, buffer); // Usa la cadena para graficar
+    // Crear un círculo para el nodo
+    sf::CircleShape nodeShape(20);
+    nodeShape.setFillColor(sf::Color::Green);
+    nodeShape.setPosition(x - 20, y - 20);
+    window.draw(nodeShape);
 
-    // Dibujar el subárbol izquierdo
+    // Mostrar el valor del nodo
+    sf::Text text(std::to_string(nodo->clave), font, 20);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(x - 10, y - 10);
+    window.draw(text);
+
+    // Dibujar las conexiones (líneas entre nodos)
     if (nodo->izquierda) {
-        line(x, y, x - offset, y + 50);
-        dibujarArbol(nodo->izquierda, x - offset, y + 50, offset / 2);
+        sf::Vertex line[] = {
+            sf::Vertex(sf::Vector2f(x, y)),
+            sf::Vertex(sf::Vector2f(x - offset, y + 60))
+        };
+        window.draw(line, 2, sf::Lines);
+        dibujarArbol(window, nodo->izquierda, x - offset, y + 60, offset / 1.5, font);
     }
 
-    // Dibujar el subárbol derecho
     if (nodo->derecha) {
-        line(x, y, x + offset, y + 50);
-        dibujarArbol(nodo->derecha, x + offset, y + 50, offset / 2);
+        sf::Vertex line[] = {
+            sf::Vertex(sf::Vector2f(x, y)),
+            sf::Vertex(sf::Vector2f(x + offset, y + 60))
+        };
+        window.draw(line, 2, sf::Lines);
+        dibujarArbol(window, nodo->derecha, x + offset, y + 60, offset / 1.5, font);
+    }
+}*/
+template <typename T>
+void ArbolAA<T>::dibujarArbol(sf::RenderWindow& window, NodoAA<T>* nodo, float x, float y, float offset, sf::Font& font) {
+    if (nodo == nullptr) return;
+
+    // Crear el nodo como un círculo
+    sf::CircleShape nodeShape(20); // Tamaño adecuado del círculo
+    nodeShape.setFillColor(sf::Color::White);
+    nodeShape.setPosition(x - 20, y - 20);  // Centrado del círculo
+    window.draw(nodeShape);
+
+    // Crear el texto para mostrar el valor del nodo
+    sf::Text text(std::to_string(nodo->clave), font, 15);  // Ajustar tamaño del texto
+    text.setFillColor(sf::Color::Black);
+    text.setPosition(x - 10, y - 10);  // Centrado del texto dentro del círculo
+    window.draw(text);
+
+    // Dibujar las conexiones entre nodos
+    if (nodo->izquierda) {
+        sf::Vertex line[] = {
+            sf::Vertex(sf::Vector2f(x, y)),
+            sf::Vertex(sf::Vector2f(x - offset, y + 60))
+        };
+        window.draw(line, 2, sf::Lines);
+        dibujarArbol(window, nodo->izquierda, x - offset, y + 60, offset / 1.5, font);
+    }
+
+    if (nodo->derecha) {
+        sf::Vertex line[] = {
+            sf::Vertex(sf::Vector2f(x, y)),
+            sf::Vertex(sf::Vector2f(x + offset, y + 60))
+        };
+        window.draw(line, 2, sf::Lines);
+        dibujarArbol(window, nodo->derecha, x + offset, y + 60, offset / 1.5, font);
     }
 }
 
-/*template <typename T>
-void ArbolAA<T>::verArbol() {
-    int gd = DETECT, gm;
-    initgraph(&gd, &gm, (char*)"");
-    dibujarArbol(raiz, getmaxx() / 3, 50, 100); // Dibuja el árbol centrado en la pantalla
-    getch();
-    closegraph();
-}*/
+
+
+
 template <typename T>
 void ArbolAA<T>::verArbol() {
     if (raiz == nullptr) {
@@ -301,7 +346,41 @@ void ArbolAA<T>::verArbol() {
     }
 
     imprimirArbol(raiz, 0);
+
+    // Crear la ventana para mostrar el árbol
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Arbol Binario");
+
+    // Crear un objeto sf::Font vacío (sin cargar archivo de fuente)
+    sf::Font font;
+
+    // Usar la fuente predeterminada de SFML
+    if (!font.loadFromFile("Roboto-Regular.ttf")) {
+        std::cerr << "No se pudo cargar la fuente, usando fuente predeterminada" << std::endl;
+        // Si no puedes cargar la fuente, usa la fuente predeterminada de SFML
+        //font = sf::Font();  // Fuente por defecto de SFML
+    }
+    //font = sf::Font();
+
+    // Bucle principal de la ventana para mantenerla abierta
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            // Si se cierra la ventana, salir del bucle
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+
+        window.clear(); // Limpiar la pantalla
+
+        // Dibujar el árbol
+        dibujarArbol(window, raiz, 400, 50, 150, font);
+
+        window.display(); // Mostrar el contenido de la ventana
+    }
+    system("pause");
 }
+
 
 template <typename T>
 void ArbolAA<T>::imprimirArbol(NodoAA<T>* nodo, int espacio) {
@@ -369,6 +448,7 @@ void ArbolAA<T>::insertarPuestosOcupados(ListaCircularDoble<Coche>& listaCoches)
             Coche coche = actual->getDato();
             if (coche.getPuesto() > 0) {  // ✅ Insertar solo los puestos ocupados
                 insertar(coche.getPuesto());
+                
             }
             actual = actual->getSiguiente();
         } while (actual != listaCoches.getPrimero());

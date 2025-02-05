@@ -4,7 +4,7 @@
 #include "Lista.h"
 #include "ListaPropietarios.h"
 #include "ArbolAA.h"
-#include <graphics.h>
+//#include <graphics.h>
 
 
 
