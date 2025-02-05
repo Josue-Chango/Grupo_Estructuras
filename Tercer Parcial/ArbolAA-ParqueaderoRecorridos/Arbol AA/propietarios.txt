@@ -1,1 +1,7 @@
 Adonny,Calero,1723449557,matius_2501@hotmail.com,RDN7439,RUJ3456,RCC3456,RDN7439,RUJ3456,RCC3456,RDN7439,RUJ3456,RCC3456
+Josue,Chango,1720901980,jchango@hotmail.com,RCF3456
+Eduardo,Altamirano,1728879733,ealtamirano@hotmail.com,RAA5443
+Alexandra,Arguello,1714836747,aarguello@hotmail.com,RUJ3690
+Juan,Perez,1713254116,jperez@hotmail.com
+Eduardo,Altamirano,1712192838,ealtamirano2@hotmail.com,REF6789
+Ezequiel,Piovi,1710753144,epiovi@hotmail.com,REH9016
