@@ -1,29 +1,29 @@
 /*
-g++ -o EightQueensSFML.exe EightQueensSFML.cpp -lsfml-graphics -lsfml-window -lsfml-system
+g++ -o 8Reinas.exe 8Reinas.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
 
-// Función para verificar si una reina puede ser colocada en la posición (row, col)
-bool isValid(std::vector<int>& queens, int row, int col) {
-    for (int i = 0; i < row; i++) {
-        if (queens[i] == col || abs(i - row) == abs(queens[i] - col))
+// Función para verificar si una reina puede ser colocada en la posición (filas, col)
+bool esvalido(std::vector<int>& reinas, int filas, int col) {
+    for (int i = 0; i < filas; i++) {
+        if (reinas[i] == col || abs(i - filas) == abs(reinas[i] - col))
             return false;
     }
     return true;
 }
 
 // Función recursiva para resolver el problema de las 8 reinas
-bool solveNQueens(std::vector<int>& queens, int row, int N) {
-    if (row == N) {
+bool solveNreinas(std::vector<int>& reinas, int filas, int N) {
+    if (filas == N) {
         return true;
     }
 
     for (int col = 0; col < N; col++) {
-        if (isValid(queens, row, col)) {
-            queens[row] = col;
-            if (solveNQueens(queens, row + 1, N))
+        if (esvalido(reinas, filas, col)) {
+            reinas[filas] = col;
+            if (solveNreinas(reinas, filas + 1, N))
                 return true;
         }
     }
@@ -33,9 +33,9 @@ bool solveNQueens(std::vector<int>& queens, int row, int N) {
 
 int main() {
     const int N = 8;
-    std::vector<int> queens(N, -1);
+    std::vector<int> reinas(N, -1);
 
-    if (!solveNQueens(queens, 0, N)) {
+    if (!solveNreinas(reinas, 0, N)) {
         std::cout << "No se encontró una solución" << std::endl;
         return 1;
     }
@@ -74,7 +74,7 @@ int main() {
         for (int i = 0; i < N; i++) {
             sf::CircleShape queen(cellSize / 2.5f);
             queen.setFillColor(sf::Color::Red);
-            queen.setPosition(queens[i] * cellSize, i * cellSize);
+            queen.setPosition(reinas[i] * cellSize, i * cellSize);
             window.draw(queen);
         }
 
@@ -89,24 +89,24 @@ int main() {
 #include <vector>
 #include <random>
 
-// Función para verificar si una reina puede ser colocada en la posición (row, col)
-bool isValid(std::vector<int>& queens, int row, int col) {
-    for (int i = 0; i < row; i++) {
-        if (queens[i] == col || abs(i - row) == abs(queens[i] - col))
+// Función para verificar si una reina puede ser colocada en la posición (filas, col)
+bool esvalido(std::vector<int>& reinas, int filas, int col) {
+    for (int i = 0; i < filas; i++) {
+        if (reinas[i] == col || abs(i - filas) == abs(reinas[i] - col))
             return false;
     }
     return true;
 }
 
 // Función recursiva para resolver el problema de las 8 reinas generando soluciones aleatorias
-bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen) {
-    if (row == N) {
+bool solveNreinas(std::vector<int>& reinas, int filas, int N, std::mt19937& gen) {
+    if (filas == N) {
         return true;
     }
 
     std::vector<int> possibleCols;
     for (int col = 0; col < N; col++) {
-        if (isValid(queens, row, col)) {
+        if (esvalido(reinas, filas, col)) {
             possibleCols.push_back(col);
         }
     }
@@ -117,8 +117,8 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen) {
 
     std::shuffle(possibleCols.begin(), possibleCols.end(), gen);
     for (int col : possibleCols) {
-        queens[row] = col;
-        if (solveNQueens(queens, row + 1, N, gen)) {
+        reinas[filas] = col;
+        if (solveNreinas(reinas, filas + 1, N, gen)) {
             return true;
         }
     }
@@ -127,13 +127,13 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen) {
 
 int main() {
     const int N = 8;
-    std::vector<int> queens(N, -1);
+    std::vector<int> reinas(N, -1);
     
     std::random_device rd;
     std::mt19937 gen(rd());
     
     // Intenta encontrar una solución válida generando diferentes permutaciones aleatorias
-    while (!solveNQueens(queens, 0, N, gen));
+    while (!solveNreinas(reinas, 0, N, gen));
 
     // Crea la ventana de SFML
     sf::RenderWindow window(sf::VideoMode(500, 500), "Problema de las 8 reinas");
@@ -149,7 +149,7 @@ int main() {
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
                 // Genera una nueva solución cuando se presiona la barra espaciadora
-                while (!solveNQueens(queens, 0, N, gen));
+                while (!solveNreinas(reinas, 0, N, gen));
             }
         }
 
@@ -173,7 +173,7 @@ int main() {
         for (int i = 0; i < N; i++) {
             sf::CircleShape queen(cellSize / 2.5f);
             queen.setFillColor(sf::Color::Red);
-            queen.setPosition(queens[i] * cellSize, i * cellSize);
+            queen.setPosition(reinas[i] * cellSize, i * cellSize);
             window.draw(queen);
         }
 
@@ -190,24 +190,24 @@ int main() {
 #include <thread>
 #include <chrono>
 
-// Función para verificar si una reina puede ser colocada en la posición (row, col)
-bool isValid(std::vector<int>& queens, int row, int col) {
-    for (int i = 0; i < row; i++) {
-        if (queens[i] == col || abs(i - row) == abs(queens[i] - col))
+// Función para verificar si una reina puede ser colocada en la posición (filas, col)
+bool esvalido(std::vector<int>& reinas, int filas, int col) {
+    for (int i = 0; i < filas; i++) {
+        if (reinas[i] == col || abs(i - filas) == abs(reinas[i] - col))
             return false;
     }
     return true;
 }
 
 // Función recursiva para resolver el problema de las 8 reinas generando soluciones paso a paso
-bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, sf::RenderWindow& window, float cellSize) {
-    if (row == N) {
+bool solveNreinas(std::vector<int>& reinas, int filas, int N, std::mt19937& gen, sf::RenderWindow& window, float cellSize) {
+    if (filas == N) {
         return true;
     }
 
     std::vector<int> possibleCols;
     for (int col = 0; col < N; col++) {
-        if (isValid(queens, row, col)) {
+        if (esvalido(reinas, filas, col)) {
             possibleCols.push_back(col);
         }
     }
@@ -218,7 +218,7 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, s
 
     std::shuffle(possibleCols.begin(), possibleCols.end(), gen);
     for (int col : possibleCols) {
-        queens[row] = col;
+        reinas[filas] = col;
         
         // Visualizar el paso actual
         window.clear();
@@ -234,17 +234,17 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, s
         }
         
         // Dibuja las reinas colocadas hasta el momento
-        for (int i = 0; i <= row; i++) {
+        for (int i = 0; i <= filas; i++) {
             sf::CircleShape queen(cellSize / 2.5f);
             queen.setFillColor(sf::Color::Red);
-            queen.setPosition(queens[i] * cellSize, i * cellSize);
+            queen.setPosition(reinas[i] * cellSize, i * cellSize);
             window.draw(queen);
         }
         
         window.display();
         std::this_thread::sleep_for(std::chrono::milliseconds(550)); // Pausa para visualización
         
-        if (solveNQueens(queens, row + 1, N, gen, window, cellSize)) {
+        if (solveNreinas(reinas, filas + 1, N, gen, window, cellSize)) {
             return true;
         }
     }
@@ -253,7 +253,7 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, s
 
 int main() {
     const int N = 8;
-    std::vector<int> queens(N, -1);
+    std::vector<int> reinas(N, -1);
     
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -263,7 +263,7 @@ int main() {
     float cellSize = 500.0f / N;
     
     // Resolver paso a paso
-    solveNQueens(queens, 0, N, gen, window, cellSize);
+    solveNreinas(reinas, 0, N, gen, window, cellSize);
     
     // Mantener la ventana abierta
     while (window.isOpen()) {
@@ -284,24 +284,33 @@ int main() {
 #include <thread>
 #include <chrono>
 
-// Función para verificar si una reina puede ser colocada en la posición (row, col)
-bool isValid(std::vector<int>& queens, int row, int col) {
-    for (int i = 0; i < row; i++) {
-        if (queens[i] == col || abs(i - row) == abs(queens[i] - col))
+// Función para verificar si una reina puede ser colocada en la posición (filas, col)
+bool esvalido(std::vector<int>& reinas, int filas, int col) {
+    for (int i = 0; i < filas; i++) {
+        if (reinas[i] == col || abs(i - filas) == abs(reinas[i] - col))
             return false;
     }
     return true;
 }
 
+void columna(int i, int N, sf::RenderWindow& window, float cellSize){
+    for (int j = 0; j < N; j++) {
+        sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
+        cell.setPosition(j * cellSize, i * cellSize);
+        cell.setFillColor((i + j) % 2 == 0 ? sf::Color::White : sf::Color::Black);
+        window.draw(cell);
+    }
+}
+
 // Función recursiva para resolver el problema de las 8 reinas generando soluciones paso a paso
-bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, sf::RenderWindow& window, float cellSize, sf::Texture& queenTexture) {
-    if (row == N) {
+bool solveNreinas(std::vector<int>& reinas, int filas, int N, std::mt19937& gen, sf::RenderWindow& window, float cellSize, sf::Texture& queenTexture) {
+    if (filas == N) {
         return true;
     }
 
     std::vector<int> possibleCols;
     for (int col = 0; col < N; col++) {
-        if (isValid(queens, row, col)) {
+        if (esvalido(reinas, filas, col)) {
             possibleCols.push_back(col);
         }
     }
@@ -312,34 +321,29 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, s
 
     std::shuffle(possibleCols.begin(), possibleCols.end(), gen);
     for (int col : possibleCols) {
-        queens[row] = col;
+        reinas[filas] = col;
         
         // Visualizar el paso actual
         window.clear();
         
         // Dibuja el tablero
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
-                cell.setPosition(j * cellSize, i * cellSize);
-                cell.setFillColor((i + j) % 2 == 0 ? sf::Color::White : sf::Color::Black);
-                window.draw(cell);
-            }
+            columna(i, N, window, cellSize);
         }
 
         // Dibuja las reinas usando la imagen cargada
-        for (int i = 0; i <= row; i++) {
-            sf::Sprite queenSprite;
-            queenSprite.setTexture(queenTexture);
-            queenSprite.setScale((cellSize) / queenTexture.getSize().x, (cellSize) / queenTexture.getSize().y);
-            queenSprite.setPosition(queens[i] * cellSize, i * cellSize);
-            window.draw(queenSprite);
+        for (int i = 0; i <= filas; i++) {
+            sf::Sprite reinasprite;
+            reinasprite.setTexture(queenTexture);
+            reinasprite.setScale((cellSize) / queenTexture.getSize().x, (cellSize) / queenTexture.getSize().y);
+            reinasprite.setPosition(reinas[i] * cellSize, i * cellSize);
+            window.draw(reinasprite);
         }
         
         window.display();
         std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Pausa para visualización
         
-        if (solveNQueens(queens, row + 1, N, gen, window, cellSize, queenTexture)) {
+        if (solveNreinas(reinas, filas + 1, N, gen, window, cellSize, queenTexture)) {
             return true;
         }
     }
@@ -348,7 +352,7 @@ bool solveNQueens(std::vector<int>& queens, int row, int N, std::mt19937& gen, s
 
 int main() {
     const int N = 8;
-    std::vector<int> queens(N, -1);
+    std::vector<int> reinas(N, -1);
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -365,7 +369,7 @@ int main() {
     }
     
     // Resolver paso a paso
-    solveNQueens(queens, 0, N, gen, window, cellSize, queenTexture);
+    solveNreinas(reinas, 0, N, gen, window, cellSize, queenTexture);
 
     // Mantener la ventana abierta
     while (window.isOpen()) {
