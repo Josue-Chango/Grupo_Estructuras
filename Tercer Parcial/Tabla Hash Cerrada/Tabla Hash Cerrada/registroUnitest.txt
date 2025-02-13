@@ -1,0 +1,136 @@
+Dev-C++-m unittest Menu.h
+
+EF.
+================================================================
+ERROR: testError (Menu.h)
+----------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\Menu.h", line 29, in testError
+    raise RuntimeError('Test error!')
+RuntimeError: Test error!
+
+================================================================
+FAIL: testFail (Menu.h)
+----------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\Menu.h", line 16, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (failures=5, errors=1)
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest Menu.cpp
+
+FAIL: testFail (Menu.cpp)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\Menu.cpp", line 195, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (failures=2, errors=1)
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest ModoGrafico.h
+
+FAIL: testFail (ModoGrafico.h)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\ModoGrafico.h", line 78, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=0, errors=0)
+
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest ModoGrafico.cpp
+
+FAIL: testFail (ModoGrafico.cpp)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\ModoGrafico.cpp", line 106, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 1 tests in 0.001s
+
+FAILED (failures=6, errors=2)
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest Nodo.h
+
+FAIL: testFail (Nodo.h)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\Nodo.h", line 81, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 1 tests in 0.001s
+
+FAILED (failures=1, errors=1)
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest Nodo.cpp
+
+FAIL: testFail (Nodo.cpp)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\Nodo.cpp", line 110, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 1 tests in 0.001s
+
+FAILED (failures=2, errors=1)
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest TablaCerradaEnteros.cpp
+
+FAIL: testFail (TablaCerradaEnteros.cpp)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\TablaCerradaEnteros.cpp", line 101, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 1 tests in 0.001s
+
+FAILED (failures=6, errors=6)
+================================================================
+----------------------------------------------------------------
+Dev-C++-m unittest TablaCerradaEnteros.h
+
+FAIL: testFail (TablaCerradaEnteros.h)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\TablaCerradaEnteros.h", line 56, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 1 tests in 0.001s
+
+FAILED (failures=1, errors=1)
+
+================================================================
+----------------------------------------------------------------
+FAIL: testFail (GestorBusquedas.cpp)
+Traceback (most recent call last):
+  File "C:\Users\MATIAS\Desktop\ESPE\Cuarto Semestre\Estructura Datos\UNIDAD 2\Grupo7_ProyectoUnidad2_TablaHashCerrada\GestorBusquedas.cpp", line 18, in testFail
+    self.assertFalse(True)
+AssertionError: True is not false
+
+----------------------------------------------------------------
+Ran 1 tests in 0.001s
+
+FAILED (failures=0, errors=0)
+
