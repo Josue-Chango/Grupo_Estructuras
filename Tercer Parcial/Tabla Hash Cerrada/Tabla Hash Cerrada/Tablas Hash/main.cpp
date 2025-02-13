@@ -1,4 +1,4 @@
-// g++ -o hash_table_sfml main.cpp HashTable.cpp -lsfml-graphics -lsfml-window -lsfml-system -std=c++11
+// g++ -o hash main.cpp HashTable.cpp -lsfml-graphics -lsfml-window -lsfml-system -std=c++11
 
 #include "HashTable.h"
 //#include "Validaciones.h"
@@ -7,8 +7,6 @@
 
 int main()
 {
-    std::cout << "Iniciando programa..." << std::endl; // Mensaje de depuración
-
     int tableSize = MenuValidation::getTableSize();
     int probingMethod = MenuValidation::getProbingMethod();
     HashTable letterTable(true, probingMethod, tableSize);  // Tabla para letras
