@@ -5,10 +5,10 @@
 using namespace std;
 
 char cube[6][3][3] = {
-    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Arriba
+    {{'B', 'B', 'B'}, {'B', 'B', 'B'}, {'B', 'B', 'B'}}, // Arriba
     {{'A', 'A', 'A'}, {'A', 'A', 'A'}, {'A', 'A', 'A'}}, // Abajo
     {{'V', 'V', 'V'}, {'V', 'V', 'V'}, {'V', 'V', 'V'}}, // Frente
-    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Atrás
+    {{'B', 'B', 'B'}, {'B', 'B', 'B'}, {'B', 'B', 'B'}}, // Atrás
     {{'N', 'N', 'N'}, {'N', 'N', 'N'}, {'N', 'N', 'N'}}, // Izquierda
     {{'R', 'R', 'R'}, {'R', 'R', 'R'}, {'R', 'R', 'R'}}  // Derecha
 };
@@ -59,10 +59,10 @@ using namespace std;
 
 const int SIZE = 3;
 char cube[6][SIZE][SIZE] = {
-    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Arriba
+    {{'B', 'B', 'B'}, {'B', 'B', 'B'}, {'B', 'B', 'B'}}, // Arriba
     {{'A', 'A', 'A'}, {'A', 'A', 'A'}, {'A', 'A', 'A'}}, // Abajo
     {{'V', 'V', 'V'}, {'V', 'V', 'V'}, {'V', 'V', 'V'}}, // Frente
-    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Atrás
+    {{'Z', 'Z', 'Z'}, {'Z', 'Z', 'Z'}, {'Z', 'Z', 'Z'}}, // Atrás
     {{'N', 'N', 'N'}, {'N', 'N', 'N'}, {'N', 'N', 'N'}}, // Izquierda
     {{'R', 'R', 'R'}, {'R', 'R', 'R'}, {'R', 'R', 'R'}}  // Derecha
 };
