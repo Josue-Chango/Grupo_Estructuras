@@ -20,11 +20,11 @@ vector<vector<int>> generarCuadradoLatino(int n) {
 
 int main() {
     int n;
-    cout << "Ingrese el tamaño del cuadrado latino: ";
+    cout << "Ingrese el tamanio del cuadrado latino: ";
     cin >> n;
 
     if (n <= 0) {
-        cout << "El tamaño debe ser mayor que 0." << endl;
+        cout << "El tamanio debe ser mayor que 0." << endl;
         return 1;
     }
 
