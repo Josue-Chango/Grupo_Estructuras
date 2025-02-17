@@ -5,11 +5,11 @@
 using namespace std;
 
 char cube[6][3][3] = {
-    {{'W', 'W', 'W'}, {'W', 'W', 'W'}, {'W', 'W', 'W'}}, // Arriba
-    {{'Y', 'Y', 'Y'}, {'Y', 'Y', 'Y'}, {'Y', 'Y', 'Y'}}, // Abajo
-    {{'G', 'G', 'G'}, {'G', 'G', 'G'}, {'G', 'G', 'G'}}, // Frente
-    {{'B', 'B', 'B'}, {'B', 'B', 'B'}, {'B', 'B', 'B'}}, // Atrás
-    {{'O', 'O', 'O'}, {'O', 'O', 'O'}, {'O', 'O', 'O'}}, // Izquierda
+    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Arriba
+    {{'A', 'A', 'A'}, {'A', 'A', 'A'}, {'A', 'A', 'A'}}, // Abajo
+    {{'V', 'V', 'V'}, {'V', 'V', 'V'}, {'V', 'V', 'V'}}, // Frente
+    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Atrás
+    {{'N', 'N', 'N'}, {'N', 'N', 'N'}, {'N', 'N', 'N'}}, // Izquierda
     {{'R', 'R', 'R'}, {'R', 'R', 'R'}, {'R', 'R', 'R'}}  // Derecha
 };
 
@@ -59,11 +59,11 @@ using namespace std;
 
 const int SIZE = 3;
 char cube[6][SIZE][SIZE] = {
-    {{'W', 'W', 'W'}, {'W', 'W', 'W'}, {'W', 'W', 'W'}}, // Arriba
-    {{'Y', 'Y', 'Y'}, {'Y', 'Y', 'Y'}, {'Y', 'Y', 'Y'}}, // Abajo
-    {{'G', 'G', 'G'}, {'G', 'G', 'G'}, {'G', 'G', 'G'}}, // Frente
-    {{'B', 'B', 'B'}, {'B', 'B', 'B'}, {'B', 'B', 'B'}}, // Atrás
-    {{'O', 'O', 'O'}, {'O', 'O', 'O'}, {'O', 'O', 'O'}}, // Izquierda
+    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Arriba
+    {{'A', 'A', 'A'}, {'A', 'A', 'A'}, {'A', 'A', 'A'}}, // Abajo
+    {{'V', 'V', 'V'}, {'V', 'V', 'V'}, {'V', 'V', 'V'}}, // Frente
+    {{'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}, {'AZ', 'AZ', 'AZ'}}, // Atrás
+    {{'N', 'N', 'N'}, {'N', 'N', 'N'}, {'N', 'N', 'N'}}, // Izquierda
     {{'R', 'R', 'R'}, {'R', 'R', 'R'}, {'R', 'R', 'R'}}  // Derecha
 };
 
