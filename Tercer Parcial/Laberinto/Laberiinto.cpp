@@ -63,11 +63,11 @@ void guardarMatrizEnArchivo(const vector<vector<int>> &matriz, int n, const stri
 
 int main() {
     int n;
-    cout << "Ingrese el tamaño del laberinto (n x n): ";
+    cout << "Ingrese el tamanio del laberinto (n x n): ";
     cin >> n;
     
     if (n < 5) {
-        cout << "El tamaño del laberinto debe ser al menos 5x5." << endl;
+        cout << "El tamanio del laberinto debe ser al menos 5x5." << endl;
         system("pause");
         return 1;
     }
@@ -179,11 +179,11 @@ void guardarMatrizEnArchivo(const vector<vector<int>> &matriz, int n, const stri
 
 int main() {
     int n;
-    cout << "Ingrese el tamaño del laberinto (n x n, impar): ";
+    cout << "Ingrese el tamanio del laberinto (n x n, impar): ";
     cin >> n;
     
     if (n < 5 || n % 2 == 0) {
-        cout << "El tamaño del laberinto debe ser un número impar mayor o igual a 5." << endl;
+        cout << "El tamanio del laberinto debe ser un número impar mayor o igual a 5." << endl;
         system("pause");
         return 1;
     }
@@ -304,11 +304,11 @@ void guardarMatrizEnArchivo(const vector<vector<int>> &matriz, int n, const stri
 
 int main() {
     int n;
-    cout << "Ingrese el tamaño del laberinto (n x n, impar): ";
+    cout << "Ingrese el tamanio del laberinto (n x n, impar): ";
     cin >> n;
     
     if (n < 5 || n % 2 == 0) {
-        cout << "El tamaño del laberinto debe ser un número impar mayor o igual a 5." << endl;
+        cout << "El tamanio del laberinto debe ser un número impar mayor o igual a 5." << endl;
         return 1;
     }
     
@@ -348,6 +348,22 @@ void inicializarMatriz(vector<vector<int>> &matriz, int n) {
 
 bool esValido(int x, int y, int n, vector<vector<int>> &matriz) {
     return (x > 0 && x < n - 1 && y > 0 && y < n - 1 && matriz[x][y] == 0);
+}
+
+void guardarMatrizEnArchivo(const vector<vector<int>> &matriz, int n, const string &nombreArchivo) {
+    ofstream archivo(nombreArchivo);
+    if (archivo.is_open()) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                archivo << matriz[i][j] << " ";
+            }
+            archivo << endl;
+        }
+        archivo.close();
+        cout << "Laberinto guardado en " << nombreArchivo << endl;
+    } else {
+        cout << "Error al abrir el archivo." << endl;
+    }
 }
 
 void generarLaberinto(vector<vector<int>> &matriz, int n) {
@@ -427,11 +443,11 @@ void graficarLaberinto(const vector<vector<int>> &matriz, int n) {
 
 int main() {
     int n;
-    cout << "Ingrese el tamaño del laberinto (n x n, impar): ";
+    cout << "Ingrese el tamanio del laberinto (n x n, impar): ";
     cin >> n;
     
     if (n < 5 || n % 2 == 0) {
-        cout << "El tamaño del laberinto debe ser un número impar mayor o igual a 5." << endl;
+        cout << "El tamanio del laberinto debe ser un número impar mayor o igual a 5." << endl;
         return 1;
     }
     
@@ -439,6 +455,192 @@ int main() {
     inicializarMatriz(laberinto, n);
     generarLaberinto(laberinto, n);
     graficarLaberinto(laberinto, n);
+    guardarMatrizEnArchivo(laberinto, n, "laberinto.txt");
+    //vector<vector<int>> laberinto = cargarLaberintoDesdeArchivo("laberinto.txt", n);
+    //graficarLaberinto(laberinto, n);
     
     return 0;
 }
+
+
+/*
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include <vector>
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
+#include <stack>
+#include <SFML/Graphics.hpp>
+
+using namespace std;
+
+const int cellSize = 20;
+
+vector<vector<int>> cargarLaberintoDesdeArchivo(const string &nombreArchivo, int &n) {
+    ifstream archivo(nombreArchivo);
+    vector<vector<int>> matriz;
+    
+    if (!archivo.is_open()) {
+        cerr << "Error al abrir el archivo del laberinto." << endl;
+        exit(1);
+    }
+    
+    vector<int> fila;
+    int valor;
+    while (archivo) {
+        fila.clear();
+        for (int i = 0; i < n; i++) {
+            if (!(archivo >> valor)) break;
+            fila.push_back(valor);
+        }
+        if (!fila.empty()) matriz.push_back(fila);
+    }
+    
+    archivo.close();
+    n = matriz.size();
+    return matriz;
+}
+
+void graficarLaberinto(const vector<vector<int>> &matriz, int n) {
+    sf::RenderWindow window(sf::VideoMode(n * cellSize, n * cellSize), "Laberinto desde TXT");
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+        window.clear();
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
+                cell.setPosition(j * cellSize, i * cellSize);
+                
+                if (matriz[i][j] == 0)
+                    cell.setFillColor(sf::Color::Black);
+                else
+                    cell.setFillColor(sf::Color::White);
+                
+                window.draw(cell);
+            }
+        }
+        
+        window.display();
+    }
+}
+
+int main() {
+    int n;
+    cout << "Ingrese el tamanio del laberinto (debe coincidir con el del archivo): ";
+    cin >> n;
+    
+    vector<vector<int>> laberinto = cargarLaberintoDesdeArchivo("laberinto.txt", n);
+    graficarLaberinto(laberinto, n);
+    
+    return 0;
+}
+*/
+
+
+/*
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include <vector>
+#include <fstream>
+#include <ctime>
+#include <cstdlib>
+#include <stack>
+#include <SFML/Graphics.hpp>
+
+using namespace std;
+
+const int cellSize = 20;
+
+vector<vector<int>> cargarLaberintoDesdeArchivo(const string &nombreArchivo, int &n) {
+    ifstream archivo(nombreArchivo);
+    vector<vector<int>> matriz;
+    
+    if (!archivo.is_open()) {
+        cerr << "Error al abrir el archivo del laberinto." << endl;
+        exit(1);
+    }
+    
+    vector<int> fila;
+    int valor;
+    while (archivo) {
+        fila.clear();
+        for (int i = 0; i < n; i++) {
+            if (!(archivo >> valor)) break;
+            fila.push_back(valor);
+        }
+        if (!fila.empty()) matriz.push_back(fila);
+    }
+    
+    archivo.close();
+    n = matriz.size();
+    return matriz;
+}
+
+void graficarLaberinto(const vector<vector<int>> &matriz, int n) {
+    sf::RenderWindow window(sf::VideoMode(n * cellSize, n * cellSize), "Laberinto desde TXT");
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+        window.clear();
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
+                cell.setPosition(j * cellSize, i * cellSize);
+                
+                if (matriz[i][j] == 0)
+                    cell.setFillColor(sf::Color::Black);
+                else
+                    cell.setFillColor(sf::Color::White);
+                
+                window.draw(cell);
+            }
+        }
+        
+        window.display();
+    }
+}
+
+void generarLaberinto(vector<vector<int>> &matriz, int n) {
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matriz[i][j] = (rand() % 2);
+        }
+    }
+    matriz[0][0] = 1; // Entrada
+    matriz[n-1][n-1] = 1; // Salida
+}
+
+int main() {
+    int n;
+    cout << "Ingrese el tamanio del laberinto: ";
+    cin >> n;
+    
+    if (n < 5) {
+        cout << "El tamanio del laberinto debe ser mayor o igual a 5." << endl;
+        return 1;
+    }
+    
+    vector<vector<int>> laberinto(n, vector<int>(n));
+    generarLaberinto(laberinto, n);
+    graficarLaberinto(laberinto, n);
+    
+    return 0;
+}
+*/
