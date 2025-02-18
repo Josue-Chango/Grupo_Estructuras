@@ -322,7 +322,7 @@ int main() {
 }*/
 
 
-// g++ -o Laberinto Laberiinto.cpp -lsfml-graphics -lsfml-window -lsfml-system -std=c++11
+// g++ -o Laberinto Laberiinto.cpp Validaciones.h -lsfml-graphics -lsfml-window -lsfml-system -std=c++11
 #include <iostream>
 #include <algorithm>
 #include <random>
@@ -331,9 +331,12 @@ int main() {
 #include <ctime>
 #include <cstdlib>
 #include <stack>
+#include "Validaciones.h"
 #include <SFML/Graphics.hpp>
 
 using namespace std;
+
+
 
 const int dx[] = {-2, 2, 0, 0};
 const int dy[] = {0, 0, -2, 2};
@@ -442,20 +445,26 @@ void graficarLaberinto(const vector<vector<int>> &matriz, int n) {
 }
 
 int main() {
+    Validaciones<int> validar_entero;
     int n;
-    cout << "Ingrese el tamanio del laberinto (n x n, impar): ";
-    cin >> n;
-    
-    if (n < 5 || n % 2 == 0) {
-        cout << "El tamanio del laberinto debe ser un número impar mayor o igual a 5." << endl;
-        return 1;
-    }
-    
+    /*cout << "Ingrese el tamanio del laberinto (n x n, impar): ";
+    cin >> n;*/
+
+    do{
+        system("cls");
+    n=validar_entero.ingresar("Ingrese el tamanio del laberinto (impar): ", "entero");
+        if (n < 5 || n % 2 == 0) {
+            cout << endl << "El tamanio del laberinto debe ser un numero impar mayor o igual a 5." << endl;
+            system("pause");
+        }
+    }while(n < 5 || n % 2 == 0);
     vector<vector<int>> laberinto(n, vector<int>(n));
     inicializarMatriz(laberinto, n);
     generarLaberinto(laberinto, n);
-    graficarLaberinto(laberinto, n);
+    cout << endl;
     guardarMatrizEnArchivo(laberinto, n, "laberinto.txt");
+    graficarLaberinto(laberinto, n);
+    
     //vector<vector<int>> laberinto = cargarLaberintoDesdeArchivo("laberinto.txt", n);
     //graficarLaberinto(laberinto, n);
     
