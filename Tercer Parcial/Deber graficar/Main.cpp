@@ -296,7 +296,7 @@ int main() {
     if (!file) {
         cerr << "Error al abrir el archivo" << endl;
         return 1;
-    }
+    };
 
     cout << "Ejecutando medicion de tiempos..." << endl;
     file << "Algoritmo,Tamaño,Tiempo (microsegundos)\n";

@@ -1,0 +1,13 @@
+Algoritmo,Tamaño,Tiempo (microsegundos)
+Bubble Sort,1000,5380
+Quick Sort,1000,0
+Bubble Sort,2000,17089
+Quick Sort,2000,0
+Bubble Sort,5000,102163
+Quick Sort,5000,0
+Bubble Sort,10000,413985
+Quick Sort,10000,1369
+Bubble Sort,20000,1692356
+Quick Sort,20000,2590
+Bubble Sort,50000,10718437
+Quick Sort,50000,7768

@@ -1,5 +1,5 @@
 % Leer el archivo de resultados
-data = readtable('resultados.txt');
+data = readtable('resultados.csv');
 
 % Extraer nombres y tiempos
 nombres = data{:,1};  % Algoritmos
