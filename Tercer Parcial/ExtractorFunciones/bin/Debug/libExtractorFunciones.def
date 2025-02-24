@@ -1,0 +1,3 @@
+EXPORTS
+    extractFunctionNames @1
+    freeFunctionNames @2

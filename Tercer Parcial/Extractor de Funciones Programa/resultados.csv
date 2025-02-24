@@ -1,0 +1,17 @@
+Funcion,Tiempo (microsegundos),Complejidad
+en ajedrez (en forma de "L"),1884
+en ajedrez (en forma de "L"),O(?)
+bool esvalido(int x, int y, const std::vector<std::vector<bool>>& tablero) {,1895
+bool esvalido(int x, int y, const std::vector<std::vector<bool>>& tablero) {,O(?)
+bool resolverCaballos(int x, int y, int movimiento, std::vector<std::vector<int>>& solucion, std::vector<std::vector<bool>>& tablero, sf::RenderWindow& window, float cellSize) {,1881
+bool resolverCaballos(int x, int y, int movimiento, std::vector<std::vector<int>>& solucion, std::vector<std::vector<bool>>& tablero, sf::RenderWindow& window, float cellSize) {,O(?)
+void mostrarSolucionPasoAPaso(std::vector<std::vector<int>>& solucion, sf::RenderWindow& window, float cellSize) {,1886
+void mostrarSolucionPasoAPaso(std::vector<std::vector<int>>& solucion, sf::RenderWindow& window, float cellSize) {,O(?)
+RectangleShape cell(sf::Vector2f(cellSize, cellSize),1887
+RectangleShape cell(sf::Vector2f(cellSize, cellSize),O(?)
+CircleShape horse(cellSize / 2.5f),1887
+CircleShape horse(cellSize / 2.5f),O(?)
+int main() {,1886
+int main() {,O(?)
+RenderWindow window(sf::VideoMode(500, 500),1894
+RenderWindow window(sf::VideoMode(500, 500),O(?)

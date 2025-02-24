@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1740362739 source:c:\users\usuario\desktop\borrador estructura\extractorfunciones\functionextractor.cpp
+	"FunctionExtractor.h"
+	<iostream>
+	<fstream>
+	<regex>
+	<vector>
+	<cstring>
+
+1740362969 c:\users\usuario\desktop\borrador estructura\extractorfunciones\functionextractor.h
+
