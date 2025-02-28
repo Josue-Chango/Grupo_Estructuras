@@ -86,7 +86,7 @@ int main() {
 
 
 
-#include <iostream>
+/*#include <iostream>
 #include <cmath> // Para exp() y log()
 #include <fstream> // Para exportar datos
 #include <iomanip> // Para formatear números
@@ -136,9 +136,9 @@ int main() {
     script_matlab << "    h = figure('Position', [100, 100, 1200, 500]);\n\n";
     script_matlab << "    % Gráfica normal\n";
     script_matlab << "    subplot(1,2,1);\n";
-    script_matlab << "    plot(n, e_log_n, 'bo-', 'LineWidth', 2);\n";
+    script_matlab << "    plot(n, e_log_n, 'mo-', 'LineWidth', 2);\n";
     script_matlab << "    hold on;\n";
-    script_matlab << "    plot(n, n_values, 'r--', 'LineWidth', 2);\n";
+    script_matlab << "    plot(n, n_values, 'g--', 'LineWidth', 2);\n";
     script_matlab << "    xlabel('n');\n";
     script_matlab << "    ylabel('Valor');\n";
     script_matlab << "    title('Comparación de e·log(n) vs n');\n";
@@ -150,9 +150,9 @@ int main() {
     script_matlab << "    text(e_value+0.1, min(get(gca,'YLim'))*2, ['n = e ≈ ' num2str(e_value, '%.4f')], 'Color', 'g');\n\n";
     script_matlab << "    % Gráfica semilogarítmica\n";
     script_matlab << "    subplot(1,2,2);\n";
-    script_matlab << "    semilogy(n, e_log_n, 'bo-', 'LineWidth', 2);\n";
+    script_matlab << "    semilogy(n, e_log_n, 'mo-', 'LineWidth', 2);\n";
     script_matlab << "    hold on;\n";
-    script_matlab << "    semilogy(n, n_values, 'r--', 'LineWidth', 2);\n";
+    script_matlab << "    semilogy(n, n_values, 'g--', 'LineWidth', 2);\n";
     script_matlab << "    xlabel('n');\n";
     script_matlab << "    ylabel('Valor (escala logarítmica)');\n";
     script_matlab << "    title('Comparación en escala logarítmica');\n";
@@ -209,4 +209,121 @@ int main() {
     }
     int matlabStatus = system("matlab -r \"graficar_datos\"");
    return 0;
+}*/
+
+#include <iostream>
+#include <cmath> // Para exp() y log()
+#include <fstream> // Para exportar datos
+#include <iomanip> // Para formatear números
+
+using namespace std;
+
+int main() {
+    // Variables para los parámetros
+    double c;
+    float n0, max_n;
+    bool cumple = true;
+    const double e = exp(1.0); // Constante e = 2.71828...
+
+    // Solicitar datos al usuario
+    cout << "Ingrese el valor de la constante c (recomendado c=1): ";
+    cin >> c;
+    
+    cout << "Ingrese el valor inicial n0 (recomendado n0=" << e << "): ";
+    cin >> n0;
+    
+    cout << "Ingrese el valor máximo de n para verificar: ";
+    cin >> max_n;
+
+    // Crear archivos para exportar datos
+    ofstream archivo_csv("datos_notacion.csv");
+    archivo_csv << "n,e_log_n,n" << endl;
+
+    ofstream archivo_matlab("datos_matlab.dat");
+    archivo_matlab << "% Datos para graficar en MATLAB" << endl;
+    archivo_matlab << "% Columna 1: valores de n" << endl;
+    archivo_matlab << "% Columna 2: valores de e·log(n)" << endl;
+    archivo_matlab << "% Columna 3: valores de n" << endl;
+
+    // **Modificación del Script de MATLAB para asegurar una sola ventana**
+    ofstream script_matlab("graficar_datos.m");
+    script_matlab << "% Script de MATLAB para graficar los datos en una sola ventana\n";
+    script_matlab << "try\n";
+    script_matlab << "    % Cargar los datos\n";
+    script_matlab << "    datos = load('datos_matlab.dat');\n";
+    script_matlab << "    n = datos(:,1);\n";
+    script_matlab << "    e_log_n = datos(:,2);\n";
+    script_matlab << "    n_values = datos(:,3);\n\n";
+    
+    script_matlab << "    % Crear una única figura\n";
+    script_matlab << "    figure;\n";
+    script_matlab << "    hold on;\n";
+    
+    script_matlab << "    % Graficar e·log(n) en magenta (curva con marcadores circulares)\n";
+    script_matlab << "    plot(n, e_log_n, 'mo-', 'LineWidth', 2, 'MarkerSize', 6, 'DisplayName', 'e·log(n)');\n";
+    
+    script_matlab << "    % Graficar n en verde (línea discontinua)\n";
+    script_matlab << "    plot(n, n_values, 'g--', 'LineWidth', 2, 'DisplayName', 'n');\n";
+
+    script_matlab << "    % Dibujar línea de referencia en n = e\n";
+    script_matlab << "    e_value = exp(1);\n";
+    script_matlab << "    plot([e_value e_value], get(gca,'YLim'), 'k--', 'LineWidth', 1, 'DisplayName', 'n = e');\n";
+    
+    script_matlab << "    % Etiquetas y títulos\n";
+    script_matlab << "    xlabel('n');\n";
+    script_matlab << "    ylabel('Valor de la función');\n";
+    script_matlab << "    title('Comparación de e·log(n) vs n');\n";
+    script_matlab << "    legend('Location', 'northwest');\n";
+    script_matlab << "    grid on;\n";
+
+    script_matlab << "    % Guardar la imagen\n";
+    script_matlab << "    saveas(gcf, 'grafica_matlab.png');\n";
+    script_matlab << "    disp('Gráfica generada y guardada como grafica_matlab.png');\n";
+    
+    script_matlab << "catch e\n";
+    script_matlab << "    disp(['Error: ' e.message]);\n";
+    script_matlab << "    disp('Verifique que el archivo datos_matlab.dat existe y tiene el formato correcto');\n";
+    script_matlab << "end\n";
+
+    // Generar datos para MATLAB
+    for (double n = 1.0; n <= max_n; n += (n < 5 ? 0.1 : 1.0)) {
+        double e_log_n = e * log(n); // Calcula e·log(n)
+        
+        // Guardar los datos en los archivos
+        archivo_csv << n << "," << e_log_n << "," << n << endl;
+        archivo_matlab << fixed << setprecision(6) << n << " " << e_log_n << " " << n << endl;
+        
+        if (n >= n0) {
+            if (e_log_n > n) {
+                cumple = false;
+                cout << "Falla en n = " << n << ": e·log(n) = " << e_log_n << " > n = " << n << endl;
+            }
+        }
+
+        cout << "n = " << n << "\t e·log(n) = " << e_log_n
+             << "\t Cumple: " << (e_log_n <= n ? "Sí" : "No") << endl;
+    }
+
+    // Cerrar los archivos
+    archivo_csv.close();
+    archivo_matlab.close();
+    script_matlab.close();
+
+    cout << "\nDatos exportados en los siguientes formatos:" << endl;
+    cout << "1. datos_notacion.csv - CSV para uso general" << endl;
+    cout << "2. datos_matlab.dat - Formato de datos para MATLAB" << endl;
+    cout << "3. graficar_datos.m - Script de MATLAB listo para ejecutar" << endl;
+
+    // Resultado de la demostración
+    if (cumple) {
+        cout << "\nDemostración exitosa: e·log(n) ≤ n para todo n ≥ " << n0 << endl;
+        cout << "Por lo tanto, e^n ∈ O(e·log(n))" << endl;
+    } else {
+        cout << "\nLa condición falló para algunos valores. Revisar la demostración." << endl;
+    }
+
+    // Ejecutar MATLAB automáticamente
+    int matlabStatus = system("matlab -r \"graficar_datos\"");
+
+    return 0;
 }
