@@ -1,0 +1,26 @@
+Estructura/Tarea,Tamaño,Tiempo (microsegundos)
+Bubble Sort,1000,2918
+Quick Sort,1000,123
+Inserción en Lista Enlazada,1000,97
+Inserción en Árbol Binario,1000,23
+Bubble Sort,2000,11732
+Quick Sort,2000,344
+Inserción en Lista Enlazada,2000,232
+Inserción en Árbol Binario,2000,61
+Bubble Sort,5000,76961
+Quick Sort,5000,720
+Inserción en Lista Enlazada,5000,410
+Inserción en Árbol Binario,5000,110
+Bubble Sort,10000,322856
+Quick Sort,10000,1289
+Inserción en Lista Enlazada,10000,733
+Inserción en Árbol Binario,10000,243
+Bubble Sort,20000,1327489
+Quick Sort,20000,2861
+Inserción en Lista Enlazada,20000,1494
+Inserción en Árbol Binario,20000,422
+Bubble Sort,50000,8357246
+Quick Sort,50000,7310
+Inserción en Lista Enlazada,50000,3922
+Inserción en Árbol Binario,50000,947
+Búsqueda de Auto,0,2420
