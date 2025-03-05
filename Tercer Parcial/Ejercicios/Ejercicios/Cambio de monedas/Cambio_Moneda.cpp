@@ -21,12 +21,13 @@ int devolution_cambio(double x, const vector<double>& monedas) {
 }
 
 int main() {
-    vector<double> monedas = {2.0, 1.0, 0.5, 0.2, 0.1};  
+    vector<double> monedas = {2.0, 1.0, 0.5, 0.1};  
     double x = 5.34;  
     cout << "Cambio para " << x << ": ";
     devolution_cambio(x, monedas);
+    system("pause");
     cout << endl;
-
+    system("pause");
     return 0;
 }
 
